@@ -8,7 +8,7 @@ export default function Home() {
                 <h1 className="text-6xl font-extrabold tracking-tighter">
                     Home Services made easy!
                 </h1>
-                <h4 className="text-center">
+                <h4 className="lg:text-center">
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                     Cumque et assumenda eligendi odio doloribus eos
                     necessitatibus ullam ipsum officia, modi reiciendis illum
@@ -24,7 +24,7 @@ export default function Home() {
                     asChild
                 >
                     <Link href="/signin">
-                        <span>Join Now!</span>
+                        <span>Join Now</span>
                     </Link>
                 </Button>
             </div>
