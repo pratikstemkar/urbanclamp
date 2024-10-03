@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Navbar from "./_components/Navbar";
-import Footer from "./Footer";
+import Footer from "./_components/Footer";
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({

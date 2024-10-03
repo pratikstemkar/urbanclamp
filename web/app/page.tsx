@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
     return (
@@ -20,8 +21,11 @@ export default function Home() {
                 <Button
                     size="lg"
                     className="shadow-lg hover:shadow-none hover:scale-105 transition ease-in-out duration-300"
+                    asChild
                 >
-                    Login
+                    <Link href="/signin">
+                        <span>Join Now!</span>
+                    </Link>
                 </Button>
             </div>
         </main>

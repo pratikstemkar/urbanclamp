@@ -14,9 +14,11 @@ const Navbar = () => {
                 </Link>
             </div>
             <div>
-                <Button>
-                    <LogInIcon className="h-4 w-4 mr-2" />
-                    <span>Login</span>
+                <Button asChild>
+                    <Link href="/signin">
+                        <LogInIcon className="h-4 w-4 mr-2" />
+                        <span>Login</span>
+                    </Link>
                 </Button>
             </div>
         </nav>
