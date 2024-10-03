@@ -9,6 +9,7 @@ const Footer = () => {
                     <Link
                         href="https://github.com/pratikstemkar/urbanclamp"
                         className="underline"
+                        target="_blank"
                     >
                         GitHub
                     </Link>
