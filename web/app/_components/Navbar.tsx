@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LogInIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -13,13 +14,14 @@ const Navbar = () => {
                     </h1>
                 </Link>
             </div>
-            <div>
+            <div className="flex items-center space-x-2 justify-center">
                 <Button asChild>
                     <Link href="/signin">
                         <LogInIcon className="h-4 w-4 mr-2" />
                         <span>Login</span>
                     </Link>
                 </Button>
+                <ThemeToggle />
             </div>
         </nav>
     );
