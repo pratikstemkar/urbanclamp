@@ -23,8 +23,8 @@ export default function Home() {
                     className="shadow-lg hover:shadow-none hover:scale-105 transition ease-in-out duration-300"
                     asChild
                 >
-                    <Link href="/signin">
-                        <span>Join Now</span>
+                    <Link href="/homes">
+                        <span>Browse Services</span>
                     </Link>
                 </Button>
             </div>

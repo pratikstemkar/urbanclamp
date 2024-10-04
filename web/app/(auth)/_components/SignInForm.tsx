@@ -98,7 +98,7 @@ const SignInForm = () => {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Login</Button>
+                <Button type="submit">Sign In</Button>
                 <span className="text-sm">
                     Don&apos;t have an account?{" "}
                     <Link

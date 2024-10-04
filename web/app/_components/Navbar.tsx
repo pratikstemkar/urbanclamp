@@ -18,7 +18,7 @@ const Navbar = () => {
                 <Button asChild>
                     <Link href="/signin">
                         <LogInIcon className="h-4 w-4 mr-2" />
-                        <span>Login</span>
+                        <span>Sign In</span>
                     </Link>
                 </Button>
                 <ThemeToggle />
