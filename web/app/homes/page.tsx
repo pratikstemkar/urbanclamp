@@ -131,7 +131,6 @@ const HomesPage = () => {
                                         />
                                     </CardContent>
                                 </Card>
-
                                 <Link
                                     href="/homes/services"
                                     className="lg:underline text-violet-500 hover:font-semibold flex pl-5 items-center"

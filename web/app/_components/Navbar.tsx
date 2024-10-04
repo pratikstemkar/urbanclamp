@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LogInIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = () => {
