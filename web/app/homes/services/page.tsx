@@ -74,7 +74,7 @@ const ServicesPage = () => {
                             />
                         </CardContent>
                     </Card>
-                    <Card className="hidden lg:block hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
+                    <Card className="hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
                         <CardContent className="mt-6 text-sm flex items-center justify-between">
                             AC Service
                             <Image
@@ -85,7 +85,7 @@ const ServicesPage = () => {
                             />
                         </CardContent>
                     </Card>
-                    <Card className="hidden lg:block hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
+                    <Card className="hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
                         <CardContent className="mt-6 text-sm flex items-center justify-between">
                             Refrigerator Repair
                             <Image
@@ -96,7 +96,7 @@ const ServicesPage = () => {
                             />
                         </CardContent>
                     </Card>
-                    <Card className="hidden lg:block hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
+                    <Card className="hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
                         <CardContent className="mt-6 text-sm flex items-center justify-between">
                             Machine Repair
                             <Image
@@ -107,7 +107,7 @@ const ServicesPage = () => {
                             />
                         </CardContent>
                     </Card>
-                    <Card className="hidden lg:block hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
+                    <Card className="hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
                         <CardContent className="mt-6 text-sm flex items-center justify-between">
                             Pest Control
                             <Image
@@ -118,7 +118,7 @@ const ServicesPage = () => {
                             />
                         </CardContent>
                     </Card>
-                    <Card className="hidden lg:block hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
+                    <Card className="hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
                         <CardContent className="mt-6 text-sm flex items-center justify-between">
                             Home Cleaning
                             <Image
