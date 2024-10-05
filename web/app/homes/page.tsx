@@ -14,12 +14,12 @@ const HomesPage = () => {
                         Home services at your doorstep!
                     </h1>
                     <Card>
-                        <CardHeader>
+                        <CardHeader className="-m-2 lg:-m-0">
                             <CardTitle className="text-xl font-semibold">
                                 What are you looking for?
                             </CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="-m-4 lg:-m-0">
                             <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
                                 <Card className="hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
                                     <CardContent className="mt-6 text-sm flex items-center justify-between">

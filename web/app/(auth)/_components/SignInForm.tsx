@@ -19,6 +19,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { useRouter } from "next/navigation";
 import { setCredentials } from "@/store/features/auth/AuthSlice";
 import { toast } from "sonner";
+import { Icons } from "@/components/ui/icons";
 
 const formSchema = z.object({
     email: z
@@ -80,60 +81,82 @@ const SignInForm = () => {
     }
 
     return (
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4 flex flex-col w-full"
-            >
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                                <Input
-                                    placeholder="me@example.com"
-                                    {...field}
-                                    type="email"
-                                />
-                            </FormControl>
-                            <FormDescription>
-                                We do not share your email with anyone.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Password</FormLabel>
-                            <FormControl>
-                                <Input
-                                    placeholder=""
-                                    {...field}
-                                    type="password"
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <Button type="submit">Sign In</Button>
-                <span className="text-sm">
-                    Don&apos;t have an account?{" "}
-                    <Link
-                        href="/signup"
-                        className="underline underline-offset-4"
-                    >
-                        Create Account
-                    </Link>
-                </span>
-            </form>
-        </Form>
+        <div className="w-full flex flex-col space-y-5">
+            <div className="grid grid-cols-2 gap-2">
+                <Button variant="outline">
+                    <Icons.gitHub className="mr-2 h-4 w-4" />
+                    GitHub
+                </Button>
+                <Button variant="outline">
+                    <Icons.google className="mr-2 h-4 w-4" />
+                    Google
+                </Button>
+            </div>
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-4 flex flex-col w-full"
+                >
+                    <div className="relative">
+                        <div className="absolute inset-0 flex items-center">
+                            <span className="w-full border-t" />
+                        </div>
+                        <div className="relative flex justify-center text-xs uppercase">
+                            <span className="bg-background px-2 text-muted-foreground">
+                                Or continue with
+                            </span>
+                        </div>
+                    </div>
+                    <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Email</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        placeholder="me@example.com"
+                                        {...field}
+                                        type="email"
+                                    />
+                                </FormControl>
+                                <FormDescription>
+                                    We do not share your email with anyone.
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Password</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        placeholder=""
+                                        {...field}
+                                        type="password"
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <Button type="submit">Sign In</Button>
+                    <span className="text-sm">
+                        Don&apos;t have an account?{" "}
+                        <Link
+                            href="/signup"
+                            className="underline underline-offset-4"
+                        >
+                            Create Account
+                        </Link>
+                    </span>
+                </form>
+            </Form>
+        </div>
     );
 };
 
