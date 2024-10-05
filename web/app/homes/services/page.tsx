@@ -10,7 +10,7 @@ const ServicesPage = () => {
                 <div className="flex space-x-2 lg:space-x-5 items-center">
                     <Link
                         href="/homes"
-                        className="hover:-translate-x-2 transition duration-200 ease-in-out"
+                        className=""
                     >
                         <ArrowLeftIcon className="h-6 w-6 lg:h-8 lg:w-8" />
                     </Link>

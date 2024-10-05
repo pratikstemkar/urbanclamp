@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import StoreProvider from "@/store/StoreProvider";
+import { Toaster } from "sonner";
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
@@ -26,18 +28,21 @@ export default function RootLayout({
             <body
                 className={`${inter.className} antialiased flex flex-col justify-between w-full min-h-screen`}
             >
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="light"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <div>
-                        <Navbar />
-                        {children}
-                    </div>
-                    <Footer />
-                </ThemeProvider>
+                <StoreProvider>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="light"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <div>
+                            <Navbar />
+                            {children}
+                        </div>
+                        <Toaster />
+                        <Footer />
+                    </ThemeProvider>
+                </StoreProvider>
             </body>
         </html>
     );

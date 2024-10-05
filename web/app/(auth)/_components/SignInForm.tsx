@@ -15,6 +15,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { useAppDispatch } from "@/store/hooks";
+import { useRouter } from "next/navigation";
+import { setCredentials } from "@/store/features/auth/AuthSlice";
+import { toast } from "sonner";
 
 const formSchema = z.object({
     email: z
@@ -39,7 +43,9 @@ const formSchema = z.object({
 });
 
 const SignInForm = () => {
-    // 1. Define your form.
+    const dispatch = useAppDispatch();
+    const router = useRouter();
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -48,11 +54,29 @@ const SignInForm = () => {
         },
     });
 
-    // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
         console.log(values);
+        dispatch(
+            setCredentials({
+                user: {
+                    firstName: "John",
+                    lastName: "Doe",
+                    email: "johndoe@gmail.com",
+                    role: "user",
+                    avatar: "https://github.com/pratikstemkar.png",
+                },
+                access_token: "asdasd",
+                refresh_token: "asdasd",
+            })
+        );
+        toast("Event has been created", {
+            description: "Sunday, December 03, 2023 at 9:00 AM",
+            action: {
+                label: "Undo",
+                onClick: () => console.log("Undo"),
+            },
+        });
+        router.push("/homes");
     }
 
     return (
