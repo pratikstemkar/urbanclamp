@@ -3,11 +3,19 @@ import Image from "next/image";
 import { ServiceCarousel } from "./_components/ServiceCarousel";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { getRandomTenServices } from "@/lib/utils";
+import { services } from "@/data/services";
 
 const HomesPage = () => {
     return (
-        <main className="max-w-7xl m-auto px-2 lg:px-0 my-5 lg:mt-10 flex-col space-y-10">
+        <main className="max-w-7xl m-auto px-5 lg:px-0 my-5 lg:mt-10 flex-col space-y-10">
             <div className="flex flex-col lg:flex-row space-y-5 lg:space-y-0 space-x-0 lg:space-x-10">
                 <div className="lg:w-1/2 flex-col space-y-5">
                     <h1 className="font-bold text-2xl lg:text-4xl tracking-tighter">
@@ -21,126 +29,49 @@ const HomesPage = () => {
                         </CardHeader>
                         <CardContent className="-m-4 lg:-m-0">
                             <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
-                                <Card className="hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
-                                    <CardContent className="mt-6 text-sm flex items-center justify-between">
-                                        Electrician
-                                        <Image
-                                            src="/images/icons/multimeter.png"
-                                            alt="icon"
-                                            height={40}
-                                            width={40}
-                                        />
-                                    </CardContent>
-                                </Card>
-                                <Card className="hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
-                                    <CardContent className="mt-6 text-sm flex items-center justify-between">
-                                        Carpenter
-                                        <Image
-                                            src="/images/icons/sawing.png"
-                                            alt="icon"
-                                            height={40}
-                                            width={40}
-                                        />
-                                    </CardContent>
-                                </Card>
-                                <Card className="hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
-                                    <CardContent className="mt-6 text-sm flex items-center justify-between">
-                                        Bathroom Cleaning
-                                        <Image
-                                            src="/images/icons/toilet.png"
-                                            alt="icon"
-                                            height={40}
-                                            width={40}
-                                        />
-                                    </CardContent>
-                                </Card>
-                                <Card className="hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
-                                    <CardContent className="mt-6 text-sm flex items-center justify-between">
-                                        Chimney Cleaning
-                                        <Image
-                                            src="/images/icons/chimney.png"
-                                            alt="icon"
-                                            height={40}
-                                            width={40}
-                                        />
-                                    </CardContent>
-                                </Card>
-                                <Card className="hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
-                                    <CardContent className="mt-6 text-sm flex items-center justify-between">
-                                        Painting
-                                        <Image
-                                            src="/images/icons/painting.png"
-                                            alt="icon"
-                                            height={40}
-                                            width={40}
-                                        />
-                                    </CardContent>
-                                </Card>
-                                <Card className="hidden lg:block hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
-                                    <CardContent className="mt-6 text-sm flex items-center justify-between">
-                                        AC Service
-                                        <Image
-                                            src="/images/icons/ac.png"
-                                            alt="icon"
-                                            height={40}
-                                            width={40}
-                                        />
-                                    </CardContent>
-                                </Card>
-                                <Card className="hidden lg:block hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
-                                    <CardContent className="mt-6 text-sm flex items-center justify-between">
-                                        Refrigerator Repair
-                                        <Image
-                                            src="/images/icons/refrigerator.png"
-                                            alt="icon"
-                                            height={40}
-                                            width={40}
-                                        />
-                                    </CardContent>
-                                </Card>
-                                <Card className="hidden lg:block hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
-                                    <CardContent className="mt-6 text-sm flex items-center justify-between">
-                                        Machine Repair
-                                        <Image
-                                            src="/images/icons/washingmachine.png"
-                                            alt="icon"
-                                            height={40}
-                                            width={40}
-                                        />
-                                    </CardContent>
-                                </Card>
-                                <Card className="hidden lg:block hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
-                                    <CardContent className="mt-6 text-sm flex items-center justify-between">
-                                        Pest Control
-                                        <Image
-                                            src="/images/icons/pest-control.png"
-                                            alt="icon"
-                                            height={40}
-                                            width={40}
-                                        />
-                                    </CardContent>
-                                </Card>
-                                <Card className="hidden lg:block hover:cursor-pointer hover:scale-x-105 transition duration-300 ease-in-out">
-                                    <CardContent className="mt-6 text-sm flex items-center justify-between">
-                                        Home Cleaning
-                                        <Image
-                                            src="/images/icons/cleaning.png"
-                                            alt="icon"
-                                            height={40}
-                                            width={40}
-                                        />
-                                    </CardContent>
-                                </Card>
-                                <Link
-                                    href="/homes/services"
-                                    className="lg:underline text-violet-500 hover:font-semibold flex pl-5 items-center"
-                                >
-                                    View all services
-                                </Link>
+                                {getRandomTenServices(services, 9).map(
+                                    (service, index) => (
+                                        <Link
+                                            href={`/homes/services/${service.slug}`}
+                                            key={index}
+                                        >
+                                            <Card
+                                                className={`hover:cursor-pointer hover:scale-105 transition duration-300 ease-in-out ${
+                                                    index >= 6
+                                                        ? "hidden sm:inline-block"
+                                                        : ""
+                                                }`}
+                                            >
+                                                <CardContent className="mt-6 text-sm flex items-center justify-between">
+                                                    {service.title}
+                                                    <Image
+                                                        src={`/images/icons/services/${service.slug}.png`}
+                                                        alt={service.slug}
+                                                        height={40}
+                                                        width={40}
+                                                    />
+                                                </CardContent>
+                                            </Card>
+                                        </Link>
+                                    )
+                                )}
                             </div>
                         </CardContent>
+                        <CardFooter className="flex-row-reverse -my-2">
+                            <Button
+                                variant="outline"
+                                asChild
+                            >
+                                <Link
+                                    href="/homes/services"
+                                    className="text-violet-500"
+                                >
+                                    <span>View all services</span>
+                                </Link>
+                            </Button>
+                        </CardFooter>
                     </Card>
-                    <div className="flex">
+                    <div className="flex px-2">
                         <div className="w-1/2 flex space-x-4 items-center">
                             <div>
                                 <StarIcon className="h-8 w-8" />
@@ -183,7 +114,7 @@ const HomesPage = () => {
                 </div>
             </div>
             <div className="flex-col space-y-2">
-                <div className="flex justify-between items-center px-2">
+                <div className="flex justify-between items-center px-0 lg:px-2">
                     <h4 className="text-2xl font-bold tracking-tighter">
                         <span>New and noteworthy</span>
                     </h4>
@@ -192,7 +123,7 @@ const HomesPage = () => {
                 <ServiceCarousel />
             </div>
             <div className="flex-col space-y-2">
-                <div className="flex justify-between items-center px-2">
+                <div className="flex justify-between items-center px-0 lg:px-2">
                     <h4 className="text-2xl font-bold tracking-tighter">
                         <span>Most booked services</span>
                     </h4>
@@ -201,7 +132,7 @@ const HomesPage = () => {
                 <ServiceCarousel />
             </div>
             <div className="flex-col space-y-2">
-                <div className="flex justify-between items-center px-2">
+                <div className="flex justify-between items-center px-0 lg:px-2">
                     <h4 className="text-2xl font-bold tracking-tighter">
                         <span>AC & Appliance Repair</span>
                     </h4>

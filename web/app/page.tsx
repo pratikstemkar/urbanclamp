@@ -9,8 +9,8 @@ import { Input } from "@/components/ui/input";
 export default function Home() {
     return (
         <main className="max-w-7xl m-auto">
-            <div className="flex-col space-y-10 lg:space-y-32 mt-10 lg:mt-32 mb-10 lg:mb-32">
-                <div className="flex flex-col space-y-5 items-center justify-center px-2 lg:px-0">
+            <div className="flex-col space-y-10 lg:space-y-32 mt-10 lg:mt-32 mb-10 lg:mb-32 px-5 lg:px-0">
+                <div className="flex flex-col space-y-5 items-center justify-center">
                     <h1 className="text-6xl font-extrabold tracking-tighter">
                         Home Services made easy!
                     </h1>
@@ -91,7 +91,7 @@ export default function Home() {
                     <h1 className="text-4xl font-extrabold tracking-tighter text-center">
                         Finally, Home Services that work
                     </h1>
-                    <h4 className="lg:text-center">
+                    <h4 className="text-center">
                         Lorem ipsum dolor sit, amet consectetur adipisicing
                         elit. Cumque et assumenda eligendi odio doloribus eos
                         necessitatibus ullam ipsum officia, modi reiciendis

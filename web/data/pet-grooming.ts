@@ -1,0 +1,111 @@
+const petGroomingServices = [
+    {
+        title: "Basic Grooming",
+        description:
+            "Includes bathing, drying, and brushing for a clean and tidy look.",
+        price: 30.0,
+        duration: "1 hour",
+        availableBreeds: ["Small Breeds", "Medium Breeds"],
+        starRating: 4.5,
+        numberOfReviews: 120,
+        slug: "basic-grooming",
+    },
+    {
+        title: "Full Grooming Package",
+        description:
+            "Comprehensive grooming including bathing, drying, brushing, nail clipping, and ear cleaning.",
+        price: 60.0,
+        duration: "2 hours",
+        availableBreeds: ["All Breeds"],
+        starRating: 4.8,
+        numberOfReviews: 200,
+        slug: "full-grooming-package",
+    },
+    {
+        title: "Deshedding Treatment",
+        description:
+            "Specialized service to remove loose fur and reduce shedding.",
+        price: 40.0,
+        duration: "1.5 hours",
+        availableBreeds: ["Medium to Large Breeds"],
+        starRating: 4.7,
+        numberOfReviews: 80,
+        slug: "deshedding-treatment",
+    },
+    {
+        title: "Puppy Grooming",
+        description:
+            "Gentle grooming tailored for puppies, including a bath and light brushing.",
+        price: 25.0,
+        duration: "30 minutes",
+        availableBreeds: ["All Breeds"],
+        starRating: 4.6,
+        numberOfReviews: 60,
+        slug: "puppy-grooming",
+    },
+    {
+        title: "Nail Clipping",
+        description:
+            "Quick and safe nail trimming to keep your pet's paws healthy.",
+        price: 15.0,
+        duration: "15 minutes",
+        availableBreeds: ["All Breeds"],
+        starRating: 4.9,
+        numberOfReviews: 150,
+        slug: "nail-clipping",
+    },
+    {
+        title: "Flea and Tick Treatment",
+        description:
+            "Treatment to remove fleas and ticks, including a medicated bath.",
+        price: 50.0,
+        duration: "1 hour",
+        availableBreeds: ["All Breeds"],
+        starRating: 4.4,
+        numberOfReviews: 95,
+        slug: "flea-and-tick-treatment",
+    },
+    {
+        title: "Teeth Cleaning",
+        description: "Dental cleaning to improve your pet's oral health.",
+        price: 30.0,
+        duration: "30 minutes",
+        availableBreeds: ["All Breeds"],
+        starRating: 4.5,
+        numberOfReviews: 75,
+        slug: "teeth-cleaning",
+    },
+    {
+        title: "De-Skunking Treatment",
+        description: "Specialized bath to neutralize skunk odor.",
+        price: 70.0,
+        duration: "1 hour",
+        availableBreeds: ["All Breeds"],
+        starRating: 4.8,
+        numberOfReviews: 30,
+        slug: "de-skunking-treatment",
+    },
+    {
+        title: "Specialty Cuts",
+        description:
+            "Unique styling options for specific breeds or preferences.",
+        price: 50.0,
+        duration: "1.5 hours",
+        availableBreeds: ["All Breeds"],
+        starRating: 4.3,
+        numberOfReviews: 40,
+        slug: "specialty-cuts",
+    },
+    {
+        title: "Mobile Grooming Service",
+        description: "Convenient grooming service at your doorstep.",
+        price: 80.0,
+        duration: "1.5 hours",
+        availableBreeds: ["All Breeds"],
+        starRating: 4.6,
+        numberOfReviews: 25,
+        slug: "mobile-grooming-service",
+    },
+];
+
+export default petGroomingServices;

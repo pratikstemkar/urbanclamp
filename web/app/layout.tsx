@@ -14,7 +14,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-    title: "Urban Clamp",
+    title: {
+        template: "%s - Urban Clamp",
+        default: "Urban Clamp - Home Service made easy!",
+    },
     description: "Home Service Management made easy!",
 };
 

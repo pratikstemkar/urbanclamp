@@ -17,6 +17,7 @@ import { useAuth } from "@/store/hooks/useAuth";
 import {
     CreditCardIcon,
     LogOutIcon,
+    MapPinHouseIcon,
     SettingsIcon,
     TicketIcon,
     UserIcon,
@@ -76,7 +77,11 @@ const UserNav = () => {
                     </DropdownMenuItem> */}
                     <DropdownMenuItem className="hover:cursor-pointer">
                         <CreditCardIcon className="mr-2 w-4 h-4 text-muted-foreground" />
-                        <span>My Orders</span>
+                        <span>Bookings</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="hover:cursor-pointer">
+                        <MapPinHouseIcon className="mr-2 w-4 h-4 text-muted-foreground" />
+                        <span>Addresses</span>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="hover:cursor-pointer">
                         <SettingsIcon className="mr-2 w-4 h-4 text-muted-foreground" />

@@ -185,9 +185,15 @@ const SignUpForm = () => {
                     <Checkbox id="terms" />
                     <label
                         htmlFor="terms"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 hover:cursor-pointer"
+                        className="text-sm flex items-center space-x-2 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 hover:cursor-pointer"
                     >
-                        Accept terms and conditions
+                        <span>Accept Terms and Conditions</span>
+                        <Link
+                            href="/tnc"
+                            className="text-xs underline"
+                        >
+                            Read T&amp;C
+                        </Link>
                     </label>
                 </div>
                 <Button type="submit">Create Account</Button>
