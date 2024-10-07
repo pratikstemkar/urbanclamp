@@ -83,7 +83,12 @@ const UserNav = () => {
                         <MapPinHouseIcon className="mr-2 w-4 h-4 text-muted-foreground" />
                         <span>Addresses</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="hover:cursor-pointer">
+                    <DropdownMenuItem
+                        className="hover:cursor-pointer"
+                        onClick={() => {
+                            router.push("/settings");
+                        }}
+                    >
                         <SettingsIcon className="mr-2 w-4 h-4 text-muted-foreground" />
                         <span>Settings</span>
                     </DropdownMenuItem>

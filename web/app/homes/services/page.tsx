@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const ServicesPage = () => {
     return (
-        <main className="max-w-7xl m-auto my-5 px-2 lg:px-0">
+        <main className="max-w-7xl m-auto my-5 px-5 lg:px-0">
             <div className="flex-col space-y-5">
                 <div className="flex space-x-2 lg:space-x-5 items-center">
                     <Link href="/homes">

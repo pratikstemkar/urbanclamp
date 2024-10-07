@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -9,7 +11,13 @@ import {
 import petGroomingServices from "@/data/pet-grooming";
 import { services } from "@/data/services";
 import { findServiceBySlug } from "@/lib/utils";
-import { ExternalLinkIcon, StarIcon } from "lucide-react";
+import {
+    addToCart,
+    emptyCart,
+    selectCurrentItems,
+} from "@/store/features/cart/CartSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { ExternalLinkIcon, StarIcon, Trash2Icon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -19,6 +27,9 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
     if (!foundService) {
         notFound();
     }
+
+    const dispatch = useAppDispatch();
+    const cartItems = useAppSelector(selectCurrentItems);
 
     return (
         <main className="max-w-7xl m-auto">
@@ -110,6 +121,22 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
                                             <Button
                                                 variant="outline"
                                                 className="-my-5"
+                                                onClick={() => {
+                                                    dispatch(
+                                                        addToCart({
+                                                            item: {
+                                                                serviceSlug:
+                                                                    params.service,
+                                                                title: service.title,
+                                                                price: service.price,
+                                                                duration:
+                                                                    service.duration,
+                                                                partnerName:
+                                                                    "John Doe",
+                                                            },
+                                                        })
+                                                    );
+                                                }}
                                             >
                                                 Add
                                             </Button>
@@ -120,22 +147,73 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
                         ))}
                     </div>
                 </div>
-                <div className="hidden lg:inline-block lg:w-1/4 ">
+                <div className="hidden lg:block lg:w-1/4 ">
                     <Card className="sticky top-20">
                         <CardHeader>
-                            <CardTitle>Your Cart</CardTitle>
+                            <CardTitle className="flex justify-between items-center">
+                                <span>Your Cart</span>
+                                {cartItems.length > 0 ? (
+                                    <Button
+                                        variant="destructive"
+                                        size="sm"
+                                        onClick={() => dispatch(emptyCart())}
+                                    >
+                                        <Trash2Icon className="h-4 w-4 mr-2" />
+                                        <span>Empty Cart</span>
+                                    </Button>
+                                ) : null}
+                            </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="flex flex-col justify-center w-full items-center space-y-2">
-                                <Image
-                                    src="/images/icons/empty-cart.png"
-                                    alt="empty"
-                                    height={50}
-                                    width={50}
-                                />
-                                <h4 className="text-muted-foreground text-sm">
-                                    Your cart has no services
-                                </h4>
+                            <div>
+                                {cartItems.length == 0 ? (
+                                    <div className="flex w-full flex-col justify-center items-center space-y-2">
+                                        <Image
+                                            src="/images/icons/empty-cart.png"
+                                            alt="empty"
+                                            height={50}
+                                            width={50}
+                                        />
+                                        <h4 className="text-muted-foreground text-sm">
+                                            Your cart has no services
+                                        </h4>
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col space-y-5">
+                                        <div className="flex-col space-y-2">
+                                            {cartItems.map((cart, index) => (
+                                                <Card
+                                                    key={index}
+                                                    className="flex"
+                                                >
+                                                    <CardContent className="pt-6 flex flex-col space-y-2">
+                                                        <div className="text-base font-semibold">
+                                                            {cart.title}
+                                                        </div>
+                                                        <div className="text-sm flex space-x-2">
+                                                            <span>
+                                                                ₹{cart.price}
+                                                            </span>
+                                                            <span>
+                                                                &#x2022;
+                                                            </span>
+                                                            <span>
+                                                                {cart.duration}
+                                                            </span>
+                                                        </div>
+                                                        <div className="text-sm">
+                                                            {cart.partnerName}
+                                                        </div>
+                                                    </CardContent>
+                                                </Card>
+                                            ))}
+                                        </div>
+                                        <div className="flex w-full justify-between items-center">
+                                            <span>₹ 5000</span>
+                                            <Button>Checkout</Button>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </CardContent>
                     </Card>
