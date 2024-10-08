@@ -1,5 +1,6 @@
 "use client";
 
+import { CartDrawer } from "@/app/cart/_components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import {
     Card,
