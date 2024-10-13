@@ -1,0 +1,60 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: Urban Clamp
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/uc-db
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: admin
+    password: adminroot
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    url: jdbc:mysql://localhost:3306/uc-db
+    user: admin
+    password: adminroot
+    baseline-description: "init"
+    baseline-version: 0
+
+  security:
+    user:
+      name: root
+      password: root
+
+  mail:
+    host: localhost
+    port: 1025
+    username: admin
+    password: adminroot
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+
+springdoc:
+  default-produces-media-type: application/json

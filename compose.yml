@@ -1,0 +1,57 @@
+#version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: mysql-urbanclamp
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - uc-network
+
+  mail-dev:
+    container_name: uc-mail-dev
+    image: maildev/maildev
+    ports:
+      - 1080:1080
+      - 1025:1025
+
+#  backend:
+#    image: your-springboot-image
+#    container_name: backend-container
+#    depends_on:
+#      - mysql
+#    environment:
+#      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+#      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+#      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      - uc-network
+#
+#  frontend:
+#    image: your-nextjs-image
+#    container_name: frontend-container
+#    depends_on:
+#      - backend
+#    environment:
+#      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+#    ports:
+#      - "3000:3000"
+#    networks:
+#      - uc-network
+
+networks:
+  uc-network:
+    driver: bridge
+
+volumes:
+  mysql_data:

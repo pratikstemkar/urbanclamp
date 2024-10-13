@@ -1,0 +1,8 @@
+application:
+  security:
+    jwt:
+      secret-key: 5006241fc51be3aae3c9862c8c0e9bf4e2155c327f9b43fb5e05fe4b575c8711
+      expiration: 8640000
+  mailing:
+    frontend:
+      activation-url: http://localhost:3000/activate-account
