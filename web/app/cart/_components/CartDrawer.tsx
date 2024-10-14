@@ -1,6 +1,6 @@
 "use client";
 
-import { ShoppingCartIcon } from "lucide-react";
+import { ShoppingCartIcon, Trash2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
     Drawer,
@@ -12,13 +12,17 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer";
-import { useAppSelector } from "@/store/hooks";
-import { selectCurrentItems } from "@/store/features/cart/CartSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import {
+    removeFromCart,
+    selectCurrentItems,
+} from "@/store/features/cart/CartSlice";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
 export function CartDrawer() {
     const cartItems = useAppSelector(selectCurrentItems);
+    const dispatch = useAppDispatch();
 
     return (
         <Drawer>
@@ -47,15 +51,28 @@ export function CartDrawer() {
                             Your selected services will be shown here
                         </DrawerDescription>
                     </DrawerHeader>
-                    <div className="px-4">
+                    <div className="px-4 max-h-80 overflow-y-scroll">
                         {cartItems.length > 0 ? (
                             <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 w-full">
                                 {cartItems?.map((cart, index) => (
                                     <Card key={index}>
                                         <CardContent className="pt-6 flex flex-col space-y-2">
-                                            <h4 className="font-semibold">
+                                            <div className="font-semibold flex items-center justify-between">
                                                 {cart.title}
-                                            </h4>
+                                                <Button
+                                                    size="icon"
+                                                    variant="ghost"
+                                                    onClick={() =>
+                                                        dispatch(
+                                                            removeFromCart(
+                                                                cart.title
+                                                            )
+                                                        )
+                                                    }
+                                                >
+                                                    <Trash2Icon className="h-[1.2rem] w-[1.2rem] text-red-500" />
+                                                </Button>
+                                            </div>
                                             <div className="flex space-x-2 text-sm">
                                                 <span>₹{cart.price}</span>
                                                 <span>&#x2022;</span>
@@ -85,16 +102,20 @@ export function CartDrawer() {
                             </div>
                         )}
                     </div>
-                    <DrawerFooter className="flex flex-col lg:flex-row-reverse">
-                        <Button className="lg:w-80">Checkout</Button>
-                        <DrawerClose asChild>
-                            <Button
-                                variant="outline"
-                                className="lg:w-80"
-                            >
-                                Cancel
-                            </Button>
-                        </DrawerClose>
+                    <DrawerFooter className="flex flex-col lg:flex-row-reverse justify-center">
+                        {cartItems.length > 0 ? (
+                            <>
+                                <Button className="lg:w-80">Checkout</Button>
+                                <DrawerClose asChild>
+                                    <Button
+                                        variant="outline"
+                                        className="lg:w-80"
+                                    >
+                                        Cancel
+                                    </Button>
+                                </DrawerClose>
+                            </>
+                        ) : null}
                     </DrawerFooter>
                 </div>
             </DrawerContent>

@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface CartItem {
-    serviceSlug: string | null;
-    title: string | null;
-    price: number | null;
-    duration: string | null;
-    partnerName: string | null;
+    serviceSlug: string;
+    title: string;
+    price: number;
+    duration: string;
+    partnerName: string;
 }
 
 type CartState = {
@@ -31,11 +31,11 @@ const cartSlice = createSlice({
             state.items?.push(item);
             localStorage.setItem("items", JSON.stringify(state.items));
         },
-        removeFromCart: (
-            state,
-            { payload: slug }: PayloadAction<{ slug: string }>
-        ) => {
-            // state.items = state.items?.filter(item => return item.serviceSlug !== slug);
+        removeFromCart: (state, action: PayloadAction<string>) => {
+            state.items = state.items.filter(
+                item => item.title !== action.payload
+            );
+            localStorage.setItem("items", JSON.stringify(state.items));
         },
         emptyCart: state => {
             localStorage.removeItem("items");
@@ -44,6 +44,6 @@ const cartSlice = createSlice({
     },
 });
 
-export const { addToCart, emptyCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, emptyCart } = cartSlice.actions;
 export const selectCurrentItems = (state: RootState) => state.cart.items;
 export default cartSlice.reducer;

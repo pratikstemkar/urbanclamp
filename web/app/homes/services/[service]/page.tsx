@@ -22,6 +22,7 @@ import { ExternalLinkIcon, StarIcon, Trash2Icon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ServiceDescDialog from "./_components/ServiceDescDialog";
 
 const ServicePage = ({ params }: { params: { service: string } }) => {
     const foundService = findServiceBySlug(services, params.service);
@@ -72,7 +73,27 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
                                     <div className="flex space-x-2">
                                         <div className="flex flex-col space-y-2 w-5/6">
                                             <div className="text-lg font-bold flex space-x-2 items-center group hover:text-violet-500 hover:cursor-pointer">
-                                                <span>{service.title}</span>
+                                                <span>
+                                                    <ServiceDescDialog
+                                                        title={service.title}
+                                                        description={
+                                                            service.description
+                                                        }
+                                                        duration={
+                                                            service.duration
+                                                        }
+                                                        price={service.price}
+                                                        starRating={
+                                                            service.starRating
+                                                        }
+                                                        numberOfReviews={
+                                                            service.numberOfReviews
+                                                        }
+                                                        availableBreeds={
+                                                            service.availableBreeds
+                                                        }
+                                                    />
+                                                </span>
                                                 <ExternalLinkIcon className="w-4 h-4 group-hover:-translate-y-1 group-hover:translate-x-1 transition duration-300 ease-in-out" />
                                             </div>
                                             <div className="flex space-x-2 items-center">
