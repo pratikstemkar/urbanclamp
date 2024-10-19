@@ -11,7 +11,7 @@ const Footer = () => {
                         Urban Clamp &copy; {new Date().getFullYear()}
                     </span>
                 </div>
-                <div>
+                {/* <div>
                     <Link
                         href="https://github.com/pratikstemkar/urbanclamp"
                         className="underline hover:text-primary"
@@ -21,6 +21,14 @@ const Footer = () => {
                             <Icons.gitHub className="h-4 w-4 mr-2" />
                             <span className="">GitHub</span>
                         </div>
+                    </Link>
+                </div> */}
+                <div className="hidden lg:inline-flex">
+                    <Link
+                        href="/about"
+                        className="underline hover:text-primary"
+                    >
+                        <span className="">About Us</span>
                     </Link>
                 </div>
                 <div className="hidden lg:inline-flex">
