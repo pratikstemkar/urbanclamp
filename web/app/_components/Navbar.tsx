@@ -8,6 +8,8 @@ import Link from "next/link";
 import UserNav from "./UserNav";
 import { Icons } from "@/components/ui/icons";
 import { CartDrawer } from "../cart/_components/CartDrawer";
+import { Command, CommandInput } from "@/components/ui/command";
+import NavSearch from "./NavSearch";
 
 const Navbar = () => {
     const auth = useAuth();
@@ -24,6 +26,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="inline-flex items-center space-x-2 justify-center">
+                    <NavSearch />
                     <CartDrawer />
                     {auth.user ? (
                         <UserNav />
