@@ -52,7 +52,7 @@ export function CartDrawer() {
                             Your selected services will be shown here
                         </DrawerDescription>
                     </DrawerHeader>
-                    <div className="px-4 max-h-80 overflow-y-scroll">
+                    <div className="px-4 max-h-80 overflow-y-scroll pb-1">
                         {cartItems.length > 0 ? (
                             <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 w-full">
                                 {cartItems?.map((cart, index) => (

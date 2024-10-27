@@ -14,7 +14,7 @@ import BottomNavSearch from "./BottomNavSearch";
 const BottomNav = () => {
     return (
         <nav className="fixed bottom-0 lg:hidden flex w-full">
-            <div className="flex w-full justify-around items-center px-2 py-4 bg-background shadow-lg">
+            <div className="flex w-full justify-around items-center px-2 py-4 bg-background">
                 <Link href="/homes">
                     <HomeIcon className="hover:cursor-pointer h-6 w-6" />
                 </Link>
