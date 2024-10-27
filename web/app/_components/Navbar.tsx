@@ -14,7 +14,7 @@ const Navbar = () => {
     const auth = useAuth();
 
     return (
-        <nav className="sticky top-0 z-50 bg-background">
+        <nav className="sticky top-0 backdrop-blur-md">
             <div className="flex max-w-7xl m-auto justify-between items-center px-5 lg:px-10 py-4 lg:py-5">
                 <div>
                     <Link href="/">

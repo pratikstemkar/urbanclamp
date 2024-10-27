@@ -6,6 +6,7 @@ import Footer from "./_components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import StoreProvider from "@/store/StoreProvider";
 import { Toaster } from "sonner";
+import BottomNav from "./_components/BottomNav";
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
@@ -44,6 +45,7 @@ export default function RootLayout({
                         </div>
                         <Toaster />
                         <Footer />
+                        <BottomNav />
                     </ThemeProvider>
                 </StoreProvider>
             </body>
