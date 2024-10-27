@@ -14,7 +14,7 @@ const Navbar = () => {
     const auth = useAuth();
 
     return (
-        <nav className="sticky top-0 backdrop-blur-md">
+        <nav className="sticky top-0 z-10 backdrop-blur-md">
             <div className="flex max-w-7xl m-auto justify-between items-center px-5 lg:px-10 py-4 lg:py-5">
                 <div>
                     <Link href="/">
@@ -30,7 +30,10 @@ const Navbar = () => {
                     {auth.user ? (
                         <UserNav />
                     ) : (
-                        <Button asChild>
+                        <Button
+                            asChild
+                            className="hidden lg:inline-flex"
+                        >
                             <Link href="/signin">
                                 <LogInIcon className="h-4 w-4 mr-2" />
                                 <span>Sign In</span>
@@ -41,7 +44,7 @@ const Navbar = () => {
                         variant="ghost"
                         size="icon"
                         asChild
-                        className="hidden lg:inline-flex"
+                        className=""
                     >
                         <Link
                             href="https://github.com/pratikstemkar/urbanclamp"
@@ -50,7 +53,7 @@ const Navbar = () => {
                             <Icons.gitHub className="h-[1.2rem] w-[1.2rem]" />
                         </Link>
                     </Button>
-                    <div className="hidden lg:inline-flex">
+                    <div className="">
                         <ThemeToggle />
                     </div>
                 </div>

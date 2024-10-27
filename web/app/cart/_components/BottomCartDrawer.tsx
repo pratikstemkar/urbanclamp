@@ -20,29 +20,21 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
-export function CartDrawer() {
+export function BottomCartDrawer() {
     const cartItems = useAppSelector(selectCurrentItems);
     const dispatch = useAppDispatch();
 
     return (
         <Drawer>
             <DrawerTrigger asChild>
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    className="hidden lg:inline-flex"
-                >
-                    <div className="flex justify-center items-start relative">
-                        <ShoppingCartIcon className="h-[1.2rem] w-[1.2rem]" />
-                        {cartItems.length > 0 ? (
-                            <div className="bg-red-500 text-white rounded-full flex justify-center items-center w-4 h-4 -ml-2 -mt-2">
-                                <span className="text-xs">
-                                    {cartItems.length}
-                                </span>
-                            </div>
-                        ) : null}
-                    </div>
-                </Button>
+                <div className="flex justify-center items-start relative hover:cursor-pointer">
+                    <ShoppingCartIcon className="h-6 w-6" />
+                    {cartItems.length > 0 ? (
+                        <div className="bg-red-500 text-white rounded-full flex justify-center items-center w-4 h-4 -ml-2.5 -mt-1.5">
+                            <span className="text-xs">{cartItems.length}</span>
+                        </div>
+                    ) : null}
+                </div>
             </DrawerTrigger>
             <DrawerContent>
                 <div className="mx-auto w-full max-w-sm lg:max-w-7xl">
