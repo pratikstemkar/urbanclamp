@@ -19,6 +19,7 @@ import {
 } from "@/store/features/cart/CartSlice";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
 
 export function BottomCartDrawer() {
     const cartItems = useAppSelector(selectCurrentItems);
@@ -100,8 +101,11 @@ export function BottomCartDrawer() {
                         {cartItems.length > 0 ? (
                             <>
                                 <DrawerClose asChild>
-                                    <Button className="lg:w-80">
-                                        Checkout
+                                    <Button
+                                        className="lg:w-80"
+                                        asChild
+                                    >
+                                        <Link href="/checkout">Checkout</Link>
                                     </Button>
                                 </DrawerClose>
                                 <DrawerClose asChild>
