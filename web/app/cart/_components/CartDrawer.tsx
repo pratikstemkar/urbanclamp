@@ -19,6 +19,7 @@ import {
 } from "@/store/features/cart/CartSlice";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
 
 export function CartDrawer() {
     const cartItems = useAppSelector(selectCurrentItems);
@@ -106,7 +107,14 @@ export function CartDrawer() {
                     <DrawerFooter className="flex flex-col lg:flex-row-reverse justify-center">
                         {cartItems.length > 0 ? (
                             <>
-                                <Button className="lg:w-80">Checkout</Button>
+                                <DrawerClose asChild>
+                                    <Button
+                                        className="lg:w-80"
+                                        asChild
+                                    >
+                                        <Link href="/checkout">Checkout</Link>
+                                    </Button>
+                                </DrawerClose>
                                 <DrawerClose asChild>
                                     <Button
                                         variant="outline"

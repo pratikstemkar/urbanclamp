@@ -15,10 +15,10 @@ const Navbar = () => {
 
     return (
         <nav className="sticky top-0 z-10 backdrop-blur-md">
-            <div className="flex max-w-7xl m-auto justify-between items-center px-5 lg:px-10 py-4 lg:py-5">
+            <div className="flex max-w-7xl m-auto justify-between items-center px-5 lg:px-10 py-2 lg:py-5">
                 <div>
                     <Link href="/">
-                        <h1 className="text-2xl">
+                        <h1 className="text-xl lg:text-2xl">
                             <span className="font-bold">Urban</span>
                             <span className="font-light">Clamp</span>
                         </h1>

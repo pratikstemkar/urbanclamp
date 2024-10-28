@@ -85,6 +85,7 @@ export function BottomCartDrawer() {
                                     alt="hehe"
                                     height={80}
                                     width={80}
+                                    className="dark:invert"
                                 />
                                 <div className="text-center space-y-0">
                                     <h4>Your cart is empty</h4>
@@ -98,7 +99,11 @@ export function BottomCartDrawer() {
                     <DrawerFooter className="flex flex-col lg:flex-row-reverse justify-center">
                         {cartItems.length > 0 ? (
                             <>
-                                <Button className="lg:w-80">Checkout</Button>
+                                <DrawerClose asChild>
+                                    <Button className="lg:w-80">
+                                        Checkout
+                                    </Button>
+                                </DrawerClose>
                                 <DrawerClose asChild>
                                     <Button
                                         variant="outline"

@@ -28,12 +28,12 @@ const ServiceBoard = () => {
                             key={index}
                         >
                             <Card
-                                className={`hover:cursor-pointer hover:scale-105 transition duration-300 ease-in-out ${
+                                className={`hover:cursor-pointer hover:scale-105 transition duration-300 ease-in-out h-28 w-54 ${
                                     index >= 6 ? "hidden sm:inline-block" : ""
                                 }`}
                             >
-                                <CardContent className="mt-6 text-sm flex items-center justify-between">
-                                    {service.title}
+                                <CardContent className="mt-6 text-sm flex w-full items-center justify-between">
+                                    <span>{service.title}</span>
                                     <Image
                                         src={`/images/icons/services/${service.slug}.png`}
                                         alt={service.slug}

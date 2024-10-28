@@ -19,6 +19,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { ShoppingCartIcon, Trash2Icon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const CartDialog = () => {
     const cartItems = useAppSelector(selectCurrentItems);
@@ -113,7 +114,12 @@ const CartDialog = () => {
                                         Cancel
                                     </Button>
                                 </DialogClose>
-                                <Button className="lg:w-80">Checkout</Button>
+                                <Button
+                                    className="lg:w-80"
+                                    asChild
+                                >
+                                    <Link href="/checkout">Checkout</Link>
+                                </Button>
                             </>
                         ) : null}
                     </DialogFooter>
