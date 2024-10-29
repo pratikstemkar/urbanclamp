@@ -34,16 +34,16 @@ public class EmailService {
         Map<String, Object> properties = new HashMap<>();
         properties.put("username", username);
         properties.put("confirmationUrl", confirmationUrl);
-        properties.put("activation-code", activationCode);
+        properties.put("activation_code", activationCode);
 
         Context context = new Context();
         context.setVariables(properties);
 
         mimeMessageHelper.setFrom("pratikstemkar@gmail.com");
-        mimeMessageHelper.setText(to);
+        mimeMessageHelper.setTo(to);
         mimeMessageHelper.setSubject(subject);
 
-        String template = springTemplateEngine.process(templateName, context);
+        String template = springTemplateEngine.process("activate_account", context);
 
         mimeMessageHelper.setText(template, true);
 
