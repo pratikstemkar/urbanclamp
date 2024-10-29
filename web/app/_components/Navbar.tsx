@@ -24,7 +24,7 @@ const Navbar = () => {
                         </h1>
                     </Link>
                 </div>
-                <div className="inline-flex items-center space-x-2 justify-center">
+                <div className="inline-flex flex-row-reverse lg:flex-row items-center space-x-2 justify-center">
                     <NavSearch />
                     <CartDrawer />
                     {auth.user ? (
@@ -44,7 +44,6 @@ const Navbar = () => {
                         variant="ghost"
                         size="icon"
                         asChild
-                        className=""
                     >
                         <Link
                             href="https://github.com/pratikstemkar/urbanclamp"

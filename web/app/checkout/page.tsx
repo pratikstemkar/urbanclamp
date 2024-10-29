@@ -97,7 +97,7 @@ const CheckoutPage = () => {
                                 </div>
                                 <Separator
                                     decorative
-                                    className="bg-black h-0.5"
+                                    className="bg-primary h-0.5"
                                 />
                                 <div className="flex justify-between">
                                     <span className="uppercase font-bold">

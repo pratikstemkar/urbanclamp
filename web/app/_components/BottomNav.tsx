@@ -10,8 +10,11 @@ import Link from "next/link";
 import { CartDrawer } from "../cart/_components/CartDrawer";
 import { BottomCartDrawer } from "../cart/_components/BottomCartDrawer";
 import BottomNavSearch from "./BottomNavSearch";
+import { useAuth } from "@/store/hooks/useAuth";
 
 const BottomNav = () => {
+    const auth = useAuth();
+
     return (
         <nav className="fixed bottom-0 lg:hidden flex w-full">
             <div className="flex w-full justify-around items-center px-2 py-4 bg-background">
@@ -20,9 +23,11 @@ const BottomNav = () => {
                 </Link>
                 <BottomNavSearch />
                 <BottomCartDrawer />
-                <Link href="/signin">
-                    <CircleUserRound />
-                </Link>
+                {!auth.user && (
+                    <Link href="/signin">
+                        <CircleUserRound />
+                    </Link>
+                )}
             </div>
         </nav>
     );

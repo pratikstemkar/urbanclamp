@@ -39,7 +39,7 @@ const NavSearch = () => {
 
     return (
         <div className="hidden lg:inline-flex">
-            <Button
+            {/* <Button
                 className="lg:w-60 flex lg:justify-between group"
                 onClick={() => setOpen(!open)}
                 variant="outline"
@@ -55,6 +55,13 @@ const NavSearch = () => {
                         </kbd>
                     </p>
                 </span>
+            </Button> */}
+            <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setOpen(!open)}
+            >
+                <SearchIcon className="h-[1.2rem] w-[1.2rem]" />
             </Button>
             <CommandDialog
                 open={open}
