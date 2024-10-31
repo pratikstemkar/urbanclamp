@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/sheet";
 import { MapPinPlusIcon } from "lucide-react";
 import NewAddressForm from "./NewAddressForm";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const AddAddressSheet = () => {
     return (
@@ -44,10 +45,12 @@ const AddAddressSheet = () => {
                 </Card>
             </SheetTrigger>
             <SheetContent side="left">
-                <SheetHeader>
-                    <SheetTitle>Add address</SheetTitle>
-                </SheetHeader>
-                <NewAddressForm />
+                <ScrollArea className="h-full">
+                    <SheetHeader>
+                        <SheetTitle>Add address</SheetTitle>
+                    </SheetHeader>
+                    <NewAddressForm />
+                </ScrollArea>
             </SheetContent>
         </Sheet>
     );

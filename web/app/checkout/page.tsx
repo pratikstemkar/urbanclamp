@@ -7,11 +7,11 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { HouseIcon, MapPinIcon, WalletIcon } from "lucide-react";
+import { WalletIcon } from "lucide-react";
 import { Metadata } from "next";
-import AddAddressSheet from "./_components/AddAddressSheet";
-import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
+import BillCard from "./_components/BillCard";
+import AddressCard from "./_components/AddressCard";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Checkout",
@@ -26,141 +26,10 @@ const CheckoutPage = () => {
             </h1>
             <div className="flex flex-col lg:flex-row-reverse gap-x-5 gap-y-5 mt-5">
                 <div className="lg:w-1/3">
-                    <Card>
-                        <CardHeader>
-                            <div className="flex space-x-4">
-                                <Image
-                                    src="/images/icons/services/pet-grooming.png"
-                                    alt="imae"
-                                    height={100}
-                                    width={100}
-                                    className="h-14 w-14"
-                                />
-                                <div className="flex flex-col">
-                                    <h1 className="font-bold">Pet Grooming</h1>
-                                    <h4 className="text-sm text-muted-foreground">
-                                        Yerwada
-                                    </h4>
-                                </div>
-                            </div>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="flex flex-col space-y-5">
-                                <div className="flex flex-col space-y-2">
-                                    <div className="flex justify-between">
-                                        <span>Haha Service</span>
-                                        <span>Quatity</span>
-                                        <span>₹ 76</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span>Haha Service</span>
-                                        <span>Quatity</span>
-                                        <span>₹ 76</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span>Haha Service</span>
-                                        <span>Quatity</span>
-                                        <span>₹ 76</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span>Haha Service</span>
-                                        <span>Quatity</span>
-                                        <span>₹ 76</span>
-                                    </div>
-                                </div>
-                                <Separator />
-                                <div className="flex flex-col space-y-2 text-sm">
-                                    <h1 className="font-bold">Bill Details</h1>
-                                    <div className="flex flex-col space-y-1 text-muted-foreground text-xs">
-                                        <div className="flex justify-between">
-                                            <span>Item Total</span>
-                                            <span>₹ 716</span>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <span>Visit charges</span>
-                                            <span>₹ 46</span>
-                                        </div>
-                                        <Separator />
-                                        <div className="flex justify-between">
-                                            <span>Service Tip</span>
-                                            <span>₹ 716</span>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <span>Platform Fees</span>
-                                            <span>₹ 716</span>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <span>GST and other taxes</span>
-                                            <span>₹ 716</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <Separator
-                                    decorative
-                                    className="bg-primary h-0.5"
-                                />
-                                <div className="flex justify-between">
-                                    <span className="uppercase font-bold">
-                                        To Pay
-                                    </span>
-                                    <span>₹ 716</span>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
+                    <BillCard />
                 </div>
                 <div className="lg:w-2/3 flex flex-col space-y-5">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="flex space-x-2 items-center">
-                                <MapPinIcon className="h-6 w-6" />
-                                <span>Select delivery address</span>
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <CardDescription>
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                                    <div>
-                                        <Card className="text-start shadow-none hover:shadow-md hover:cursor-pointer lg:h-64">
-                                            <CardContent className="flex space-x-5 mt-6">
-                                                <div>
-                                                    <HouseIcon />
-                                                </div>
-                                                <div className="flex flex-col space-y-2">
-                                                    <div>
-                                                        <h1 className="font-bold tracking-tighter">
-                                                            Home
-                                                        </h1>
-                                                        <h4 className="text-xs text-muted-foreground">
-                                                            Phule Nagar, Yerwada
-                                                        </h4>
-                                                    </div>
-                                                    <p className="text-muted-foreground">
-                                                        Lorem ipsum, dolor sit
-                                                        amet consectetur
-                                                        adipisicing elit. Cumque
-                                                        repellat vel suscipit
-                                                        harum natus assumenda,
-                                                        quasi, eligendi minus
-                                                        provident nam laboriosam
-                                                        tenetur dolor hic vitae
-                                                        omnis, nemo dicta enim?
-                                                        Necessitatibus.
-                                                    </p>
-                                                    <Button>
-                                                        Deliver here
-                                                    </Button>
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    </div>
-                                    <div>
-                                        <AddAddressSheet />
-                                    </div>
-                                </div>
-                            </CardDescription>
-                        </CardContent>
-                    </Card>
+                    <AddressCard />
                     <Card>
                         <CardHeader>
                             <CardTitle className="flex space-x-2 items-center">
@@ -179,7 +48,14 @@ const CheckoutPage = () => {
                             </CardDescription>
                         </CardContent>
                         <CardFooter className="flex w-full">
-                            <Button>Proceed to pay</Button>
+                            <Button
+                                className="w-full"
+                                asChild
+                            >
+                                <Link href="/checkout/success">
+                                    Proceed to pay
+                                </Link>
+                            </Button>
                         </CardFooter>
                     </Card>
                 </div>
