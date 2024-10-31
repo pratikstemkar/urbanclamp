@@ -12,6 +12,7 @@ import { Metadata } from "next";
 import BillCard from "./_components/BillCard";
 import AddressCard from "./_components/AddressCard";
 import Link from "next/link";
+import ProceedToPay from "./_components/ProceedToPay";
 
 export const metadata: Metadata = {
     title: "Checkout",
@@ -30,34 +31,7 @@ const CheckoutPage = () => {
                 </div>
                 <div className="lg:w-2/3 flex flex-col space-y-5">
                     <AddressCard />
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="flex space-x-2 items-center">
-                                <WalletIcon className="h-6 w-6" />
-                                <span>Choose payment method</span>
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent className="flex flex-col space-y-2">
-                            <CardDescription>
-                                Lorem ipsum dolor sit amet consectetur,
-                                adipisicing elit. Harum illum inventore iste
-                                vitae animi, cum eligendi tempore. Eos, dolore
-                                tempore. Accusamus quaerat nostrum temporibus.
-                                Repellendus perferendis reiciendis et distinctio
-                                cupiditate?
-                            </CardDescription>
-                        </CardContent>
-                        <CardFooter className="flex w-full">
-                            <Button
-                                className="w-full"
-                                asChild
-                            >
-                                <Link href="/checkout/success">
-                                    Proceed to pay
-                                </Link>
-                            </Button>
-                        </CardFooter>
-                    </Card>
+                    <ProceedToPay />
                 </div>
             </div>
         </main>
