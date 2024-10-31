@@ -15,6 +15,7 @@ import { findServiceBySlug } from "@/lib/utils";
 import {
     addToCart,
     emptyCart,
+    removeFromCart,
     selectCurrentItems,
 } from "@/store/features/cart/CartSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -209,9 +210,24 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
                                                     key={index}
                                                     className="flex"
                                                 >
-                                                    <CardContent className="pt-6 flex flex-col space-y-2">
-                                                        <div className="text-base font-semibold">
-                                                            {cart.title}
+                                                    <CardContent className="pt-6 flex flex-col space-y-2 w-full">
+                                                        <div className="flex w-full justify-between items-center">
+                                                            <div className="text-base font-semibold">
+                                                                {cart.title}
+                                                            </div>
+                                                            <Button
+                                                                variant="ghost"
+                                                                size="icon"
+                                                                onClick={() =>
+                                                                    dispatch(
+                                                                        removeFromCart(
+                                                                            cart.title
+                                                                        )
+                                                                    )
+                                                                }
+                                                            >
+                                                                <Trash2Icon className="h-[1.2rem] w-[1.2rem] text-red-500" />
+                                                            </Button>
                                                         </div>
                                                         <div className="text-sm flex space-x-2">
                                                             <span>
@@ -233,7 +249,11 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
                                         </div>
                                         <div className="flex w-full justify-between items-center">
                                             <span>₹ 5000</span>
-                                            <Button>Checkout</Button>
+                                            <Button asChild>
+                                                <Link href="/checkout">
+                                                    Checkout
+                                                </Link>
+                                            </Button>
                                         </div>
                                     </div>
                                 )}

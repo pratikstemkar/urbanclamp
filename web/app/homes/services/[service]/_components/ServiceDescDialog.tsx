@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
+    DialogClose,
     DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
+import { addToCart, selectCurrentItems } from "@/store/features/cart/CartSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { StarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,9 +22,12 @@ const ServiceDescDialog = (props: {
     availableBreeds: Array<string>;
     slug: string;
 }) => {
+    const dispatch = useAppDispatch();
+    const cartItems = useAppSelector(selectCurrentItems);
+
     return (
         <Dialog>
-            <DialogTrigger>{props.title}</DialogTrigger>
+            <DialogTrigger className="truncate">{props.title}</DialogTrigger>
             <DialogContent className="w-11/12 rounded-lg">
                 <ScrollArea className="-mt-6 -mx-6">
                     <div className="flex space-x-1">
@@ -87,7 +89,26 @@ const ServiceDescDialog = (props: {
                             ))}
                         </div>
                     </div>
-                    <Button>Add</Button>
+                    <DialogClose className="flex w-full">
+                        <Button
+                            onClick={() => {
+                                dispatch(
+                                    addToCart({
+                                        item: {
+                                            serviceSlug: props.slug,
+                                            title: props.title,
+                                            price: props.price,
+                                            duration: props.duration,
+                                            partnerName: "John Doe",
+                                        },
+                                    })
+                                );
+                            }}
+                            className="w-full"
+                        >
+                            Add
+                        </Button>
+                    </DialogClose>
                 </div>
             </DialogContent>
         </Dialog>
