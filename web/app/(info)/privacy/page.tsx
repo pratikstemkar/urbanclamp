@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Privacy Notice",
+    title: "Privacy Policy",
     description: "Home Service Management made easy!",
 };
 
