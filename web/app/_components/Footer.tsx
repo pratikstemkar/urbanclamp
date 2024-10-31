@@ -1,5 +1,3 @@
-import { Icons } from "@/components/ui/icons";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import Link from "next/link";
 
 const Footer = () => {
@@ -10,18 +8,6 @@ const Footer = () => {
                     <span className="">
                         Urban Clamp &copy; {new Date().getFullYear()}
                     </span>
-                </div>
-                <div className="lg:hidden inline-flex">
-                    <Link
-                        href="https://github.com/pratikstemkar/urbanclamp"
-                        className="underline hover:text-primary"
-                        target="_blank"
-                    >
-                        <div className="flex">
-                            <Icons.gitHub className="h-4 w-4 mr-2" />
-                            <span className="">GitHub</span>
-                        </div>
-                    </Link>
                 </div>
                 <div className="hidden lg:inline-flex">
                     <Link
@@ -47,9 +33,6 @@ const Footer = () => {
                         <span className="">Terms and Conditions</span>
                     </Link>
                 </div>
-            </div>
-            <div className="inline-flex lg:hidden">
-                <ThemeToggle />
             </div>
         </footer>
     );

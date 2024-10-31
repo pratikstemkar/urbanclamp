@@ -1,65 +1,40 @@
-import { Button } from "@/components/ui/button";
-import {
-    Card,
-    CardContent,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
 import { services } from "@/data/services";
-import { getRandomTenServices } from "@/lib/utils";
+import { cn, getRandomTenServices } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 const ServiceBoard = () => {
     return (
-        <Card>
-            <CardHeader className="-m-2 lg:-m-0">
-                <CardTitle className="text-xl font-semibold">
-                    What are you looking for?
-                </CardTitle>
-            </CardHeader>
-            <CardContent className="-m-4 lg:-m-0">
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
-                    {getRandomTenServices(services, 9).map((service, index) => (
-                        <Link
-                            href={`/homes/services/${service.slug}`}
-                            key={index}
-                        >
-                            <Card
-                                className={`hover:cursor-pointer hover:scale-105 transition duration-300 ease-in-out h-28 w-54 ${
-                                    index >= 6 ? "hidden sm:inline-block" : ""
-                                }`}
-                            >
-                                <CardContent className="mt-6 text-sm flex w-full items-center justify-between">
-                                    <span>{service.title}</span>
-                                    <Image
-                                        src={`/images/icons/services/${service.slug}.png`}
-                                        alt={service.slug}
-                                        height={40}
-                                        width={40}
-                                    />
-                                </CardContent>
-                            </Card>
-                        </Link>
-                    ))}
-                </div>
-            </CardContent>
-            <CardFooter className="flex-row-reverse -my-2">
-                <Button
-                    variant="outline"
-                    asChild
-                >
+        <div className="flex flex-col space-y-2">
+            <h1 className="text-xl font-semibold">What are you looking for?</h1>
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
+                {getRandomTenServices(services, 9).map((service, index) => (
                     <Link
-                        href="/homes/services"
-                        className="text-violet-500"
+                        href={`/homes/services/${service.slug}`}
+                        key={index}
                     >
-                        <span>View all services</span>
+                        <div
+                            className={cn(
+                                "border rounded-xl px-4 py-4 shadow-sm flex items-center space-x-1 hover:cursor-pointer hover:shadow-lg",
+                                {
+                                    "hidden lg:inline-flex": index >= 6,
+                                }
+                            )}
+                        >
+                            <div className="text-xs w-2/3">{service.title}</div>
+                            <div className=" w-1/3">
+                                <Image
+                                    src={`/images/icons/services/${service.slug}.png`}
+                                    alt={service.slug}
+                                    height={100}
+                                    width={100}
+                                />
+                            </div>
+                        </div>
                     </Link>
-                </Button>
-            </CardFooter>
-        </Card>
+                ))}
+            </div>
+        </div>
     );
 };
 

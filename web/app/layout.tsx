@@ -17,7 +17,7 @@ const inter = Inter({
 export const metadata: Metadata = {
     title: {
         template: "%s - Urban Clamp",
-        default: "Urban Clamp - Home Service made easy!",
+        default: "Urban Clamp - Home Services made easy!",
     },
     description: "Home Service Management made easy!",
 };

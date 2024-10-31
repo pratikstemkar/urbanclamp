@@ -22,7 +22,7 @@ const ServiceDescDialog = (props: {
     return (
         <Dialog>
             <DialogTrigger>{props.title}</DialogTrigger>
-            <DialogContent>
+            <DialogContent className="w-11/12 rounded-lg">
                 <DialogHeader>
                     <DialogTitle>{props.title}</DialogTitle>
                 </DialogHeader>

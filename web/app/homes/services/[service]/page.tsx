@@ -23,6 +23,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ServiceDescDialog from "./_components/ServiceDescDialog";
+import ReviewsDialog from "./_components/ReviewsDialog";
 
 const ServicePage = ({ params }: { params: { service: string } }) => {
     const foundService = findServiceBySlug(services, params.service);
@@ -51,22 +52,21 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
                             {foundService?.description}
                         </p>
                         <div className="flex space-x-2 w-full items-center justify-center lg:justify-start">
-                            <div className="bg-green-600 text-white flex space-x-2 items-center px-2.5 py-1 rounded-md hover:cursor-pointer">
+                            <div className="bg-green-600 text-white flex space-x-2 items-center px-2.5 py-1 rounded-md">
                                 <StarIcon className="h-4 w-4" />
                                 <span className="font-bold text-sm">
                                     {foundService?.starRating}
                                 </span>
                             </div>
-                            <Link href="#">
-                                <span className="underline underline-offset-4 decoration-dotted text-sm">
-                                    {foundService?.numberOfReviews} Reviews
-                                </span>
-                            </Link>
+                            <ReviewsDialog
+                                reviewCount={foundService?.numberOfReviews}
+                                serviceTitle={foundService?.title}
+                            />
                         </div>
                     </div>
                 </div>
                 <div className="lg:w-1/2">
-                    <div className="flex flex-col space-y-2">
+                    <div className="flex flex-col space-y-2 mb-2">
                         {petGroomingServices.map((service, index) => (
                             <Card key={index}>
                                 <CardContent className="mt-4 -mb-2">

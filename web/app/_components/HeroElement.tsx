@@ -19,7 +19,7 @@ const HeroElement = () => {
             </h4>
             <Button
                 size="lg"
-                className="shadow-lg hover:shadow-none hover:scale-105 transition ease-in-out duration-300"
+                className="rounded-full shadow-lg hover:shadow-none hover:scale-105 transition ease-in-out duration-300"
                 asChild
             >
                 <Link href="/homes">

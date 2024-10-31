@@ -20,7 +20,7 @@ const Benefits = () => {
                 </h4>
                 <Button
                     size="lg"
-                    className="shadow-lg hover:shadow-none hover:scale-105 transition ease-in-out duration-300"
+                    className="shadow-lg"
                     asChild
                 >
                     <Link href="/homes">
