@@ -66,7 +66,7 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
                     </div>
                 </div>
                 <div className="lg:w-1/2">
-                    <div className="flex flex-col space-y-2 mb-2">
+                    <div className="flex flex-col space-y-2">
                         {petGroomingServices.map((service, index) => (
                             <Card key={index}>
                                 <CardContent className="mt-4 -mb-2">
@@ -92,6 +92,7 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
                                                         availableBreeds={
                                                             service.availableBreeds
                                                         }
+                                                        slug={service.slug}
                                                     />
                                                 </span>
                                                 <ExternalLinkIcon className="w-4 h-4 group-hover:-translate-y-1 group-hover:translate-x-1 transition duration-300 ease-in-out" />

@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import Link from "next/link";
 
 const Footer = () => {
@@ -33,6 +34,9 @@ const Footer = () => {
                         <span className="">Terms and Conditions</span>
                     </Link>
                 </div>
+            </div>
+            <div className="inline-flex lg:hidden">
+                <ThemeToggle />
             </div>
         </footer>
     );

@@ -51,7 +51,10 @@ const ReviewsDialog = (props: {
                         <ScrollArea className="h-64">
                             <div className="flex flex-col space-y-4">
                                 {Array.from({ length: 5 }).map((_, index) => (
-                                    <div className="flex flex-col space-y-2">
+                                    <div
+                                        className="flex flex-col space-y-2"
+                                        key={index}
+                                    >
                                         <div className="flex items-center justify-between">
                                             <div className="flex flex-col">
                                                 <h4 className="font-medium">
