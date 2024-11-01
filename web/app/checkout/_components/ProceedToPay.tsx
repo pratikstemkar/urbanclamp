@@ -14,7 +14,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { WalletIcon } from "lucide-react";
 import Link from "next/link";
 
-const ProceedToPay = () => {
+const ProceedToPay = (props: { done: boolean }) => {
     const dispatch = useAppDispatch();
 
     return (
@@ -38,6 +38,7 @@ const ProceedToPay = () => {
                 <Button
                     className="w-full"
                     onClick={() => dispatch(emptyCart())}
+                    disabled={!props.done}
                     asChild
                 >
                     <Link href="/checkout/success">Proceed to pay</Link>

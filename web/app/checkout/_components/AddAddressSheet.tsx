@@ -1,16 +1,8 @@
 import { Button } from "@/components/ui/button";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
     Sheet,
     SheetContent,
-    SheetDescription,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
@@ -23,7 +15,7 @@ const AddAddressSheet = () => {
     return (
         <Sheet>
             <SheetTrigger>
-                <Card className="text-start border-dashed border-2 shadow-none hover:shadow-md hover:cursor-pointer lg:h-64">
+                <Card className="text-start border-dashed border-2 shadow-none hover:shadow-md hover:cursor-pointer">
                     <CardContent className="flex space-x-5 mt-6">
                         <div>
                             <MapPinPlusIcon />
@@ -33,11 +25,9 @@ const AddAddressSheet = () => {
                                 Add New Address
                             </h1>
                             <p className="text-muted-foreground">
-                                Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit. Cumque repellat vel suscipit
-                                harum natus assumenda, quasi, eligendi minus
-                                provident nam laboriosam tenetur dolor hic vitae
-                                omnis, nemo dicta enim? Necessitatibus.
+                                Add a well decripted address. This helps our
+                                service partners to easily navigate and reach at
+                                service home on time.
                             </p>
                             <Button>Add New</Button>
                         </div>
@@ -47,7 +37,7 @@ const AddAddressSheet = () => {
             <SheetContent side="left">
                 <ScrollArea className="h-full">
                     <SheetHeader>
-                        <SheetTitle>Add address</SheetTitle>
+                        <SheetTitle>Add new address</SheetTitle>
                     </SheetHeader>
                     <NewAddressForm />
                 </ScrollArea>

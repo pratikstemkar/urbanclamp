@@ -48,7 +48,7 @@ const AddressCard = () => {
                                 className={cn(
                                     "text-start shadow-none hover:shadow-md hover:cursor-pointer",
                                     {
-                                        "lg:h-64": !done,
+                                        // "lg:h-64": !done,
                                     }
                                 )}
                             >
@@ -66,13 +66,8 @@ const AddressCard = () => {
                                             </h4>
                                         </div>
                                         <p className="text-muted-foreground">
-                                            Lorem ipsum, dolor sit amet
-                                            consectetur adipisicing elit. Cumque
-                                            repellat vel suscipit harum natus
-                                            assumenda, quasi, eligendi minus
-                                            provident nam laboriosam tenetur
-                                            dolor hic vitae omnis, nemo dicta
-                                            enim? Necessitatibus.
+                                            704B, Yada Yada Society, Phule
+                                            Nagar, Yerwada - 411006
                                         </p>
                                         {!done && (
                                             <Button
