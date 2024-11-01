@@ -12,6 +12,7 @@ import {
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import TrackMap from "./_components/TrackMap";
 
 export async function generateMetadata({
     params,
@@ -36,17 +37,17 @@ const BookingTrackingPage = ({ params }: { params: { bookingId: string } }) => {
 
     return (
         <main className="max-w-7xl m-auto">
-            <div className="flex flex-col space-y-5 px-5 lg:px-0">
+            <div className="flex flex-col gap-y-5 px-5 lg:px-0">
                 <div>
                     <h1 className="text-2xl font-bold tracking-tighter">
-                        Booking Tracking
+                        Track your booking
                     </h1>
                 </div>
                 <div className="flex flex-col lg:flex-row-reverse gap-5">
-                    <div className="lg:w-2/3 bg-green-500 rounded-lg p-10">
-                        World
+                    <div className="w-full lg:w-2/3 rounded-lg overflow-hidden">
+                        <TrackMap />
                     </div>
-                    <div className="lg:w-1/3">
+                    <div className="lg:w-1/3 flex flex-col gap-y-5">
                         <Card>
                             <CardContent className="mt-6">
                                 <div className="flex flex-col space-y-5">
