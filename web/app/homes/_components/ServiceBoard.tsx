@@ -1,4 +1,4 @@
-import { services } from "@/data/services";
+import { categories } from "@/data/categories";
 import { cn, getRandomTenServices } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,9 +8,9 @@ const ServiceBoard = () => {
         <div className="flex flex-col space-y-2">
             <h1 className="text-xl font-semibold">What are you looking for?</h1>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
-                {getRandomTenServices(services, 9).map((service, index) => (
+                {getRandomTenServices(categories, 9).map((category, index) => (
                     <Link
-                        href={`/homes/services/${service.slug}`}
+                        href={`/homes/services/${category.slug}`}
                         key={index}
                     >
                         <div
@@ -21,11 +21,13 @@ const ServiceBoard = () => {
                                 }
                             )}
                         >
-                            <div className="text-xs w-2/3">{service.title}</div>
+                            <div className="text-xs w-2/3">
+                                {category.title}
+                            </div>
                             <div className=" w-1/3">
                                 <Image
-                                    src={`/images/icons/services/${service.slug}.png`}
-                                    alt={service.slug}
+                                    src={`/images/icons/services/${category.slug}.png`}
+                                    alt={category.slug}
                                     height={100}
                                     width={100}
                                 />

@@ -1,5 +1,6 @@
 import { Booking, bookings } from "@/data/bookings";
-import { services } from "@/data/services";
+import { ServiceCategory } from "@/data/categories";
+import { Service, services } from "@/data/services";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -15,21 +16,20 @@ export const getRandomTenServices = (
     return shuffledServices.slice(0, n);
 };
 
-type Service = {
-    title: string;
-    slug: string;
-    description: string;
-    starRating: number;
-    numberOfReviews: number;
-};
-
 export const findServiceBySlug = (
-    services: Service[],
+    categories: ServiceCategory[],
     slug: string
-): Service | undefined => {
-    return services.find(service => service.slug === slug);
+): ServiceCategory | undefined => {
+    return categories.find(category => category.slug === slug);
 };
 
 export function getBookingById(bookingId: string): Booking | undefined {
     return bookings.find(booking => booking.id === bookingId);
+}
+
+export function getServicesByCategory(
+    services: Service[],
+    categorySlug: string
+): Service[] {
+    return services.filter(service => service.categorySlug === categorySlug);
 }

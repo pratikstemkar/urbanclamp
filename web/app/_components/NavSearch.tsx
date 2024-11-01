@@ -2,26 +2,15 @@
 
 import { Button } from "@/components/ui/button";
 import {
-    Command,
     CommandDialog,
     CommandEmpty,
     CommandGroup,
     CommandInput,
     CommandItem,
     CommandList,
-    CommandSeparator,
-    CommandShortcut,
 } from "@/components/ui/command";
-import { services } from "@/data/services";
-import {
-    Calculator,
-    Calendar,
-    CreditCard,
-    SearchIcon,
-    Settings,
-    Smile,
-    User,
-} from "lucide-react";
+import { categories } from "@/data/categories";
+import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -57,25 +46,25 @@ const NavSearch = () => {
                 <CommandInput placeholder="Search services ..." />
                 <CommandList className="bg-background w-full shadow-lg rounded-bl-lg rounded-br-lg">
                     <CommandEmpty>No results found.</CommandEmpty>
-                    <CommandGroup heading="Services">
-                        {services.map((service, index) => (
+                    <CommandGroup heading="Service Categories">
+                        {categories.map((category, index) => (
                             <CommandItem
                                 key={index}
                                 className="flex space-x-5 items-center"
                                 onSelect={() => {
                                     router.push(
-                                        `/homes/services/${service.slug}`
+                                        `/homes/services/${category.slug}`
                                     );
                                     setOpen(!open);
                                 }}
                             >
                                 <Image
-                                    src={`/images/icons/services/${service.slug}.png`}
-                                    alt={service.slug}
+                                    src={`/images/icons/services/${category.slug}.png`}
+                                    alt={category.slug}
                                     height={50}
                                     width={50}
                                 />
-                                <span>{service.title}</span>
+                                <span>{category.title}</span>
                             </CommandItem>
                         ))}
                     </CommandGroup>

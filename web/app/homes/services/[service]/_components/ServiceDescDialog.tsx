@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -19,15 +21,15 @@ const ServiceDescDialog = (props: {
     numberOfReviews: number;
     starRating: number;
     price: number;
-    availableBreeds: Array<string>;
     slug: string;
 }) => {
     const dispatch = useAppDispatch();
-    const cartItems = useAppSelector(selectCurrentItems);
 
     return (
         <Dialog>
-            <DialogTrigger className="truncate">{props.title}</DialogTrigger>
+            <DialogTrigger className="truncate">
+                <span>{props.title}</span>
+            </DialogTrigger>
             <DialogContent className="w-11/12 rounded-lg">
                 <ScrollArea className="-mt-6 -mx-6">
                     <div className="flex space-x-1">
@@ -77,16 +79,6 @@ const ServiceDescDialog = (props: {
                             <span>₹{props.price}</span>
                             <span>&#x2022;</span>
                             <span>{props.duration}</span>
-                        </div>
-                        <div className="flex space-x-2">
-                            {props.availableBreeds?.map((breed, index) => (
-                                <span
-                                    key={index}
-                                    className="text-sm "
-                                >
-                                    {breed}
-                                </span>
-                            ))}
                         </div>
                     </div>
                     <DialogClose className="flex w-full">

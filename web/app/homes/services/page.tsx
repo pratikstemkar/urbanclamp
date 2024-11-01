@@ -4,6 +4,7 @@ import { ArrowLeftIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
+import { categories } from "@/data/categories";
 
 export const metadata: Metadata = {
     title: "Home Services",
@@ -23,7 +24,7 @@ const ServicesPage = () => {
                     </h1>
                 </div>
                 <div className="grid grid-cols-2 lg:grid-cols-5 gap-2">
-                    {services.map((service, index) => (
+                    {categories.map((service, index) => (
                         <Link
                             href={`/homes/services/${service.slug}`}
                             key={index}
