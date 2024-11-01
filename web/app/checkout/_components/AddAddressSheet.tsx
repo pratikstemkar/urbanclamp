@@ -14,7 +14,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 const AddAddressSheet = () => {
     return (
         <Sheet>
-            <SheetTrigger>
+            <SheetTrigger asChild>
                 <Card className="text-start border-dashed border-2 shadow-none hover:shadow-md hover:cursor-pointer">
                     <CardContent className="flex space-x-5 mt-6">
                         <div>
@@ -24,11 +24,11 @@ const AddAddressSheet = () => {
                             <h1 className="font-bold tracking-tighter">
                                 Add New Address
                             </h1>
-                            <p className="text-muted-foreground">
+                            <div className="text-muted-foreground">
                                 Add a well decripted address. This helps our
                                 service partners to easily navigate and reach at
                                 service home on time.
-                            </p>
+                            </div>
                             <Button>Add New</Button>
                         </div>
                     </CardContent>

@@ -1,3 +1,4 @@
+import { Booking, bookings } from "@/data/bookings";
 import { services } from "@/data/services";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -28,3 +29,7 @@ export const findServiceBySlug = (
 ): Service | undefined => {
     return services.find(service => service.slug === slug);
 };
+
+export function getBookingById(bookingId: string): Booking | undefined {
+    return bookings.find(booking => booking.id === bookingId);
+}

@@ -94,6 +94,7 @@ export function CartDrawer() {
                                     alt="hehe"
                                     height={80}
                                     width={80}
+                                    className="dark:invert"
                                 />
                                 <div className="text-center space-y-0">
                                     <h4>Your cart is empty</h4>

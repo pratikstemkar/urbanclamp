@@ -18,7 +18,7 @@ const BillCard = () => {
         <Card>
             <CardContent className="mt-6">
                 {cartItems.length > 0 ? (
-                    <>
+                    <div>
                         <div className="flex space-x-4">
                             <Image
                                 src="/images/icons/services/pet-grooming.png"
@@ -104,7 +104,7 @@ const BillCard = () => {
                                 <span>₹ 716</span>
                             </div>
                         </div>
-                    </>
+                    </div>
                 ) : (
                     <div className="flex space-x-5">
                         <div>

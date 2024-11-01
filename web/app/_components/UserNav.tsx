@@ -75,7 +75,12 @@ const UserNav = () => {
                         <TicketIcon className="mr-2 w-4 h-4 text-muted-foreground" />
                         <span>My Tickets</span>
                     </DropdownMenuItem> */}
-                    <DropdownMenuItem className="hover:cursor-pointer">
+                    <DropdownMenuItem
+                        className="hover:cursor-pointer"
+                        onClick={() => {
+                            router.push("/bookings");
+                        }}
+                    >
                         <CreditCardIcon className="mr-2 w-4 h-4 text-muted-foreground" />
                         <span>Bookings</span>
                     </DropdownMenuItem>

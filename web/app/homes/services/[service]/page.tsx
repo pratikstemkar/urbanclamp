@@ -1,14 +1,7 @@
 "use client";
 
-import { CartDrawer } from "@/app/cart/_components/CartDrawer";
 import { Button } from "@/components/ui/button";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import petGroomingServices from "@/data/pet-grooming";
 import { services } from "@/data/services";
 import { findServiceBySlug } from "@/lib/utils";
@@ -197,6 +190,7 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
                                             alt="empty"
                                             height={50}
                                             width={50}
+                                            className="dark:invert"
                                         />
                                         <h4 className="text-muted-foreground text-sm">
                                             Your cart has no services
