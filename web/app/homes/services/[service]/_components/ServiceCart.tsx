@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getTotalPrice } from "@/lib/utils";
 import {
     emptyCart,
     removeFromCart,
@@ -20,7 +21,7 @@ const ServiceCart = () => {
         <Card className="sticky top-20">
             <CardHeader>
                 <CardTitle className="flex justify-between items-center">
-                    <span>Your Cart</span>
+                    <span className="text-lg">Your Cart</span>
                     {cartItems.length > 0 ? (
                         <Button
                             variant="destructive"
@@ -50,16 +51,18 @@ const ServiceCart = () => {
                         </div>
                     ) : (
                         <div className="flex flex-col space-y-5">
-                            <div className="flex-col space-y-2">
+                            <div className="flex-col space-y-4">
                                 {cartItems.map((cart, index) => (
-                                    <Card
-                                        key={index}
-                                        className="flex"
-                                    >
-                                        <CardContent className="pt-6 flex flex-col space-y-2 w-full">
+                                    <div key={index}>
+                                        <div className="flex flex-col space-y-1 w-full">
                                             <div className="flex w-full justify-between items-center">
-                                                <div className="text-base font-semibold">
-                                                    {cart.title}
+                                                <div className="flex flex-col">
+                                                    <span className="text-base font-semibold">
+                                                        {cart.title}
+                                                    </span>
+                                                    <span className="text-xs text-muted-foreground">
+                                                        {cart.serviceCategory}
+                                                    </span>
                                                 </div>
                                                 <Button
                                                     variant="ghost"
@@ -76,19 +79,23 @@ const ServiceCart = () => {
                                                 </Button>
                                             </div>
                                             <div className="text-sm flex space-x-2">
-                                                <span>₹{cart.price}</span>
+                                                <span>₹ {cart.price}</span>
                                                 <span>&#x2022;</span>
                                                 <span>{cart.duration}</span>
                                             </div>
-                                            <div className="text-sm">
-                                                {cart.partnerName}
-                                            </div>
-                                        </CardContent>
-                                    </Card>
+                                            <Link
+                                                href={`/partners/${cart.partnerSlug}`}
+                                            >
+                                                <span className="text-sm hover:underline underline-offset-4">
+                                                    {cart.partnerName}
+                                                </span>
+                                            </Link>
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                             <div className="flex w-full justify-between items-center">
-                                <span>₹ 5000</span>
+                                <span>₹ {getTotalPrice(cartItems)}</span>
                                 <Button asChild>
                                     <Link href="/checkout">Checkout</Link>
                                 </Button>

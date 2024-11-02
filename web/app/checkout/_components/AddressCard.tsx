@@ -66,8 +66,9 @@ const AddressCard = () => {
                                             </h4>
                                         </div>
                                         <p className="text-muted-foreground">
-                                            704B, Yada Yada Society, Phule
-                                            Nagar, Yerwada - 411006
+                                            704B, Yada Yada Society, Near RTO
+                                            Phule Nagar, Phule Nagar, Yerwada -
+                                            411006
                                         </p>
                                         {!done && (
                                             <Button

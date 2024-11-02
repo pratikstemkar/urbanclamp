@@ -85,12 +85,18 @@ const ServiceDescDialog = (props: { service: Service }) => {
                                 dispatch(
                                     addToCart({
                                         item: {
+                                            serviceCategory:
+                                                props.service.title,
+                                            serviceCategorySlug:
+                                                props.service.categorySlug,
                                             serviceSlug: props.service.slug,
                                             title: props.service.title,
                                             price: props.service.price,
                                             duration: props.service.duration,
                                             partnerName:
                                                 props.service.partnerName,
+                                            partnerSlug:
+                                                props.service.partnerSlug,
                                         },
                                     })
                                 );

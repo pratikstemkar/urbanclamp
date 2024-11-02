@@ -3,11 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface CartItem {
+    serviceCategory: string;
+    serviceCategorySlug: string;
     serviceSlug: string;
     title: string;
     price: number;
     duration: string;
     partnerName: string;
+    partnerSlug: string;
 }
 
 type CartState = {

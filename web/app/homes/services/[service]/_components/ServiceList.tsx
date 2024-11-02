@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { services } from "@/data/services";
-import { getServicesByCategory } from "@/lib/utils";
+import { getCategoryBySlug, getServicesByCategory } from "@/lib/utils";
 import ServiceDescDialog from "./ServiceDescDialog";
 import { ExternalLinkIcon, StarIcon } from "lucide-react";
 import Link from "next/link";
@@ -10,6 +10,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch } from "@/store/hooks";
 import { addToCart } from "@/store/features/cart/CartSlice";
+import { categories } from "@/data/categories";
 
 const ServiceList = (props: { foundCategorySlug: string }) => {
     const dispatch = useAppDispatch();
@@ -65,14 +66,23 @@ const ServiceList = (props: { foundCategorySlug: string }) => {
                                             dispatch(
                                                 addToCart({
                                                     item: {
+                                                        serviceCategory:
+                                                            getCategoryBySlug(
+                                                                service.categorySlug,
+                                                                categories
+                                                            ) || "",
+                                                        serviceCategorySlug:
+                                                            service.categorySlug,
                                                         serviceSlug:
-                                                            props.foundCategorySlug,
+                                                            service.slug,
                                                         title: service.title,
                                                         price: service.price,
                                                         duration:
                                                             service.duration,
                                                         partnerName:
                                                             service.partnerName,
+                                                        partnerSlug:
+                                                            service.partnerSlug,
                                                     },
                                                 })
                                             );

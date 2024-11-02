@@ -2,6 +2,7 @@ import { Booking, bookings } from "@/data/bookings";
 import { ServiceCategory } from "@/data/categories";
 import { Partner } from "@/data/partners";
 import { Service, services } from "@/data/services";
+import { CartItem } from "@/store/features/cart/CartSlice";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -48,4 +49,16 @@ export function getPartnerImgUrl(
 ): string | undefined {
     const partner = partners.find(p => p.slug === partnerSlug);
     return partner ? partner.imgUrl : undefined;
+}
+
+export function getCategoryBySlug(
+    categorySlug: string,
+    categories: ServiceCategory[]
+): string | undefined {
+    const category = categories.find(p => p.slug === categorySlug);
+    return category ? category.title : undefined;
+}
+
+export function getTotalPrice(cartItems: CartItem[]): number {
+    return cartItems.reduce((total, item) => total + item.price, 0);
 }

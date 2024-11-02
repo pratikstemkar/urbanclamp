@@ -2,6 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { getTotalPrice } from "@/lib/utils";
 import {
     removeFromCart,
     selectCurrentItems,
@@ -21,16 +22,18 @@ const BillCard = () => {
                     <div>
                         <div className="flex space-x-4">
                             <Image
-                                src="/images/icons/services/pet-grooming.png"
+                                src={`/images/icons/services/${cartItems[0].serviceCategorySlug}.png`}
                                 alt="imae"
                                 height={100}
                                 width={100}
                                 className="h-14 w-14"
                             />
                             <div className="flex flex-col">
-                                <h1 className="font-bold">Pet Grooming</h1>
+                                <h1 className="font-bold">
+                                    {cartItems[0].serviceCategory}
+                                </h1>
                                 <h4 className="text-sm text-muted-foreground">
-                                    Yerwada
+                                    Phule Nagar, Yerwada
                                 </h4>
                             </div>
                         </div>
@@ -72,7 +75,9 @@ const BillCard = () => {
                                 <div className="flex flex-col space-y-1 text-muted-foreground text-xs">
                                     <div className="flex justify-between">
                                         <span>Item Total</span>
-                                        <span>₹ 716</span>
+                                        <span>
+                                            ₹ {getTotalPrice(cartItems)}
+                                        </span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Visit charges</span>
