@@ -16,7 +16,7 @@ export const partners: Partner[] = [
         bio: "Experienced home cleaner with over 5 years of service in the city.",
         starRating: 4.5,
         mobile: "123-456-7890",
-        imgUrl: "/images/partners/alice.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/women/84.jpg",
     },
     {
         partnerId: "P002",
@@ -25,7 +25,7 @@ export const partners: Partner[] = [
         bio: "Professional plumber known for quick and reliable services.",
         starRating: 4.8,
         mobile: "123-456-7891",
-        imgUrl: "/images/partners/bob.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/men/24.jpg",
     },
     {
         partnerId: "P003",
@@ -34,7 +34,7 @@ export const partners: Partner[] = [
         bio: "Licensed beautician specializing in facials and skincare.",
         starRating: 4.9,
         mobile: "123-456-7892",
-        imgUrl: "/images/partners/catherine.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/women/80.jpg",
     },
     {
         partnerId: "P004",
@@ -43,7 +43,7 @@ export const partners: Partner[] = [
         bio: "Electrician with a focus on safe and efficient repairs.",
         starRating: 4.7,
         mobile: "123-456-7893",
-        imgUrl: "/images/partners/david.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/men/90.jpg",
     },
     {
         partnerId: "P005",
@@ -52,7 +52,7 @@ export const partners: Partner[] = [
         bio: "Hair stylist with a flair for modern and trendy cuts.",
         starRating: 4.6,
         mobile: "123-456-7894",
-        imgUrl: "/images/partners/ella.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/women/28.jpg",
     },
     {
         partnerId: "P006",
@@ -61,7 +61,7 @@ export const partners: Partner[] = [
         bio: "Experienced in carpentry and home repairs.",
         starRating: 4.3,
         mobile: "123-456-7895",
-        imgUrl: "/images/partners/frank.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/men/51.jpg",
     },
     {
         partnerId: "P007",
@@ -70,7 +70,7 @@ export const partners: Partner[] = [
         bio: "Specialist in deep cleaning for homes and offices.",
         starRating: 4.9,
         mobile: "123-456-7896",
-        imgUrl: "/images/partners/grace.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/women/78.jpg",
     },
     {
         partnerId: "P008",
@@ -79,7 +79,7 @@ export const partners: Partner[] = [
         bio: "Certified HVAC technician with years of experience.",
         starRating: 4.4,
         mobile: "123-456-7897",
-        imgUrl: "/images/partners/henry.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/men/3.jpg",
     },
     {
         partnerId: "P009",
@@ -88,7 +88,7 @@ export const partners: Partner[] = [
         bio: "Manicurist and nail technician specializing in creative designs.",
         starRating: 4.8,
         mobile: "123-456-7898",
-        imgUrl: "/images/partners/isabel.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/women/81.jpg",
     },
     {
         partnerId: "P010",
@@ -97,7 +97,7 @@ export const partners: Partner[] = [
         bio: "Plumber with extensive experience in residential repairs.",
         starRating: 4.6,
         mobile: "123-456-7899",
-        imgUrl: "/images/partners/jack.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/men/32.jpg",
     },
     {
         partnerId: "P011",
@@ -106,7 +106,7 @@ export const partners: Partner[] = [
         bio: "Expert painter known for attention to detail and clean finishes.",
         starRating: 4.5,
         mobile: "123-456-7800",
-        imgUrl: "/images/partners/kelly.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/women/56.jpg",
     },
     {
         partnerId: "P012",
@@ -115,7 +115,7 @@ export const partners: Partner[] = [
         bio: "Skilled handyman with a variety of home improvement expertise.",
         starRating: 4.7,
         mobile: "123-456-7801",
-        imgUrl: "/images/partners/leo.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/men/31.jpg",
     },
     {
         partnerId: "P013",
@@ -124,7 +124,7 @@ export const partners: Partner[] = [
         bio: "Licensed cosmetologist providing makeup and skincare services.",
         starRating: 4.8,
         mobile: "123-456-7802",
-        imgUrl: "/images/partners/mia.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/women/63.jpg",
     },
     {
         partnerId: "P014",
@@ -133,7 +133,7 @@ export const partners: Partner[] = [
         bio: "Appliance repair technician specializing in kitchen appliances.",
         starRating: 4.6,
         mobile: "123-456-7803",
-        imgUrl: "/images/partners/nate.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/men/8.jpg",
     },
     {
         partnerId: "P015",
@@ -142,6 +142,6 @@ export const partners: Partner[] = [
         bio: "Professional cleaner with a focus on eco-friendly solutions.",
         starRating: 4.7,
         mobile: "123-456-7804",
-        imgUrl: "/images/partners/olivia.jpg",
+        imgUrl: "https://randomuser.me/api/portraits/women/68.jpg",
     },
 ];

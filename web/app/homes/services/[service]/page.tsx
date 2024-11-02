@@ -7,6 +7,7 @@ import { categories } from "@/data/categories";
 import ServiceCart from "./_components/ServiceCart";
 import { Metadata } from "next";
 import ServiceList from "./_components/ServiceList";
+import { reviews } from "@/data/reviews";
 
 export async function generateMetadata({
     params,
@@ -56,6 +57,8 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
                             <ReviewsDialog
                                 reviewCount={foundCategory?.reviewCount}
                                 serviceTitle={foundCategory?.title}
+                                starRating={foundCategory?.starRating}
+                                reviews={reviews}
                             />
                         </div>
                     </div>

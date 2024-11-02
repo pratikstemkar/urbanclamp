@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { cn, getBookingById } from "@/lib/utils";
+import { cn, getBookingById, getPartnerImgUrl } from "@/lib/utils";
 import {
     BusIcon,
     CopyIcon,
@@ -13,6 +13,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import TrackMap from "./_components/TrackMap";
+import { partners } from "@/data/partners";
 
 export async function generateMetadata({
     params,
@@ -147,7 +148,12 @@ const BookingTrackingPage = ({ params }: { params: { bookingId: string } }) => {
                                     <div className="flex justify-between items-center">
                                         <div className="flex space-x-2 items-center">
                                             <Avatar>
-                                                <AvatarImage src="https://github.com/innei.png" />
+                                                <AvatarImage
+                                                    src={getPartnerImgUrl(
+                                                        booking?.partnerId,
+                                                        partners
+                                                    )}
+                                                />
                                                 <AvatarFallback>
                                                     {booking.partnerId}
                                                 </AvatarFallback>

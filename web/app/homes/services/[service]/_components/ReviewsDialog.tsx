@@ -3,11 +3,14 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { Review, reviews } from "@/data/reviews";
 import { StarIcon } from "lucide-react";
 
 const ReviewsDialog = (props: {
     reviewCount: number;
     serviceTitle: string;
+    starRating: number;
+    reviews: Array<Review>;
 }) => {
     return (
         <Dialog>
@@ -19,15 +22,17 @@ const ReviewsDialog = (props: {
             <DialogContent className="w-11/12 rounded-lg">
                 <div className="flex flex-col space-y-5">
                     <h1 className="text-xl font-bold tracking-tighter">
-                        Reviews of {props.serviceTitle}
+                        Reviews for {props.serviceTitle}
                     </h1>
                     <div className="flex flex-col space-y-1">
                         <div className="flex text-lg items-center">
                             <StarIcon className="h-6 w-6 mr-2" />
-                            <span className="text-xl font-bold">4.8</span>
+                            <span className="text-xl font-bold">
+                                {props.starRating}
+                            </span>
                         </div>
                         <div className="text-muted-foreground text-sm">
-                            45 Reviews
+                            {props.reviewCount} Reviews
                         </div>
                     </div>
                     <div className="flex flex-col space-y-2">
@@ -50,7 +55,7 @@ const ReviewsDialog = (props: {
                         <h4 className="text-lg font-semibold">All Reviews</h4>
                         <ScrollArea className="h-64">
                             <div className="flex flex-col space-y-4">
-                                {Array.from({ length: 5 }).map((_, index) => (
+                                {reviews.map((review, index) => (
                                     <div
                                         className="flex flex-col space-y-2"
                                         key={index}
@@ -58,29 +63,26 @@ const ReviewsDialog = (props: {
                                         <div className="flex items-center justify-between">
                                             <div className="flex flex-col">
                                                 <h4 className="font-medium">
-                                                    John Doe
+                                                    {review?.fullName}
                                                 </h4>
                                                 <div className="flex space-x-2 text-xs text-muted-foreground">
-                                                    <div>Oct 24, 2024</div>
-                                                    <div>Kitchen Cleaning</div>
+                                                    <div>{review?.date}</div>
+                                                    <div>
+                                                        {
+                                                            review?.serviceCategorySlug
+                                                        }
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="bg-green-600 text-white flex space-x-2 items-center px-2.5 py-1 rounded-md">
                                                 <StarIcon className="h-4 w-4" />
                                                 <span className="font-bold text-sm">
-                                                    4.6
+                                                    {review?.starRating}
                                                 </span>
                                             </div>
                                         </div>
                                         <p className="text-sm">
-                                            Lorem ipsum dolor sit amet
-                                            consectetur adipisicing elit.
-                                            Tempora quo inventore animi
-                                            praesentium architecto id distinctio
-                                            aspernatur aut eligendi, totam nulla
-                                            deleniti, labore blanditiis repellat
-                                            dignissimos sint dolore mollitia
-                                            beatae?
+                                            {review?.text}
                                         </p>
                                     </div>
                                 ))}

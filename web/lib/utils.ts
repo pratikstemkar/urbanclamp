@@ -1,5 +1,6 @@
 import { Booking, bookings } from "@/data/bookings";
 import { ServiceCategory } from "@/data/categories";
+import { Partner } from "@/data/partners";
 import { Service, services } from "@/data/services";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -32,4 +33,19 @@ export function getServicesByCategory(
     categorySlug: string
 ): Service[] {
     return services.filter(service => service.categorySlug === categorySlug);
+}
+
+export function getPartnerBySlug(
+    partners: Partner[],
+    partnerSlug: string
+): Partner | undefined {
+    return partners.find(partner => partner.slug === partnerSlug);
+}
+
+export function getPartnerImgUrl(
+    partnerSlug: string,
+    partners: Partner[]
+): string | undefined {
+    const partner = partners.find(p => p.slug === partnerSlug);
+    return partner ? partner.imgUrl : undefined;
 }
