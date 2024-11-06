@@ -87,15 +87,6 @@ const ReviewsDialog = (props: {
                                     </div>
                                 ))}
                             </div>
-                            <div className="flex mt-2">
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="w-full"
-                                >
-                                    Show All
-                                </Button>
-                            </div>
                         </ScrollArea>
                     </div>
                 </div>

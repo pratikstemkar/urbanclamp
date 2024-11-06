@@ -1,19 +1,18 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { cn, getBookingById, getPartnerImgUrl } from "@/lib/utils";
-import {
-    BusIcon,
-    CopyIcon,
-    FlagIcon,
-    MessageSquareTextIcon,
-} from "lucide-react";
+import { BusIcon, CopyIcon, MessageSquareTextIcon } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import TrackMap from "./_components/TrackMap";
 import { partners } from "@/data/partners";
+import Link from "next/link";
+import ReportDialog from "./_components/ReportDialog";
+import { toast } from "sonner";
+import CopyBookingId from "./_components/CopyBookingId";
 
 export async function generateMetadata({
     params,
@@ -65,7 +64,7 @@ const BookingTrackingPage = ({ params }: { params: { bookingId: string } }) => {
                                                     <span>
                                                         #{params.bookingId}
                                                     </span>
-                                                    <CopyIcon className="h-4 w-4 hover:cursor-pointer" />
+                                                    <CopyBookingId />
                                                 </div>
                                             </div>
                                         </div>
@@ -162,18 +161,20 @@ const BookingTrackingPage = ({ params }: { params: { bookingId: string } }) => {
                                                 <span className="text-sm text-muted-foreground">
                                                     Service Partner
                                                 </span>
-                                                <span>
-                                                    {booking.partnerName}
-                                                </span>
+                                                <Link
+                                                    href={`/partners/${booking.partnerId}`}
+                                                >
+                                                    <span className="text-sm hover:underline underline-offset-4">
+                                                        {booking.partnerName}
+                                                    </span>
+                                                </Link>
                                             </div>
                                         </div>
                                         <div className="flex space-x-2 items-center">
                                             <div className="border rounded-full p-2 hover:cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-900">
                                                 <MessageSquareTextIcon className="h-5 w-5" />
                                             </div>
-                                            <div className="border rounded-full p-2 hover:cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-900">
-                                                <FlagIcon className="h-5 w-5" />
-                                            </div>
+                                            <ReportDialog />
                                         </div>
                                     </div>
                                 </div>

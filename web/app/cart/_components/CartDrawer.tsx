@@ -59,29 +59,50 @@ export function CartDrawer() {
                                 {cartItems?.map((cart, index) => (
                                     <Card key={index}>
                                         <CardContent className="pt-6 flex flex-col space-y-2">
-                                            <div className="font-semibold flex items-center justify-between">
-                                                {cart.title}
-                                                <Button
-                                                    size="icon"
-                                                    variant="ghost"
-                                                    onClick={() =>
-                                                        dispatch(
-                                                            removeFromCart(
-                                                                cart.title
-                                                            )
-                                                        )
-                                                    }
-                                                >
-                                                    <Trash2Icon className="h-[1.2rem] w-[1.2rem] text-red-500" />
-                                                </Button>
-                                            </div>
-                                            <div className="flex space-x-2 text-sm">
-                                                <span>₹{cart.price}</span>
-                                                <span>&#x2022;</span>
-                                                <span>{cart.duration}</span>
-                                            </div>
-                                            <div className="text-sm">
-                                                {cart.partnerName}
+                                            <div>
+                                                <div className="flex flex-col space-y-1 w-full">
+                                                    <div className="flex w-full justify-between items-center">
+                                                        <div className="flex flex-col">
+                                                            <span className="text-base font-semibold">
+                                                                {cart.title}
+                                                            </span>
+                                                            <span className="text-xs text-muted-foreground">
+                                                                {
+                                                                    cart.serviceCategory
+                                                                }
+                                                            </span>
+                                                        </div>
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            onClick={() =>
+                                                                dispatch(
+                                                                    removeFromCart(
+                                                                        cart.title
+                                                                    )
+                                                                )
+                                                            }
+                                                        >
+                                                            <Trash2Icon className="h-[1.2rem] w-[1.2rem] text-red-500" />
+                                                        </Button>
+                                                    </div>
+                                                    <div className="text-sm flex space-x-2">
+                                                        <span>
+                                                            ₹ {cart.price}
+                                                        </span>
+                                                        <span>&#x2022;</span>
+                                                        <span>
+                                                            {cart.duration}
+                                                        </span>
+                                                    </div>
+                                                    <Link
+                                                        href={`/partners/${cart.partnerSlug}`}
+                                                    >
+                                                        <span className="text-sm hover:underline underline-offset-4">
+                                                            {cart.partnerName}
+                                                        </span>
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </CardContent>
                                     </Card>

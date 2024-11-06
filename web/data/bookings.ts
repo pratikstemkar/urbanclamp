@@ -21,7 +21,7 @@ export const bookings: Booking[] = [
         serviceCategorySlug: "home-cleaning",
         serviceTitle: "Deep Home Cleaning",
         serviceSlug: "deep-home-cleaning",
-        partnerName: "Alice johnson",
+        partnerName: "Alice Johnson",
         partnerId: "alice-johnson",
         date: "2023-11-02",
         time: "10:00 AM",

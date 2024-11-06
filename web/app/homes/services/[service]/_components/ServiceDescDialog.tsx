@@ -8,7 +8,9 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { categories } from "@/data/categories";
 import { Service } from "@/data/services";
+import { getCategoryBySlug } from "@/lib/utils";
 import { addToCart } from "@/store/features/cart/CartSlice";
 import { useAppDispatch } from "@/store/hooks";
 import { StarIcon } from "lucide-react";
@@ -65,8 +67,8 @@ const ServiceDescDialog = (props: { service: Service }) => {
                         <div className="text-sm text-muted-foreground">
                             {props.service.description}
                         </div>
-                        <div className="flex space-x-2 text-sm">
-                            <span>₹{props.service.price}</span>
+                        <div className="flex space-x-3 text-sm">
+                            <span>₹ {props.service.price}</span>
                             <span>&#x2022;</span>
                             <span>{props.service.duration}</span>
                             <span>&#x2022;</span>
@@ -86,7 +88,10 @@ const ServiceDescDialog = (props: { service: Service }) => {
                                     addToCart({
                                         item: {
                                             serviceCategory:
-                                                props.service.title,
+                                                getCategoryBySlug(
+                                                    props.service.categorySlug,
+                                                    categories
+                                                ) || "",
                                             serviceCategorySlug:
                                                 props.service.categorySlug,
                                             serviceSlug: props.service.slug,

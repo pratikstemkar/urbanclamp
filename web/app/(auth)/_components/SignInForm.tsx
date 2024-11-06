@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useAppDispatch } from "@/store/hooks";
 import { useRouter } from "next/navigation";
-import { setCredentials } from "@/store/features/auth/AuthSlice";
+import { logout, setCredentials } from "@/store/features/auth/AuthSlice";
 import { toast } from "sonner";
 import { Icons } from "@/components/ui/icons";
 
@@ -70,11 +70,11 @@ const SignInForm = () => {
                 refresh_token: "asdasd",
             })
         );
-        toast("Event has been created", {
-            description: "Sunday, December 03, 2023 at 9:00 AM",
+        toast("Sign In Successful!", {
+            description: new Date().toLocaleString(),
             action: {
-                label: "Undo",
-                onClick: () => console.log("Undo"),
+                label: "Logout",
+                onClick: () => dispatch(logout()),
             },
         });
         router.push("/homes");

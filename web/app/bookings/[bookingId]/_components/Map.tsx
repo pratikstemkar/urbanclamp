@@ -10,7 +10,7 @@ const Map = () => {
     return (
         <MapContainer
             preferCanvas={true}
-            center={[18.55, 73.77]}
+            center={[18.555909, 73.87779]}
             zoom={11}
             scrollWheelZoom={true}
             className="w-96 h-96 lg:w-full lg:h-full dark:invert sticky top-0 -z-60"
@@ -19,7 +19,7 @@ const Map = () => {
                 // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[18.55, 73.77]}>
+            <Marker position={[18.555909, 73.87779]}>
                 <Popup>
                     This Marker icon is displayed correctly with{" "}
                     <i>leaflet-defaulticon-compatibility</i>.
