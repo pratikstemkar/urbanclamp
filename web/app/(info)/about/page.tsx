@@ -39,7 +39,7 @@ const About = () => {
                 </div>
                 <div className="flex flex-col space-y-2 items-center lg:items-start">
                     <h4 className="text-lg font-semibold">Our Team</h4>
-                    <div className="flex space-x-5 overflow-x-scroll">
+                    <div className="flex space-x-5 overflow-x-hidden">
                         <div className="flex flex-col space-y-5 justify-center items-center">
                             <Avatar className="h-40 w-40">
                                 <AvatarImage src="https://github.com/pratikstemkar.png" />
