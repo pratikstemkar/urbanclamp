@@ -30,7 +30,7 @@ export const services: Service[] = [
         price: 75,
         duration: "1 hour",
         imgUrls: [
-            "/images/services/ceiling-fan1.jpg",
+            "https://res.cloudinary.com/urbanclamp-cloud/image/upload/v1726926857/samples/woman-on-a-football-field.jpg",
             "/images/services/ceiling-fan2.jpg",
         ],
     },

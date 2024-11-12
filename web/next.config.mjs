@@ -17,6 +17,11 @@ const nextConfig = {
                 hostname: "randomuser.me",
                 pathname: "/**",
             },
+            {
+                protocol: "https",
+                hostname: "res.cloudinary.com",
+                pathname: "/**",
+            },
         ],
     },
 };
