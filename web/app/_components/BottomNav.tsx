@@ -1,13 +1,7 @@
 "use client";
 
-import {
-    CircleUserRound,
-    HomeIcon,
-    SearchIcon,
-    ShoppingCartIcon,
-} from "lucide-react";
+import { CircleUserRound, HomeIcon } from "lucide-react";
 import Link from "next/link";
-import { CartDrawer } from "../cart/_components/CartDrawer";
 import { BottomCartDrawer } from "../cart/_components/BottomCartDrawer";
 import BottomNavSearch from "./BottomNavSearch";
 import { useAuth } from "@/store/hooks/useAuth";
@@ -25,7 +19,7 @@ const BottomNav = () => {
                 <BottomCartDrawer />
                 {!auth.user && (
                     <Link href="/signin">
-                        <CircleUserRound />
+                        <CircleUserRound className="hover:cursor-pointer h-6 w-6" />
                     </Link>
                 )}
             </div>
