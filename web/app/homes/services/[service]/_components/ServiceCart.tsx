@@ -22,16 +22,6 @@ const ServiceCart = () => {
             <CardHeader>
                 <CardTitle className="flex justify-between items-center">
                     <span className="text-lg">Your Cart</span>
-                    {cartItems.length > 0 ? (
-                        <Button
-                            variant="destructive"
-                            size="sm"
-                            onClick={() => dispatch(emptyCart())}
-                        >
-                            <Trash2Icon className="h-4 w-4 mr-2" />
-                            <span>Empty Cart</span>
-                        </Button>
-                    ) : null}
                 </CardTitle>
             </CardHeader>
             <CardContent>
@@ -94,10 +84,20 @@ const ServiceCart = () => {
                                     </div>
                                 ))}
                             </div>
-                            <div className="flex w-full justify-between items-center">
-                                <span>₹ {getTotalPrice(cartItems)}</span>
-                                <Button asChild>
+                            <div className="flex w-full flex-col space-y-2">
+                                <Button
+                                    asChild
+                                    className="w-full"
+                                >
                                     <Link href="/checkout">Checkout</Link>
+                                </Button>
+                                <Button
+                                    className="w-full"
+                                    variant="destructive"
+                                    onClick={() => dispatch(emptyCart())}
+                                >
+                                    <Trash2Icon className="h-4 w-4 mr-2" />
+                                    <span>Empty Cart</span>
                                 </Button>
                             </div>
                         </div>

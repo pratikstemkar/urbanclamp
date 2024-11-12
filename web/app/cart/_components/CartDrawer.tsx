@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/drawer";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
+    emptyCart,
     removeFromCart,
     selectCurrentItems,
 } from "@/store/features/cart/CartSlice";
@@ -139,10 +140,12 @@ export function CartDrawer() {
                                 </DrawerClose>
                                 <DrawerClose asChild>
                                     <Button
-                                        variant="outline"
                                         className="lg:w-80"
+                                        variant="destructive"
+                                        onClick={() => dispatch(emptyCart())}
                                     >
-                                        Cancel
+                                        <Trash2Icon className="h-4 w-4 mr-2" />
+                                        <span>Empty Cart</span>
                                     </Button>
                                 </DrawerClose>
                             </>

@@ -1,10 +1,13 @@
 "use client";
 
+import { useAppSelector } from "@/store/hooks";
 import AddressCard from "./AddressCard";
 import BillCard from "./BillCard";
-import ProceedToPay from "./ProceedToPay";
+import { selectCurrentItems } from "@/store/features/cart/CartSlice";
 
 const Checkout = () => {
+    const cartItems = useAppSelector(selectCurrentItems);
+
     return (
         <div>
             <h1 className="text-2xl font-bold tracking-tighter mt-2 lg:mt-5">
@@ -15,8 +18,7 @@ const Checkout = () => {
                     <BillCard />
                 </div>
                 <div className="lg:w-2/3 flex flex-col space-y-5">
-                    <AddressCard />
-                    <ProceedToPay done={true} />
+                    <AddressCard itemCount={cartItems.length} />
                 </div>
             </div>
         </div>

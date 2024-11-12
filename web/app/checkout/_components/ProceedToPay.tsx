@@ -39,9 +39,13 @@ const ProceedToPay = (props: { done: boolean }) => {
                     className="w-full"
                     onClick={() => dispatch(emptyCart())}
                     disabled={!props.done}
-                    asChild
+                    asChild={props.done}
                 >
-                    <Link href="/checkout/success">Proceed to pay</Link>
+                    {props.done ? (
+                        <Link href="/checkout/success">Proceed to pay</Link>
+                    ) : (
+                        "Proceed to pay"
+                    )}
                 </Button>
             </CardFooter>
         </Card>
