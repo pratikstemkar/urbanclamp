@@ -3,7 +3,9 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { categories } from "@/data/categories";
 import { Review, reviews } from "@/data/reviews";
+import { cn, getCategoryBySlug } from "@/lib/utils";
 import { StarIcon } from "lucide-react";
 
 const ReviewsDialog = (props: {
@@ -53,8 +55,16 @@ const ReviewsDialog = (props: {
                     <Separator />
                     <div className="flex flex-col space-y-2">
                         <h4 className="text-lg font-semibold">All Reviews</h4>
-                        <ScrollArea className="h-64">
-                            <div className="flex flex-col space-y-4">
+                        <ScrollArea
+                            className={cn("h-64", {
+                                "-mr-2": reviews.length > 4,
+                            })}
+                        >
+                            <div
+                                className={cn("flex flex-col space-y-4", {
+                                    "mr-3": reviews.length > 4,
+                                })}
+                            >
                                 {reviews.map((review, index) => (
                                     <div
                                         className="flex flex-col space-y-2"
@@ -68,9 +78,10 @@ const ReviewsDialog = (props: {
                                                 <div className="flex space-x-2 text-xs text-muted-foreground">
                                                     <div>{review?.date}</div>
                                                     <div>
-                                                        {
-                                                            review?.serviceCategorySlug
-                                                        }
+                                                        {getCategoryBySlug(
+                                                            review?.serviceCategorySlug,
+                                                            categories
+                                                        )}
                                                     </div>
                                                 </div>
                                             </div>

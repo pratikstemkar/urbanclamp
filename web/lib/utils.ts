@@ -59,6 +59,6 @@ export function getCategoryBySlug(
     return category ? category.title : undefined;
 }
 
-export function getTotalPrice(cartItems: CartItem[]): number {
+export function getTotalPrice(cartItems: CartItem[]): Number {
     return cartItems.reduce((total, item) => total + item.price, 0);
 }

@@ -10,10 +10,12 @@ import {
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { ShoppingCartIcon, Trash2Icon } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 const BillCard = () => {
     const cartItems = useAppSelector(selectCurrentItems);
     const dispatch = useAppDispatch();
+    const [visitCharge, setVisitCharge] = useState<Number>(200);
 
     return (
         <Card>
@@ -76,25 +78,55 @@ const BillCard = () => {
                                     <div className="flex justify-between">
                                         <span>Item Total</span>
                                         <span>
-                                            ₹ {getTotalPrice(cartItems)}
+                                            ₹{" "}
+                                            {getTotalPrice(cartItems)
+                                                .valueOf()
+                                                .toFixed(2)}
                                         </span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Visit charges</span>
-                                        <span>₹ 46</span>
+                                        <span>
+                                            ₹ {visitCharge.valueOf().toFixed(2)}
+                                        </span>
                                     </div>
                                     <Separator />
                                     <div className="flex justify-between">
                                         <span>Service Tip</span>
-                                        <span>₹ 716</span>
+                                        <span>
+                                            ₹{" "}
+                                            {(
+                                                getTotalPrice(
+                                                    cartItems
+                                                ).valueOf() * 0.1
+                                            ).toFixed(2)}
+                                        </span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Platform Fees</span>
-                                        <span>₹ 716</span>
+                                        <span>
+                                            ₹{" "}
+                                            {(
+                                                (getTotalPrice(
+                                                    cartItems
+                                                ).valueOf() +
+                                                    visitCharge.valueOf()) *
+                                                0.02
+                                            ).toFixed(2)}
+                                        </span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>GST and other taxes</span>
-                                        <span>₹ 716</span>
+                                        <span>
+                                            ₹{" "}
+                                            {(
+                                                (getTotalPrice(
+                                                    cartItems
+                                                ).valueOf() +
+                                                    visitCharge.valueOf()) *
+                                                0.18
+                                            ).toFixed(2)}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +138,21 @@ const BillCard = () => {
                                 <span className="uppercase font-bold">
                                     To Pay
                                 </span>
-                                <span>₹ 716</span>
+                                <span>
+                                    ₹{" "}
+                                    {(
+                                        getTotalPrice(cartItems).valueOf() +
+                                        visitCharge.valueOf() +
+                                        getTotalPrice(cartItems).valueOf() *
+                                            0.1 +
+                                        (getTotalPrice(cartItems).valueOf() +
+                                            visitCharge.valueOf()) *
+                                            0.02 +
+                                        (getTotalPrice(cartItems).valueOf() +
+                                            visitCharge.valueOf()) *
+                                            0.18
+                                    ).toFixed(2)}
+                                </span>
                             </div>
                         </div>
                     </div>
