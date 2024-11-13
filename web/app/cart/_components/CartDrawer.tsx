@@ -21,6 +21,8 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
 
 export function CartDrawer() {
     const cartItems = useAppSelector(selectCurrentItems);
@@ -54,9 +56,13 @@ export function CartDrawer() {
                             Your selected services will be shown here
                         </DrawerDescription>
                     </DrawerHeader>
-                    <div className="px-4 max-h-80 overflow-y-scroll pb-1">
+                    <ScrollArea
+                        className={cn("px-4", {
+                            "h-80": cartItems.length > 4,
+                        })}
+                    >
                         {cartItems.length > 0 ? (
-                            <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 w-full">
+                            <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 w-full pb-1">
                                 {cartItems?.map((cart, index) => (
                                     <Card key={index}>
                                         <CardContent className="pt-6 flex flex-col space-y-2">
@@ -126,7 +132,7 @@ export function CartDrawer() {
                                 </div>
                             </div>
                         )}
-                    </div>
+                    </ScrollArea>
                     <DrawerFooter className="flex flex-col lg:flex-row-reverse justify-center">
                         {cartItems.length > 0 ? (
                             <>
