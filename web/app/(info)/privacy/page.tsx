@@ -6,7 +6,15 @@ export const metadata: Metadata = {
 };
 
 const PrivacyPage = () => {
-    return <div>PrivacyPage</div>;
+    return (
+        <main className="max-w-7xl m-auto">
+            <div>
+                <h1 className="font-bold text-2xl tracking-tighter">
+                    Privacy Policy
+                </h1>
+            </div>
+        </main>
+    );
 };
 
 export default PrivacyPage;

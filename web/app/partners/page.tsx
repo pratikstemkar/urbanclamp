@@ -1,20 +1,18 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Terms and Conditions",
+    title: "Dashboard",
     description: "Home Service Management made easy!",
 };
 
-const TermsPage = () => {
+const PartnersPage = () => {
     return (
         <main className="max-w-7xl m-auto">
             <div>
-                <h1 className="font-bold text-2xl tracking-tighter">
-                    Terms &amp; Conditions
-                </h1>
+                <h1 className="font-bold text-2xl">Dashboard</h1>
             </div>
         </main>
     );
 };
 
-export default TermsPage;
+export default PartnersPage;
