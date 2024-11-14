@@ -132,7 +132,15 @@ const SignInForm = () => {
                         name="password"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Password</FormLabel>
+                                <FormLabel className="flex justify-between items-center">
+                                    Password
+                                    <Link
+                                        href="/forgot-password"
+                                        className="text-xs underline underline-offset-4"
+                                    >
+                                        Forgot Password?
+                                    </Link>
+                                </FormLabel>
                                 <FormControl>
                                     <Input
                                         placeholder=""

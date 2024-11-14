@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleUserRound, HomeIcon } from "lucide-react";
+import { CircleUserRound, HomeIcon, ZapIcon } from "lucide-react";
 import Link from "next/link";
 import { BottomCartDrawer } from "../cart/_components/BottomCartDrawer";
 import BottomNavSearch from "./BottomNavSearch";
@@ -20,6 +20,11 @@ const BottomNav = () => {
                 {!auth.user && (
                     <Link href="/signin">
                         <CircleUserRound className="hover:cursor-pointer h-6 w-6" />
+                    </Link>
+                )}
+                {auth.user && (
+                    <Link href="/about">
+                        <ZapIcon className="hover:cursor-pointer h-6 w-6" />
                     </Link>
                 )}
             </div>
