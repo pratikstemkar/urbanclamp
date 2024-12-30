@@ -1,1 +1,0 @@
-RENAME TABLE user_roles TO users_roles;

@@ -9,7 +9,7 @@ spring:
     name: Urban Clamp
 
   datasource:
-    url: jdbc:mysql://localhost:3306/uc-db
+    url: jdbc:mysql://localhost:3306/ucdb?createDatabaseIfNotExist=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: admin
     password: adminroot
@@ -26,8 +26,8 @@ spring:
 
   flyway:
     baseline-on-migrate: true
-    enabled: true
-    url: jdbc:mysql://localhost:3306/uc-db
+    enabled: false
+    url: jdbc:mysql://localhost:3306/ucdb
     user: admin
     password: adminroot
     baseline-description: "init"
