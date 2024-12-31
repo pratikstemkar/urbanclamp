@@ -7,15 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class UserDTO {
-    private Long id;
+public class UserRequestDTO {
     private String firstName;
     private String lastName;
     private String email;
-    private String phoneNumber;
-    private String pfpUrl;
-    private String gender;
-    private String role;
-    private String status;
+    private String password;
 }
-

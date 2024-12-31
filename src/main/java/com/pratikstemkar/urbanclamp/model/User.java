@@ -43,11 +43,11 @@ public class User extends BaseAuditEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
-    private UserGender gender;
+    private UserGender gender = UserGender.MALE;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private UserRole role = UserRole.USER;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
