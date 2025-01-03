@@ -30,23 +30,26 @@ public class User extends BaseAuditEnitity {
     @Column(name = "email", unique = true, nullable = false, length = 100)
     private String email;
 
-    @Column(name = "password", nullable = false, length = 255)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "pfp_url", length = 255)
+    @Column(name = "pfp_url")
     private String pfpUrl;
 
     @Column(name = "phone_number", unique = true, length = 15)
     private String phoneNumber;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private UserStatus status = UserStatus.ACTIVE;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private UserGender gender = UserGender.MALE;
 
+    @Builder.Default
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
@@ -55,6 +58,7 @@ public class User extends BaseAuditEnitity {
     )
     private Set<Role> roles = new HashSet<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
 }

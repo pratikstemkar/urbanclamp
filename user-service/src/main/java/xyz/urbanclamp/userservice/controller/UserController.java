@@ -4,6 +4,8 @@ import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import xyz.urbanclamp.userservice.dto.UserDTO;
+import xyz.urbanclamp.userservice.dto.UserRequestDTO;
 import xyz.urbanclamp.userservice.model.User;
 import xyz.urbanclamp.userservice.service.UserService;
 
@@ -31,13 +33,13 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserRequestDTO userRequestDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userRequestDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.updateUser(id, user));
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.updateUser(id, userDTO));
     }
 
     @DeleteMapping("/{id}")
