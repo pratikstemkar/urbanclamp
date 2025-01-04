@@ -2,6 +2,7 @@ package xyz.urbanclamp.userservice.service;
 
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import xyz.urbanclamp.userservice.dto.UserDTO;
 import xyz.urbanclamp.userservice.dto.UserRequestDTO;
 import xyz.urbanclamp.userservice.model.Role;
@@ -16,13 +17,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final RoleService roleService;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, RoleService roleService) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.roleService = roleService;
     }
 
     @Override
@@ -39,7 +43,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO createUser(UserRequestDTO userRequestDTO) {
         User user = convertToEntity(userRequestDTO);
         user.setGender(UserGender.MALE);
-        user.getRoles().add(roleRepository.findByName("USER").orElseThrow(() -> new ResourceNotFoundException("Role not found with Name: USER")));
+        user.getRoles().add(roleService.findRoleByName("USER"));
         user.setStatus(UserStatus.ACTIVE);
         User createdUser = userRepository.save(user);
         return convertToDTO(createdUser);
