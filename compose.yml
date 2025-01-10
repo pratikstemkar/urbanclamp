@@ -9,6 +9,23 @@ services:
     volumes:
       - kafka-data:/var/lib/kafka/data
 
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "5000:3000"
+    volumes:
+      - ./datasources:/etc/grafana/provisioning/datasources
+
   user-db:
     image: mysql:8.4
     container_name: user-db

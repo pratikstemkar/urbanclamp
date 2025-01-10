@@ -31,3 +31,14 @@ logging:
       springframework:
         cloud:
           gateway: TRACE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  metrics:
+    enabled: true
+  endpoint:
+    prometheus:
+      enabled: true

@@ -1,0 +1,6 @@
+scrape_configs:
+  - job_name: 'microservices'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['localhost:8081']
