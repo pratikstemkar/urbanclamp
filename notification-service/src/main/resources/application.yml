@@ -4,3 +4,36 @@ server:
 spring:
   application:
     name: notification-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/notificationdb
+    username: user
+    password: pass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
+    open-in-view: false
+
+  websocket:
+    enabled: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: noti1
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+    topic:
+      name: user.created
