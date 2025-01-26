@@ -1,5 +1,6 @@
 package xyz.urbanclamp.userservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,22 +22,19 @@ public class User extends BaseAuditEnitity {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "first_name", length = 50)
-    private String firstName;
-
-    @Column(name = "last_name", length = 50)
-    private String lastName;
+    @Column(name = "name", length = 50)
+    private String name;
 
     @Column(name = "email", unique = true, nullable = false, length = 100)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "pfp_url")
-    private String pfpUrl;
+    @Column(name = "picture")
+    private String picture;
 
-    @Column(name = "phone_number", unique = true, length = 15)
+    @Column(name = "phone_number", length = 15)
     private String phoneNumber;
 
     @Builder.Default
@@ -60,5 +58,6 @@ public class User extends BaseAuditEnitity {
 
     @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Address> addresses = new ArrayList<>();
 }

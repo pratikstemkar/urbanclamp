@@ -1,6 +1,6 @@
 package xyz.urbanclamp.userservice.service;
 
-import xyz.urbanclamp.userservice.dto.RoleRequestDTO;
+import xyz.urbanclamp.basedomains.dto.RoleRequestDTO;
 import xyz.urbanclamp.userservice.model.Role;
 
 import java.util.List;

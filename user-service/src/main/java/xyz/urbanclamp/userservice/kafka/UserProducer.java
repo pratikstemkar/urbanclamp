@@ -8,7 +8,7 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
-import xyz.urbanclamp.userservice.dto.UserDTO;
+import xyz.urbanclamp.basedomains.dto.UserDTO;
 
 @Service
 public class UserProducer {

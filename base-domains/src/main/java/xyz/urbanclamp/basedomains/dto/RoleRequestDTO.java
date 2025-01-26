@@ -1,4 +1,4 @@
-package xyz.urbanclamp.userservice.dto;
+package xyz.urbanclamp.basedomains.dto;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package xyz.urbanclamp.userservice.dto;
+package xyz.urbanclamp.basedomains.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 @Builder
 public class UserRequestDTO {
-    private String firstName;
-    private String lastName;
+    private String name;
     private String email;
     private String password;}

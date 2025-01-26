@@ -1,15 +1,17 @@
 package xyz.urbanclamp.userservice.service;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import xyz.urbanclamp.userservice.dto.UserDTO;
-import xyz.urbanclamp.userservice.dto.UserRequestDTO;
+import xyz.urbanclamp.basedomains.dto.FullUserDTO;
+import xyz.urbanclamp.basedomains.dto.UserDTO;
+import xyz.urbanclamp.basedomains.dto.UserRequestDTO;
+import xyz.urbanclamp.userservice.exception.UserNotFoundException;
 import xyz.urbanclamp.userservice.model.Role;
 import xyz.urbanclamp.userservice.model.User;
 import xyz.urbanclamp.userservice.model.UserGender;
 import xyz.urbanclamp.userservice.model.UserStatus;
-import xyz.urbanclamp.userservice.repository.RoleRepository;
 import xyz.urbanclamp.userservice.repository.UserRepository;
 
 import java.util.List;
@@ -18,16 +20,10 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
     private final RoleService roleService;
-
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, RoleService roleService) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.roleService = roleService;
-    }
 
     @Override
     public List<User> getAllUsers() {
@@ -37,6 +33,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
+    }
+
+    @Override
+    public UserDTO getUserByEmail(String email) {
+        User user = userRepository.findUserByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found with Email: " + email));
+        return null;
+    }
+
+    @Override
+    public FullUserDTO getFullUserByEmail(String email) {
+        return null;
     }
 
     @Override
@@ -53,10 +60,9 @@ public class UserServiceImpl implements UserService {
     public UserDTO updateUser(Long id, UserDTO userDTO) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
-        user.setFirstName(userDTO.getFirstName());
-        user.setLastName(userDTO.getLastName());
+        user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
-        user.setPfpUrl(userDTO.getPfpUrl());
+        user.setPicture(userDTO.getPicture());
         user.setPhoneNumber(userDTO.getPhoneNumber());
         user.setGender(Enum.valueOf(UserGender.class, userDTO.getGender().toUpperCase()));
         User updatedUser = userRepository.save(user);
@@ -73,21 +79,19 @@ public class UserServiceImpl implements UserService {
     private UserDTO convertToDTO(User user) {
         return UserDTO.builder()
                 .id(user.getId())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
+                .name(user.getName())
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
                 .gender(user.getGender().name())
                 .status(user.getStatus().name())
-                .pfpUrl(user.getPfpUrl())
+                .picture(user.getPicture())
                 .roles(user.getRoles().stream().map(Role::getName).collect(Collectors.toSet()))
                 .build();
     }
 
     private User convertToEntity(UserRequestDTO userRequestDTO) {
         return User.builder()
-                .firstName(userRequestDTO.getFirstName())
-                .lastName(userRequestDTO.getLastName())
+                .name(userRequestDTO.getName())
                 .email(userRequestDTO.getEmail())
                 .password(userRequestDTO.getPassword())
                 .build();

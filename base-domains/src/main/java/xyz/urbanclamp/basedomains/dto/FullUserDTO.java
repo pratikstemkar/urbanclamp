@@ -1,4 +1,4 @@
-package xyz.urbanclamp.userservice.dto;
+package xyz.urbanclamp.basedomains.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,14 +11,14 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDTO {
+public class FullUserDTO {
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String name;
     private String email;
+    private String password;
     private String phoneNumber;
     private Set<String> roles;
     private String status;
     private String gender;
-    private String pfpUrl;
+    private String picture;
 }

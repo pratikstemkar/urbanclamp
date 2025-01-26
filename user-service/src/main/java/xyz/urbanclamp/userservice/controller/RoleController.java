@@ -3,7 +3,7 @@ package xyz.urbanclamp.userservice.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import xyz.urbanclamp.userservice.dto.RoleRequestDTO;
+import xyz.urbanclamp.basedomains.dto.RoleRequestDTO;
 import xyz.urbanclamp.userservice.model.Role;
 import xyz.urbanclamp.userservice.service.RoleService;
 

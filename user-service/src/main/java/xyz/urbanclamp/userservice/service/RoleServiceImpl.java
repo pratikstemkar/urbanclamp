@@ -3,8 +3,7 @@ package xyz.urbanclamp.userservice.service;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
-import xyz.urbanclamp.userservice.dto.RoleRequestDTO;
+import xyz.urbanclamp.basedomains.dto.RoleRequestDTO;
 import xyz.urbanclamp.userservice.model.Role;
 import xyz.urbanclamp.userservice.repository.RoleRepository;
 

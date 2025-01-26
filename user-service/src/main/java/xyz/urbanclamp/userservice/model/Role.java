@@ -24,7 +24,4 @@ public class Role extends BaseAuditEnitity {
 
     @Column(name = "description", length = 255)
     private String description;
-
-    @ManyToMany
-    private Set<User> users = new HashSet<>();
 }
