@@ -6,11 +6,10 @@ import xyz.urbanclamp.basedomains.dto.UserRequestDTO;
 import xyz.urbanclamp.userservice.model.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
     List<User> getAllUsers();
-    Optional<User> getUserById(Long id);
+    User getUserById(Long id);
     UserDTO getUserByEmail(String email);
     FullUserDTO getFullUserByEmail(String email);
     UserDTO createUser(UserRequestDTO userRequestDTO);

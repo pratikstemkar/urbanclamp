@@ -1,9 +1,9 @@
 package xyz.urbanclamp.userservice.controller;
 
-import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import xyz.urbanclamp.basedomains.dto.FullUserDTO;
 import xyz.urbanclamp.basedomains.dto.UserDTO;
 import xyz.urbanclamp.basedomains.dto.UserRequestDTO;
 import xyz.urbanclamp.userservice.kafka.UserProducer;
@@ -11,7 +11,6 @@ import xyz.urbanclamp.userservice.model.User;
 import xyz.urbanclamp.userservice.service.UserService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -31,8 +30,17 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        Optional<User> user = userService.getUserById(id);
-        return user.map(ResponseEntity::ok).orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+        return ResponseEntity.ok(userService.getUserById(id));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<UserDTO> searchUserByEmail(@RequestParam String email) {
+        return ResponseEntity.ok(userService.getUserByEmail(email));
+    }
+
+    @GetMapping("/fullSearch")
+    public ResponseEntity<FullUserDTO> searchFullUserByEmail(@RequestParam String email) {
+        return ResponseEntity.ok(userService.getFullUserByEmail(email));
     }
 
     @PostMapping
