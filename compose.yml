@@ -3,7 +3,7 @@ services:
     image: apache/kafka:3.9.0
     container_name: kafka
     ports:
-      - 9092:9092
+      - "9092:9092"
     networks:
       - app-network
     volumes:
@@ -13,7 +13,7 @@ services:
     image: mysql:8.4
     container_name: user-db
     ports:
-      - 3306:3306
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: userdb
@@ -28,7 +28,7 @@ services:
     image: mysql:8.4
     container_name: notification-db
     ports:
-      - 3307:3306
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: notificationdb
@@ -39,10 +39,26 @@ services:
     networks:
       - app-network
 
+  partner-db:
+    image: mysql:8.4
+    container_name: partner-db
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: partnerdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - partner-db-data:/var/lib/mysql
+    networks:
+      - app-network
+
 volumes:
   user-db-data:
   kafka-data:
   notification-db-data:
+  partner-db-data:
 
 networks:
   app-network:

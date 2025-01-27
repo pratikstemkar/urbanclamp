@@ -3,9 +3,6 @@ package xyz.urbanclamp.userservice.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
@@ -13,7 +10,7 @@ import java.util.Set;
 @Builder
 @Entity
 @Table(name = "roles")
-public class Role extends BaseAuditEnitity {
+public class Role extends BaseAuditEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
