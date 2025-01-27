@@ -1,9 +1,11 @@
 package xyz.urbanclamp.gateway.filter;
 
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import xyz.urbanclamp.gateway.exception.InvalidAccessTokenException;
 import xyz.urbanclamp.gateway.exception.MissingAuthHeaderException;
@@ -23,6 +25,8 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     @Override
     public GatewayFilter apply(Config config) {
         return ((exchange, chain) -> {
+            ServerHttpRequest request = null;
+
             if(validator.isSecured.test(exchange.getRequest())) {
                 if(!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
                     throw new MissingAuthHeaderException("Missing auth header");
@@ -34,12 +38,19 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                 }
 
                 try {
-                    jwtUtils.validateJwtToken(authHeader);
+                    Claims claims = jwtUtils.validateJwtToken(authHeader);
+
+                    request = exchange.getRequest().mutate()
+                            .header("userId", ""+ jwtUtils.getUserIdFromJwtToken(claims))
+                            .header("email", jwtUtils.getUsernameFromJwtToken(claims))
+                            .build();
+
+
                 } catch (Exception e) {
                     throw new InvalidAccessTokenException("Token validate error gateway filter");
                 }
             }
-            return chain.filter(exchange);
+            return chain.filter(exchange.mutate().request(request).build());
         });
     }
 

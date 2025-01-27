@@ -1,5 +1,6 @@
 package xyz.urbanclamp.gateway.utils;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
@@ -21,11 +22,19 @@ public class JwtUtils {
         key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
     }
 
-    public void validateJwtToken(String jwtToken) {
-        Jwts.parser()
+    public String getUsernameFromJwtToken(Claims claims) {
+        return claims.getSubject();
+    }
+
+    public Claims validateJwtToken(String jwtToken) {
+        return Jwts.parser()
                 .verifyWith((SecretKey) key)
                 .build()
                 .parseSignedClaims(jwtToken)
                 .getPayload();
+    }
+
+    public Long getUserIdFromJwtToken(Claims claims) {
+        return (long) (int) claims.get("user_id");
     }
 }
