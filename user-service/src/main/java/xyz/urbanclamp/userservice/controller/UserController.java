@@ -3,6 +3,7 @@ package xyz.urbanclamp.userservice.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import xyz.urbanclamp.basedomains.dto.AddRoleToUserDTO;
 import xyz.urbanclamp.basedomains.dto.FullUserDTO;
 import xyz.urbanclamp.basedomains.dto.UserDTO;
 import xyz.urbanclamp.basedomains.dto.UserRequestDTO;
@@ -53,6 +54,11 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.updateUser(id, userDTO));
+    }
+
+    @PatchMapping("/addRole")
+    public ResponseEntity<UserDTO> addRoleToUser(@RequestBody AddRoleToUserDTO addRoleToUserDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.addRoleToUser(addRoleToUserDTO));
     }
 
     @DeleteMapping("/{id}")

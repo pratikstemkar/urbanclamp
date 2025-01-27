@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import xyz.urbanclamp.basedomains.dto.AddRoleToUserDTO;
 import xyz.urbanclamp.basedomains.dto.FullUserDTO;
 import xyz.urbanclamp.basedomains.dto.UserDTO;
 import xyz.urbanclamp.basedomains.dto.UserRequestDTO;
 import xyz.urbanclamp.userservice.exception.UserNotFoundException;
+import xyz.urbanclamp.userservice.model.Role;
 import xyz.urbanclamp.userservice.model.User;
 import xyz.urbanclamp.userservice.model.UserGender;
 import xyz.urbanclamp.userservice.model.UserStatus;
@@ -57,13 +59,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO updateUser(Long id, UserDTO userDTO) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
+        User user = getUserById(id);
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
         user.setPicture(userDTO.getPicture());
         user.setPhoneNumber(userDTO.getPhoneNumber());
         user.setGender(Enum.valueOf(UserGender.class, userDTO.getGender().toUpperCase()));
+        User updatedUser = userRepository.save(user);
+        return modelMapper.map(updatedUser, UserDTO.class);
+    }
+
+    @Override
+    public UserDTO addRoleToUser(AddRoleToUserDTO addRoleToUserDTO) {
+        User user = getUserById(addRoleToUserDTO.getUserId());
+        Role role = roleService.findRoleByName(addRoleToUserDTO.getRoleName());
+        user.getRoles().add(role);
         User updatedUser = userRepository.save(user);
         return modelMapper.map(updatedUser, UserDTO.class);
     }

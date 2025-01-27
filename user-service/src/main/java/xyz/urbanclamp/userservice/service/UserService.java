@@ -1,5 +1,6 @@
 package xyz.urbanclamp.userservice.service;
 
+import xyz.urbanclamp.basedomains.dto.AddRoleToUserDTO;
 import xyz.urbanclamp.basedomains.dto.FullUserDTO;
 import xyz.urbanclamp.basedomains.dto.UserDTO;
 import xyz.urbanclamp.basedomains.dto.UserRequestDTO;
@@ -14,5 +15,6 @@ public interface UserService {
     FullUserDTO getFullUserByEmail(String email);
     UserDTO createUser(UserRequestDTO userRequestDTO);
     UserDTO updateUser(Long id, UserDTO userDTO);
+    UserDTO addRoleToUser(AddRoleToUserDTO addRoleToUserDTO);
     void deleteUser(Long id);
 }
