@@ -1,6 +1,7 @@
 package xyz.urbanclamp.partnerservice.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,8 +10,6 @@ import xyz.urbanclamp.basedomains.dto.partner.ServiceUpdateDTO;
 import xyz.urbanclamp.partnerservice.model.Service;
 import xyz.urbanclamp.partnerservice.service.ServiceService;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/services")
 @RequiredArgsConstructor
@@ -18,8 +17,13 @@ public class ServiceController {
     private final ServiceService serviceService;
 
     @GetMapping
-    public ResponseEntity<List<Service>> getAllServices() {
-        return ResponseEntity.ok(serviceService.getAllServices());
+    public ResponseEntity<Page<Service>> getAllServices(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDir
+    ) {
+        return ResponseEntity.ok(serviceService.getAllServices(page, size, sortBy, sortDir));
     }
 
     @GetMapping("/{id}")

@@ -2,6 +2,10 @@ package xyz.urbanclamp.partnerservice.service;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.urbanclamp.basedomains.dto.partner.ServiceCreateDTO;
 import xyz.urbanclamp.basedomains.dto.partner.ServiceUpdateDTO;
@@ -23,8 +27,12 @@ public class ServiceServiceImpl implements ServiceService {
     private final ModelMapper modelMapper;
 
     @Override
-    public List<Service> getAllServices() {
-        return serviceRepository.findAll();
+    public Page<Service> getAllServices(int page, int size, String sortBy, String sortDir) {
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return serviceRepository.findAll(pageable);
     }
 
     @Override

@@ -1,13 +1,12 @@
 package xyz.urbanclamp.partnerservice.service;
 
+import org.springframework.data.domain.Page;
 import xyz.urbanclamp.basedomains.dto.partner.ServiceCreateDTO;
 import xyz.urbanclamp.basedomains.dto.partner.ServiceUpdateDTO;
 import xyz.urbanclamp.partnerservice.model.Service;
 
-import java.util.List;
-
 public interface ServiceService {
-    List<Service> getAllServices();
+    Page<Service> getAllServices(int page, int size, String sortBy, String sortDir);
     Service getServiceById(Long id);
     Service createService(ServiceCreateDTO serviceCreateDTO);
     Service updateService(Long id, ServiceUpdateDTO serviceUpdateDTO);
