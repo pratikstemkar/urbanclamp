@@ -8,8 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import xyz.urbanclamp.authservice.service.AuthService;
 import xyz.urbanclamp.authservice.utils.JwtUtils;
-import xyz.urbanclamp.basedomains.dto.LoginDTO;
-import xyz.urbanclamp.basedomains.dto.UserRequestDTO;
+import xyz.urbanclamp.basedomains.dto.auth.LoginDTO;
+import xyz.urbanclamp.basedomains.dto.user.UserRequestDTO;
 
 import java.util.HashMap;
 import java.util.Map;

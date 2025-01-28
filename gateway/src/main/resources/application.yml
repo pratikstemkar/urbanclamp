@@ -25,6 +25,10 @@ spring:
           uri: lb://partner-service
           predicates:
             - Path=/api/partners/**, /api/categories/**, /api/services/**, /api/availabilities/**
+        - id: booking-service
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/bookings/**
         - id: notification-service
           uri: lb://notification-service
           predicates:

@@ -1,4 +1,4 @@
-package xyz.urbanclamp.basedomains.dto;
+package xyz.urbanclamp.basedomains.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

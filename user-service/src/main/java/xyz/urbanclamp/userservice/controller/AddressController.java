@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import xyz.urbanclamp.basedomains.dto.AddressCreateDTO;
-import xyz.urbanclamp.basedomains.dto.AddressUpdateDTO;
+import xyz.urbanclamp.basedomains.dto.user.AddressCreateDTO;
+import xyz.urbanclamp.basedomains.dto.user.AddressUpdateDTO;
 import xyz.urbanclamp.userservice.model.Address;
 import xyz.urbanclamp.userservice.service.AddressService;
 
