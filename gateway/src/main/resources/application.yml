@@ -16,7 +16,9 @@ spring:
           predicates:
             - Path=/api/users/**, /api/roles/**, /api/addresses/**
           filters:
-            - AuthenticationFilter
+            - name: AuthenticationFilter
+              args:
+                requiredRole: ROLE_USER
         - id: auth-service
           uri: lb://auth-service
           predicates:
