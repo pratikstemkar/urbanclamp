@@ -5,8 +5,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import xyz.urbanclamp.basedomains.dto.FullUserDTO;
-import xyz.urbanclamp.basedomains.dto.UserDTO;
+import xyz.urbanclamp.basedomains.dto.user.FullUserDTO;
+import xyz.urbanclamp.basedomains.dto.user.UserDTO;
 import xyz.urbanclamp.userservice.model.Role;
 import xyz.urbanclamp.userservice.model.User;
 

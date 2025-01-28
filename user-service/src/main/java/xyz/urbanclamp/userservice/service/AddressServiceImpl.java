@@ -2,8 +2,8 @@ package xyz.urbanclamp.userservice.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import xyz.urbanclamp.basedomains.dto.AddressCreateDTO;
-import xyz.urbanclamp.basedomains.dto.AddressUpdateDTO;
+import xyz.urbanclamp.basedomains.dto.user.AddressCreateDTO;
+import xyz.urbanclamp.basedomains.dto.user.AddressUpdateDTO;
 import xyz.urbanclamp.userservice.exception.AddressNotFoundException;
 import xyz.urbanclamp.userservice.model.Address;
 import xyz.urbanclamp.userservice.model.User;

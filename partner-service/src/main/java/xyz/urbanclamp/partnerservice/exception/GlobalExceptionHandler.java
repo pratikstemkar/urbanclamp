@@ -32,6 +32,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMap);
     }
 
+    @ExceptionHandler(AvailabilityNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleAvailabilityNotFoundException(Exception ex) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMap);
+    }
+
     @ExceptionHandler(CategoryNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleCategoryNotFoundException(Exception ex) {
         Map<String, String> errorMap = new HashMap<>();

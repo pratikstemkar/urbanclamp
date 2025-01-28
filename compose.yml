@@ -54,11 +54,27 @@ services:
     networks:
       - app-network
 
+  booking-db:
+    image: mysql:8.4
+    container_name: booking-db
+    ports:
+      - "3309:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bookingdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - booking-db-data:/var/lib/mysql
+    networks:
+      - app-network
+
 volumes:
   user-db-data:
   kafka-data:
   notification-db-data:
   partner-db-data:
+  booking-db-data:
 
 networks:
   app-network:
