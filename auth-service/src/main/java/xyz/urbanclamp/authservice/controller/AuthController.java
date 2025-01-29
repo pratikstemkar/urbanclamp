@@ -1,6 +1,10 @@
 package xyz.urbanclamp.authservice.controller;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -34,14 +38,26 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<?> loginUser(@RequestBody LoginDTO loginDTO, HttpServletResponse response) {
         System.out.println("In Login: " + loginDTO);
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword());
         System.out.println("Is Authenticated: " + token.isAuthenticated());
         Authentication authToken = authenticationManager.authenticate(token);
         System.out.println("authToken: " + authToken.isAuthenticated());
         Map<String, String> loginResponse = new HashMap<>();
-        loginResponse.put("accessToken", jwtUtils.generateJwtToken(authToken));
+        String jwtToken = jwtUtils.generateJwtToken(authToken);
+        loginResponse.put("accessToken", jwtToken);
+
+        ResponseCookie cookie = ResponseCookie.from("accessToken", jwtToken)
+                .httpOnly(true)  // Prevent JavaScript access
+                .secure(true)    // Send only over HTTPS
+                .path("/")       // Available across the app
+                .maxAge(3600)    // Expires in 1 hour
+                .build();
+
+        // Manually add SameSite=None
+        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString() + "; SameSite=None");
+
         return ResponseEntity.ok(loginResponse);
     }
 
