@@ -9,27 +9,27 @@ services:
     volumes:
       - kafka-data:/var/lib/kafka/data
 
-  prometheus:
-    image: prom/prometheus
-    container_name: prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
-    networks:
-      - app-network
-
-  grafana:
-    image: grafana/grafana
-    container_name: grafana
-    ports:
-      - "3001:3000"
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    depends_on:
-      - prometheus
-    networks:
-      - app-network
+#  prometheus:
+#    image: prom/prometheus
+#    container_name: prometheus
+#    volumes:
+#      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+#    ports:
+#      - "9090:9090"
+#    networks:
+#      - app-network
+#
+#  grafana:
+#    image: grafana/grafana
+#    container_name: grafana
+#    ports:
+#      - "3001:3000"
+#    environment:
+#      - GF_SECURITY_ADMIN_PASSWORD=admin
+#    depends_on:
+#      - prometheus
+#    networks:
+#      - app-network
 
 #  discovery:
 #    build:
