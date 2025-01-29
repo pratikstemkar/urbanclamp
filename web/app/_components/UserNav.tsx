@@ -19,8 +19,8 @@ import {
     LogOutIcon,
     MapPinHouseIcon,
     SettingsIcon,
-    TicketIcon,
-    UserIcon,
+    // TicketIcon,
+    // UserIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -38,7 +38,7 @@ const UserNav = () => {
                 >
                     <Avatar className="h-8 w-8">
                         <AvatarImage
-                            src={auth.user?.avatar}
+                            src={auth.user?.picture}
                             alt={auth.user?.email}
                         />
                         <AvatarFallback>SC</AvatarFallback>
@@ -53,7 +53,7 @@ const UserNav = () => {
                 <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                         <p className="text-sm font-medium leading-none">
-                            {auth.user?.firstName + " " + auth.user?.lastName}
+                            {auth.user?.name}
                         </p>
                         <p className="text-xs leading-none text-muted-foreground">
                             {auth.user?.email}

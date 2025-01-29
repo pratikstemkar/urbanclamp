@@ -1,7 +1,5 @@
 import { Metadata } from "next";
-import { DataTable } from "./_components/data-table";
-import { columns } from "./_components/columns";
-import { bookings } from "@/data/bookings";
+import BookingComponent from "./_components/BookingComponent";
 
 export const metadata: Metadata = {
     title: "Your Bookings",
@@ -9,21 +7,7 @@ export const metadata: Metadata = {
 };
 
 const BookingsPage = () => {
-    return (
-        <main className="max-w-7xl m-auto">
-            <div className="flex flex-col space-y-5 px-5 lg:px-0">
-                <h1 className="text-2xl font-bold tracking-tighter">
-                    Your Bookings
-                </h1>
-                <div>
-                    <DataTable
-                        columns={columns}
-                        data={bookings}
-                    />
-                </div>
-            </div>
-        </main>
-    );
+    return <BookingComponent />;
 };
 
 export default BookingsPage;

@@ -16,25 +16,22 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { Checkbox } from "@/components/ui/checkbox";
+import { useRegisterMutation } from "@/store/services/auth/authApi";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { Loader2Icon } from "lucide-react";
+import { withPublicAuth } from "./withPublicAuth";
+// import { Checkbox } from "@/components/ui/checkbox";
 
 const formSchema = z
     .object({
-        firstName: z
+        name: z
             .string()
             .min(3, {
-                message: "First Name must have atleast 3 characters.",
+                message: "Name must have atleast 3 characters.",
             })
             .max(20, {
-                message: "First Name must have at max 20 characters.",
-            }),
-        lastName: z
-            .string()
-            .min(3, {
-                message: "Last Name must have atleast 3 characters.",
-            })
-            .max(20, {
-                message: "Last Name must have at max 20 characters.",
+                message: "Name must have at max 20 characters.",
             }),
         email: z
             .string()
@@ -70,19 +67,30 @@ const formSchema = z
     });
 
 const SignUpForm = () => {
+    const [register, { isLoading, isError, error }] = useRegisterMutation();
+    const router = useRouter();
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            firstName: "",
-            lastName: "",
+            name: "",
             email: "",
             password: "",
             confirmpassword: "",
         },
     });
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values);
+        const { name, email, password } = values;
+        try {
+            const response = await register({ name, email, password }).unwrap();
+            console.log(response);
+            router.push("/signin");
+            toast("Account created successfully!");
+        } catch (err) {
+            toast("Failed to create account!");
+        }
     }
 
     return (
@@ -94,30 +102,13 @@ const SignUpForm = () => {
                 <div className="flex space-x-2 w-full">
                     <FormField
                         control={form.control}
-                        name="firstName"
+                        name="name"
                         render={({ field }) => (
                             <FormItem className="w-full">
-                                <FormLabel>First Name</FormLabel>
+                                <FormLabel>Name</FormLabel>
                                 <FormControl>
                                     <Input
-                                        placeholder="John"
-                                        {...field}
-                                        type="text"
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="lastName"
-                        render={({ field }) => (
-                            <FormItem className="w-full">
-                                <FormLabel>Last Name</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="Doe"
+                                        placeholder="John Doe"
                                         {...field}
                                         type="text"
                                     />
@@ -181,7 +172,7 @@ const SignUpForm = () => {
                         </FormItem>
                     )}
                 />
-                <div className="flex items-center space-x-2">
+                {/* <div className="flex items-center space-x-2">
                     <Checkbox id="terms" />
                     <label
                         htmlFor="terms"
@@ -195,8 +186,21 @@ const SignUpForm = () => {
                             Read T&amp;C
                         </Link>
                     </label>
-                </div>
-                <Button type="submit">Create Account</Button>
+                </div> */}
+                {isError && (
+                    <span className="text-red-500 text-sm">
+                        {error?.data?.message}
+                    </span>
+                )}
+                <Button
+                    type="submit"
+                    disabled={isLoading}
+                >
+                    {isLoading && (
+                        <Loader2Icon className="h-4 w-4 mr-2 animate-spin" />
+                    )}
+                    <span>Create Account</span>
+                </Button>
                 <span className="text-sm">
                     Already have an account?{" "}
                     <Link
@@ -211,4 +215,4 @@ const SignUpForm = () => {
     );
 };
 
-export default SignUpForm;
+export default withPublicAuth(SignUpForm);

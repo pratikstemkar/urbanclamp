@@ -19,7 +19,9 @@ import { useAppDispatch } from "@/store/hooks";
 import { useRouter } from "next/navigation";
 import { logout, setCredentials } from "@/store/features/auth/AuthSlice";
 import { toast } from "sonner";
-import { Icons } from "@/components/ui/icons";
+import { useLoginMutation } from "@/store/services/auth/authApi";
+import { Loader2Icon } from "lucide-react";
+import { withPublicAuth } from "./withPublicAuth";
 
 const formSchema = z.object({
     email: z
@@ -46,6 +48,7 @@ const formSchema = z.object({
 const SignInForm = () => {
     const dispatch = useAppDispatch();
     const router = useRouter();
+    const [login, { isLoading, isError, error }] = useLoginMutation();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -55,34 +58,40 @@ const SignInForm = () => {
         },
     });
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values);
-        dispatch(
-            setCredentials({
-                user: {
-                    firstName: "John",
-                    lastName: "Doe",
-                    email: "johndoe@gmail.com",
-                    role: "user",
-                    avatar: "https://github.com/pratikstemkar.png",
+        const { email, password } = values;
+        try {
+            const response = await login({ email, password }).unwrap();
+            console.log(response);
+            router.push("/homes");
+            dispatch(
+                setCredentials({
+                    user: {
+                        name: "John Doe",
+                        email: email,
+                        roles: ["ROLE_USER"],
+                        picture: "https://github.com/pratikstemkar.png",
+                    },
+                    access_token: response.accessToken,
+                    refresh_token: "asdasd",
+                })
+            );
+            toast("Sign In Successful!", {
+                description: new Date().toLocaleString(),
+                action: {
+                    label: "Logout",
+                    onClick: () => dispatch(logout()),
                 },
-                access_token: "asdasd",
-                refresh_token: "asdasd",
-            })
-        );
-        toast("Sign In Successful!", {
-            description: new Date().toLocaleString(),
-            action: {
-                label: "Logout",
-                onClick: () => dispatch(logout()),
-            },
-        });
-        router.push("/homes");
+            });
+        } catch (err) {
+            toast("Login failed!");
+        }
     }
 
     return (
         <div className="w-full flex flex-col space-y-5">
-            <div className="grid grid-cols-2 gap-2">
+            {/* <div className="grid grid-cols-2 gap-2">
                 <Button variant="outline">
                     <Icons.gitHub className="mr-2 h-4 w-4" />
                     GitHub
@@ -91,13 +100,13 @@ const SignInForm = () => {
                     <Icons.google className="mr-2 h-4 w-4" />
                     Google
                 </Button>
-            </div>
+            </div> */}
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="space-y-4 flex flex-col w-full"
                 >
-                    <div className="relative">
+                    {/* <div className="relative">
                         <div className="absolute inset-0 flex items-center">
                             <span className="w-full border-t" />
                         </div>
@@ -106,7 +115,7 @@ const SignInForm = () => {
                                 Or continue with
                             </span>
                         </div>
-                    </div>
+                    </div> */}
                     <FormField
                         control={form.control}
                         name="email"
@@ -152,7 +161,20 @@ const SignInForm = () => {
                             </FormItem>
                         )}
                     />
-                    <Button type="submit">Sign In</Button>
+                    {isError && (
+                        <span className="text-red-500 text-sm">
+                            {JSON.stringify(error)}
+                        </span>
+                    )}
+                    <Button
+                        type="submit"
+                        disabled={isLoading}
+                    >
+                        {isLoading && (
+                            <Loader2Icon className="h-4 w-4 animate-spin mr-2" />
+                        )}
+                        <span>Sign In</span>
+                    </Button>
                     <span className="text-sm">
                         Don&apos;t have an account?{" "}
                         <Link
@@ -168,4 +190,4 @@ const SignInForm = () => {
     );
 };
 
-export default SignInForm;
+export default withPublicAuth(SignInForm);
