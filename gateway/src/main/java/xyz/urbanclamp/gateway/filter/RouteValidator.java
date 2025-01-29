@@ -12,6 +12,9 @@ public class RouteValidator {
             "/api/auth/register",
             "/api/auth/login",
             "/api/auth/validate",
+            "/user-service/metrics",
+            "/auth-service/metrics",
+            "/booking-service/metrics",
             "/eureka"
     );
 
