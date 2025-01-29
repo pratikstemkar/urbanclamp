@@ -28,7 +28,7 @@ spring:
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/api/users/**, /api/roles/**, /api/addresses/**
+            - Path=/api/users/**, /api/roles/**, /api/addresses/**, /user-service/metrics
           filters:
             - name: AuthenticationFilter
               args:
@@ -36,19 +36,19 @@ spring:
         - id: auth-service
           uri: lb://auth-service
           predicates:
-            - Path=/api/auth/**
+            - Path=/api/auth/**, /auth-service/metrics
         - id: partner-service
           uri: lb://partner-service
           predicates:
-            - Path=/api/partners/**, /api/categories/**, /api/services/**, /api/availabilities/**
+            - Path=/api/partners/**, /api/categories/**, /api/services/**, /api/availabilities/**, /partner-service/metrics
         - id: booking-service
           uri: lb://booking-service
           predicates:
-            - Path=/api/bookings/**
+            - Path=/api/bookings/**, /booking-service/metrics
         - id: notification-service
           uri: lb://notification-service
           predicates:
-            - Path=/api/notifications/**
+            - Path=/api/notifications/**, /notification-service/metrics
 
 eureka:
   client:
@@ -61,3 +61,13 @@ logging:
       springframework:
         cloud:
           gateway: TRACE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,metrics,prometheus"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
