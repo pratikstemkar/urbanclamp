@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import xyz.urbanclamp.authservice.client.UserClient;
 import xyz.urbanclamp.authservice.model.CustomUserDetailsImpl;
-import xyz.urbanclamp.basedomains.dto.user.FullUserDTO;
+import xyz.urbanclamp.authservice.dto.FullUserDTO;
 
 @Service
 public class CustomUserDetailsServiceImpl implements UserDetailsService {

@@ -1,7 +1,7 @@
 package xyz.urbanclamp.partnerservice.service;
 
-import xyz.urbanclamp.basedomains.dto.partner.PartnerCreateDTO;
-import xyz.urbanclamp.basedomains.dto.partner.PartnerUpdateDTO;
+import xyz.urbanclamp.partnerservice.dto.PartnerCreateDTO;
+import xyz.urbanclamp.partnerservice.dto.PartnerUpdateDTO;
 import xyz.urbanclamp.partnerservice.model.Partner;
 
 import java.util.List;

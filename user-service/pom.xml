@@ -78,11 +78,6 @@
 			<artifactId>modelmapper</artifactId>
 			<version>3.2.2</version>
 		</dependency>
-		<dependency>
-			<groupId>xyz.urbanclamp</groupId>
-			<artifactId>base-domains</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>

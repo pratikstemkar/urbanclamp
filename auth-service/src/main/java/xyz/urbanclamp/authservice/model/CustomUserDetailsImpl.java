@@ -3,7 +3,7 @@ package xyz.urbanclamp.authservice.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import xyz.urbanclamp.basedomains.dto.user.FullUserDTO;
+import xyz.urbanclamp.authservice.dto.FullUserDTO;
 
 import java.util.Collection;
 

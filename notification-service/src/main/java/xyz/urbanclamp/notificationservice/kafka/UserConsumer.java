@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import xyz.urbanclamp.notificationservice.dto.NotificationDTO;
 import xyz.urbanclamp.notificationservice.dto.NotificationStatus;
 import xyz.urbanclamp.notificationservice.service.NotificationService;
-import xyz.urbanclamp.userservice.dto.UserDTO;
+import xyz.urbanclamp.notificationservice.dto.UserDTO;
 
 @Service
 @RequiredArgsConstructor

@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import xyz.urbanclamp.basedomains.dto.partner.CategoryCreateDTO;
-import xyz.urbanclamp.basedomains.dto.partner.CategoryUpdateDTO;
+import xyz.urbanclamp.partnerservice.dto.CategoryCreateDTO;
+import xyz.urbanclamp.partnerservice.dto.CategoryUpdateDTO;
 import xyz.urbanclamp.partnerservice.model.Category;
 import xyz.urbanclamp.partnerservice.service.CategoryService;
 

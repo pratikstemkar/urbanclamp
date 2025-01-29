@@ -10,6 +10,20 @@ spring:
         key: a0fcbd306a451411520fb5e92f976a38fb5f587cde0b2b7894b9e120c84059baaad36ec8ec3d2bd5efc0aa021735ca631e04efdf0235b1b2a99ecfc44e87608f
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - 'http://localhost:3000'
+              - 'https://urbanclamp.xyz'
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
       routes:
         - id: user-service
           uri: lb://user-service

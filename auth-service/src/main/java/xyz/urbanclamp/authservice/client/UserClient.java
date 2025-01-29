@@ -2,9 +2,9 @@ package xyz.urbanclamp.authservice.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
-import xyz.urbanclamp.basedomains.dto.user.FullUserDTO;
-import xyz.urbanclamp.basedomains.dto.user.UserDTO;
-import xyz.urbanclamp.basedomains.dto.user.UserRequestDTO;
+import xyz.urbanclamp.authservice.dto.FullUserDTO;
+import xyz.urbanclamp.authservice.dto.UserDTO;
+import xyz.urbanclamp.authservice.dto.UserRequestDTO;
 
 @FeignClient(name = "user-service")
 public interface UserClient {

@@ -5,8 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import xyz.urbanclamp.basedomains.dto.partner.ServiceCreateDTO;
-import xyz.urbanclamp.basedomains.dto.partner.ServiceUpdateDTO;
+import xyz.urbanclamp.partnerservice.dto.ServiceCreateDTO;
+import xyz.urbanclamp.partnerservice.dto.ServiceUpdateDTO;
 import xyz.urbanclamp.partnerservice.model.Service;
 import xyz.urbanclamp.partnerservice.service.ServiceService;
 

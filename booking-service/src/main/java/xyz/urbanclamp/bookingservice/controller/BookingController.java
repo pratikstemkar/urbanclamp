@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import xyz.urbanclamp.basedomains.dto.booking.BookingCreateDTO;
-import xyz.urbanclamp.basedomains.dto.booking.BookingUpdateDTO;
+import xyz.urbanclamp.bookingservice.dto.BookingCreateDTO;
+import xyz.urbanclamp.bookingservice.dto.BookingUpdateDTO;
 import xyz.urbanclamp.bookingservice.model.Booking;
 import xyz.urbanclamp.bookingservice.service.BookingService;
 

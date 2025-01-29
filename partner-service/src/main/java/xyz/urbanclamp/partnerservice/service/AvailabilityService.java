@@ -1,7 +1,7 @@
 package xyz.urbanclamp.partnerservice.service;
 
-import xyz.urbanclamp.basedomains.dto.partner.AvailabilityCreateDTO;
-import xyz.urbanclamp.basedomains.dto.partner.AvailabilityUpdateDTO;
+import xyz.urbanclamp.partnerservice.dto.AvailabilityCreateDTO;
+import xyz.urbanclamp.partnerservice.dto.AvailabilityUpdateDTO;
 import xyz.urbanclamp.partnerservice.model.Availability;
 
 import java.time.LocalDate;

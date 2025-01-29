@@ -1,8 +1,8 @@
 package xyz.urbanclamp.partnerservice.service;
 
 import org.springframework.data.domain.Page;
-import xyz.urbanclamp.basedomains.dto.partner.ServiceCreateDTO;
-import xyz.urbanclamp.basedomains.dto.partner.ServiceUpdateDTO;
+import xyz.urbanclamp.partnerservice.dto.ServiceCreateDTO;
+import xyz.urbanclamp.partnerservice.dto.ServiceUpdateDTO;
 import xyz.urbanclamp.partnerservice.model.Service;
 
 public interface ServiceService {

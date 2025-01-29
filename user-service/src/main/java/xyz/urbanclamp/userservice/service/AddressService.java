@@ -1,7 +1,7 @@
 package xyz.urbanclamp.userservice.service;
 
-import xyz.urbanclamp.basedomains.dto.user.AddressCreateDTO;
-import xyz.urbanclamp.basedomains.dto.user.AddressUpdateDTO;
+import xyz.urbanclamp.userservice.dto.AddressCreateDTO;
+import xyz.urbanclamp.userservice.dto.AddressUpdateDTO;
 import xyz.urbanclamp.userservice.model.Address;
 
 import java.util.List;

@@ -5,8 +5,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import xyz.urbanclamp.authservice.client.UserClient;
 import xyz.urbanclamp.authservice.utils.JwtUtils;
-import xyz.urbanclamp.basedomains.dto.user.UserDTO;
-import xyz.urbanclamp.basedomains.dto.user.UserRequestDTO;
+import xyz.urbanclamp.authservice.dto.UserDTO;
+import xyz.urbanclamp.authservice.dto.UserRequestDTO;
 
 @Service
 public class AuthServiceImpl implements AuthService {

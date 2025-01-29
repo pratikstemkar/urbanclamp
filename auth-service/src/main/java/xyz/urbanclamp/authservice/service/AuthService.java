@@ -1,7 +1,7 @@
 package xyz.urbanclamp.authservice.service;
 
-import xyz.urbanclamp.basedomains.dto.user.UserDTO;
-import xyz.urbanclamp.basedomains.dto.user.UserRequestDTO;
+import xyz.urbanclamp.authservice.dto.UserDTO;
+import xyz.urbanclamp.authservice.dto.UserRequestDTO;
 
 public interface AuthService {
     UserDTO registerUser(UserRequestDTO userRequestDTO);

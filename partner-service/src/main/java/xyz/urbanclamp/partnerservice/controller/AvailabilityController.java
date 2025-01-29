@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import xyz.urbanclamp.basedomains.dto.partner.AvailabilityCreateDTO;
-import xyz.urbanclamp.basedomains.dto.partner.AvailabilityUpdateDTO;
+import xyz.urbanclamp.partnerservice.dto.AvailabilityCreateDTO;
+import xyz.urbanclamp.partnerservice.dto.AvailabilityUpdateDTO;
 import xyz.urbanclamp.partnerservice.model.Availability;
 import xyz.urbanclamp.partnerservice.service.AvailabilityService;
 

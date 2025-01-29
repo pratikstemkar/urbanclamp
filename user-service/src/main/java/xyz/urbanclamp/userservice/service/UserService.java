@@ -1,9 +1,9 @@
 package xyz.urbanclamp.userservice.service;
 
-import xyz.urbanclamp.basedomains.dto.user.AddRoleToUserDTO;
-import xyz.urbanclamp.basedomains.dto.user.FullUserDTO;
-import xyz.urbanclamp.basedomains.dto.user.UserDTO;
-import xyz.urbanclamp.basedomains.dto.user.UserRequestDTO;
+import xyz.urbanclamp.userservice.dto.AddRoleToUserDTO;
+import xyz.urbanclamp.userservice.dto.FullUserDTO;
+import xyz.urbanclamp.userservice.dto.UserDTO;
+import xyz.urbanclamp.userservice.dto.UserRequestDTO;
 import xyz.urbanclamp.userservice.model.User;
 
 import java.util.List;

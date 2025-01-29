@@ -1,7 +1,7 @@
 package xyz.urbanclamp.bookingservice.service;
 
-import xyz.urbanclamp.basedomains.dto.booking.BookingCreateDTO;
-import xyz.urbanclamp.basedomains.dto.booking.BookingUpdateDTO;
+import xyz.urbanclamp.bookingservice.dto.BookingCreateDTO;
+import xyz.urbanclamp.bookingservice.dto.BookingUpdateDTO;
 import xyz.urbanclamp.bookingservice.model.Booking;
 
 import java.util.List;
