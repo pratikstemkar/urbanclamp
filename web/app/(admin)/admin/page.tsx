@@ -1,3 +1,4 @@
+import WithRoleProtection from "@/app/(auth)/_components/WithRoleProtection";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,7 +8,11 @@ export const metadata: Metadata = {
 };
 
 const AdminPage = () => {
-    return <main className="max-w-7xl m-auto">Admin Page</main>;
+    return (
+        <WithRoleProtection allowedRoles={["ROLE_ADMIN"]}>
+            <main className="max-w-7xl m-auto">Admin Page</main>
+        </WithRoleProtection>
+    );
 };
 
 export default AdminPage;

@@ -3,7 +3,6 @@
 import { bookings } from "@/data/bookings";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
-import { withAuth } from "@/app/(auth)/_components/withAuth";
 
 const BookingComponent = () => {
     return (
@@ -23,4 +22,4 @@ const BookingComponent = () => {
     );
 };
 
-export default withAuth(BookingComponent);
+export default BookingComponent;

@@ -1,60 +1,69 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@/store/store";
+import axios from "axios";
+
+const fetchUserDetails = async (token: string) => {
+    try {
+        const response = await axios.get(
+            `http://localhost:8080/api/auth/validate/${token}`
+        );
+        return response.data;
+    } catch (error) {
+        console.error("Token validation failed", error);
+        return null;
+    }
+};
 
 export interface User {
+    id: number;
     name: string;
     email: string;
+    phoneNumber: string;
     picture: string;
-    roles: Array<string>;
+    roles: string[];
+    status: string;
+    gender: string;
 }
 
 type AuthState = {
     user: User | null;
-    access_token: string | null;
-    refresh_token: string | null;
 };
+
+const initialState: AuthState = {
+    user: null,
+};
+
+export const validateTokenAndSetUser = createAsyncThunk(
+    "auth/validateToken",
+    async (token: string, { rejectWithValue }) => {
+        const user = await fetchUserDetails(token);
+        if (!user) return rejectWithValue("Invalid token");
+        localStorage.setItem("access_token", token);
+        return user;
+    }
+);
 
 const authSlice = createSlice({
     name: "auth",
-    initialState: {
-        user: null,
-        access_token: null,
-        refresh_token: null,
-    } as AuthState,
+    initialState,
     reducers: {
-        setCredentials: (
-            state,
-            {
-                payload: { user, access_token, refresh_token },
-            }: PayloadAction<{
-                user: User | null;
-                access_token: string | null;
-                refresh_token: string | null;
-            }>
-        ) => {
-            state.user = user;
-            state.access_token = access_token;
-            state.refresh_token = refresh_token;
-            localStorage.setItem("user", JSON.stringify(user));
-            localStorage.setItem("access_token", access_token!);
-            localStorage.setItem("refresh_token", refresh_token!);
-        },
         logout: state => {
-            localStorage.removeItem("user");
             localStorage.removeItem("access_token");
-            localStorage.removeItem("refresh_token");
+            localStorage.removeItem("previousPath");
             state.user = null;
-            state.access_token = null;
-            state.refresh_token = null;
         },
+    },
+    extraReducers: builder => {
+        builder
+            .addCase(validateTokenAndSetUser.fulfilled, (state, action) => {
+                state.user = action.payload;
+            })
+            .addCase(validateTokenAndSetUser.rejected, state => {
+                state.user = null;
+            });
     },
 });
 
-export const { setCredentials, logout } = authSlice.actions;
+export const { logout } = authSlice.actions;
 export const selectCurrentUser = (state: RootState) => state.auth.user;
-export const selectCurrentAccessToken = (state: RootState) =>
-    state.auth.access_token;
-export const selectCurrentRefreshToken = (state: RootState) =>
-    state.auth.refresh_token;
 export default authSlice.reducer;

@@ -20,7 +20,6 @@ import { useRegisterMutation } from "@/store/services/auth/authApi";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Loader2Icon } from "lucide-react";
-import { withPublicAuth } from "./withPublicAuth";
 // import { Checkbox } from "@/components/ui/checkbox";
 
 const formSchema = z
@@ -189,7 +188,7 @@ const SignUpForm = () => {
                 </div> */}
                 {isError && (
                     <span className="text-red-500 text-sm">
-                        {error?.data?.message}
+                        {JSON.stringify(error)}
                     </span>
                 )}
                 <Button
@@ -215,4 +214,4 @@ const SignUpForm = () => {
     );
 };
 
-export default withPublicAuth(SignUpForm);
+export default SignUpForm;

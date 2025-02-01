@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
-import Link from "next/link";
+import PartnerButton from "./dashboard/_components/PartnerButton";
 
 export const metadata: Metadata = {
     title: "Become a Service Partner",
@@ -27,15 +26,7 @@ const PartnersPage = () => {
                         mollitia nemo, dolor iusto ipsum consequatur eaque
                         maxime.
                     </h4>
-                    <Button
-                        size="lg"
-                        className="rounded-full shadow-lg hover:shadow-none hover:scale-105 transition ease-in-out duration-300"
-                        asChild
-                    >
-                        <Link href="/partner/dashboard">
-                            <span>View Dashboard</span>
-                        </Link>
-                    </Button>
+                    <PartnerButton />
                 </div>
             </div>
         </main>

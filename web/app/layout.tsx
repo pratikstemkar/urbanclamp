@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import StoreProvider from "@/store/StoreProvider";
 import { Toaster } from "sonner";
 import BottomNav from "./_components/BottomNav";
+import AuthProvider from "./_components/AuthProvider";
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
@@ -34,20 +35,22 @@ export default function RootLayout({
                 className={`${inter.className} antialiased flex flex-col justify-between w-full min-h-screen`}
             >
                 <StoreProvider>
-                    <ThemeProvider
-                        attribute="class"
-                        defaultTheme="light"
-                        enableSystem
-                        disableTransitionOnChange
-                    >
-                        <div>
-                            <Navbar />
-                            {children}
-                        </div>
-                        <Toaster />
-                        <Footer />
-                        <BottomNav />
-                    </ThemeProvider>
+                    <AuthProvider>
+                        <ThemeProvider
+                            attribute="class"
+                            defaultTheme="light"
+                            enableSystem
+                            disableTransitionOnChange
+                        >
+                            <div>
+                                <Navbar />
+                                {children}
+                            </div>
+                            <Toaster />
+                            <Footer />
+                            <BottomNav />
+                        </ThemeProvider>
+                    </AuthProvider>
                 </StoreProvider>
             </body>
         </html>

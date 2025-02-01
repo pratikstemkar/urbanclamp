@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import BookingComponent from "./_components/BookingComponent";
+import WithRoleProtection from "../(auth)/_components/WithRoleProtection";
 
 export const metadata: Metadata = {
     title: "Your Bookings",
@@ -7,7 +8,11 @@ export const metadata: Metadata = {
 };
 
 const BookingsPage = () => {
-    return <BookingComponent />;
+    return (
+        <WithRoleProtection allowedRoles={["ROLE_USER"]}>
+            <BookingComponent />
+        </WithRoleProtection>
+    );
 };
 
 export default BookingsPage;

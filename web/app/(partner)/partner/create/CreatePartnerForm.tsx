@@ -24,8 +24,18 @@ import {
 import { toast } from "sonner";
 import { useLoginMutation } from "@/store/services/auth/authApi";
 import { Loader2Icon } from "lucide-react";
+import { useAuth } from "@/store/hooks/useAuth";
+import { useCreatePartnerMutation } from "@/store/services/partnerApi";
 
 const formSchema = z.object({
+    name: z
+        .string()
+        .min(3, {
+            message: "Name must have atleast 3 characters.",
+        })
+        .max(20, {
+            message: "Name must have at max 20 characters.",
+        }),
     email: z
         .string()
         .min(10, {
@@ -37,83 +47,87 @@ const formSchema = z.object({
         .email({
             message: "Enter a valid email address.",
         }),
-    password: z
+    location: z
+        .string()
+        .min(3, {
+            message: "Location must have atleast 3 characters.",
+        })
+        .max(20, {
+            message: "Location must have at max 20 characters.",
+        }),
+    servicePinCode: z
         .string()
         .min(6, {
-            message: "Password must have atleast 6 characters.",
+            message: "Service PinCode must have atleast 6 characters.",
         })
-        .max(16, {
-            message: "Password must have atmax 16 characters.",
+        .max(6, {
+            message: "Servie PinCode must have at max 6 characters.",
         }),
 });
 
-const SignInForm = () => {
-    const dispatch = useAppDispatch();
+const CreatePartnerForm = () => {
+    const { user } = useAuth();
     const router = useRouter();
-    const [login, { isLoading, isError, error }] = useLoginMutation();
+    const [createPartner, { isLoading, isError, error }] =
+        useCreatePartnerMutation();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            email: "",
-            password: "",
+            name: user?.name,
+            email: user?.email,
+            location: "",
+            servicePinCode: "",
         },
     });
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values);
-        const { email, password } = values;
+        const { name, email, location, servicePinCode } = values;
         try {
-            const response = await login({ email, password }).unwrap();
+            const response = await createPartner({
+                userId: user?.id,
+                name,
+                email,
+                location,
+                servicePinCode,
+            }).unwrap();
             console.log(response);
-            const previousPath = localStorage.getItem("previousPath");
-
-            if (previousPath) {
-                localStorage.removeItem("previousPath");
-                router.push(previousPath);
-            } else {
-                router.push("/homes");
-            }
-            dispatch(validateTokenAndSetUser(response.accessToken));
-            toast("Sign In Successful!", {
+            router.replace("/partner/dashboard");
+            toast("Partner Account Created!", {
                 description: new Date().toLocaleString(),
-                action: {
-                    label: "Logout",
-                    onClick: () => dispatch(logout()),
-                },
             });
         } catch (err) {
-            toast("Login failed!" + err);
+            toast("Account creation failed!", {
+                description: JSON.stringify(err),
+            });
         }
     }
 
     return (
         <div className="w-full flex flex-col space-y-5">
-            {/* <div className="grid grid-cols-2 gap-2">
-                <Button variant="outline">
-                    <Icons.gitHub className="mr-2 h-4 w-4" />
-                    GitHub
-                </Button>
-                <Button variant="outline">
-                    <Icons.google className="mr-2 h-4 w-4" />
-                    Google
-                </Button>
-            </div> */}
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="space-y-4 flex flex-col w-full"
                 >
-                    {/* <div className="relative">
-                        <div className="absolute inset-0 flex items-center">
-                            <span className="w-full border-t" />
-                        </div>
-                        <div className="relative flex justify-center text-xs uppercase">
-                            <span className="bg-background px-2 text-muted-foreground">
-                                Or continue with
-                            </span>
-                        </div>
-                    </div> */}
+                    <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Name</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        placeholder="John Doe"
+                                        {...field}
+                                        type="text"
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
                     <FormField
                         control={form.control}
                         name="email"
@@ -125,6 +139,7 @@ const SignInForm = () => {
                                         placeholder="me@example.com"
                                         {...field}
                                         type="email"
+                                        disabled
                                     />
                                 </FormControl>
                                 <FormDescription>
@@ -136,23 +151,30 @@ const SignInForm = () => {
                     />
                     <FormField
                         control={form.control}
-                        name="password"
+                        name="location"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className="flex justify-between items-center">
-                                    Password
-                                    {/* <Link
-                                        href="/forgot-password"
-                                        className="text-xs underline underline-offset-4"
-                                    >
-                                        Forgot Password?
-                                    </Link> */}
-                                </FormLabel>
+                                <FormLabel>Location</FormLabel>
                                 <FormControl>
                                     <Input
-                                        placeholder=""
                                         {...field}
-                                        type="password"
+                                        type="text"
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="servicePinCode"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Service PinCode</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        type="text"
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -171,21 +193,12 @@ const SignInForm = () => {
                         {isLoading && (
                             <Loader2Icon className="h-4 w-4 animate-spin mr-2" />
                         )}
-                        <span>Sign In</span>
+                        <span>Create Partner Account</span>
                     </Button>
-                    <span className="text-sm">
-                        Don&apos;t have an account?{" "}
-                        <Link
-                            href="/signup"
-                            className="underline underline-offset-4"
-                        >
-                            Create Account
-                        </Link>
-                    </span>
                 </form>
             </Form>
         </div>
     );
 };
 
-export default SignInForm;
+export default CreatePartnerForm;

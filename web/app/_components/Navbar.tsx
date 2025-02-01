@@ -16,6 +16,7 @@ const Navbar = () => {
 
     return (
         <nav className="sticky top-0 z-10 backdrop-blur-md">
+            {JSON.stringify(auth.user)}
             <div className="flex max-w-7xl m-auto justify-between items-center px-5 lg:px-10 py-2 lg:py-5">
                 <div className="flex space-x-5 items-center">
                     <Link href="/">

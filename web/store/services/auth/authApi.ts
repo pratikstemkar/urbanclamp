@@ -18,7 +18,14 @@ export const authApi = createApi({
                 body: credentials,
             }),
         }),
+        validateToken: builder.query({
+            query: token => ({
+                url: `/validate/${token}`,
+                method: "GET",
+            }),
+        }),
     }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useValidateTokenQuery } =
+    authApi;
