@@ -44,8 +44,9 @@ export default function RootLayout({
                         >
                             <div>
                                 <Navbar />
-                                <div className="text-center w-full text-red-500 py-2">
-                                    <span>Under development - some features may not work as expected.<span>
+                                <div className="text-red-500 text-center w-full py-2">
+                                    Under Development - Some features may not
+                                    work as expected.
                                 </div>
                                 {children}
                             </div>
