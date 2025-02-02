@@ -1,0 +1,56 @@
+# .NET build output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer Patch files
+*.pdb
+*.log
+
+# .NET Core SDK's folder
+.vscode/
+
+# ASP.NET Core specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# JetBrains Rider files
+.idea/
+
+# ASP.NET core environment files (can be added based on need)
+# e.g., appsettings.Development.json, appsettings.Production.json, etc.
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+
+# Node.js dependencies (if you have frontend or any Node.js-related files)
+node_modules/
+
+# User-specific configurations for Rider, Visual Studio
+.idea/
+
+# Azure Web App configurations
+.vscode/
+
+# ASP.NET Core/Visual Studio Debug
+.vs/
+
+# NPM and Yarn package-lock files (if applicable)
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Other environment-specific files
+.env

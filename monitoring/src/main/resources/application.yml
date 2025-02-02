@@ -1,6 +1,0 @@
-server:
-  port: 8092
-
-spring:
-  application:
-    name: monitoring
