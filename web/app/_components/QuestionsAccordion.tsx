@@ -48,11 +48,11 @@ export function QuestionsAccordion() {
             </AccordionItem>
             <AccordionItem value="item-5">
                 <AccordionTrigger>
-                    What if I'm not satisfied with the service?
+                    What if I&apos;m not satisfied with the service?
                 </AccordionTrigger>
                 <AccordionContent>
-                    We strive for customer satisfaction. If you're not happy
-                    with the service, please contact our support team for
+                    We strive for customer satisfaction. If you&apos;re not
+                    happy with the service, please contact our support team for
                     assistance and resolution.
                 </AccordionContent>
             </AccordionItem>

@@ -88,7 +88,9 @@ const SignUpForm = () => {
             router.push("/signin");
             toast("Account created successfully!");
         } catch (err) {
-            toast("Failed to create account!");
+            toast("Failed to create account!", {
+                description: JSON.stringify(err),
+            });
         }
     }
 

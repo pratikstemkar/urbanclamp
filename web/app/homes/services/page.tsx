@@ -1,5 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { services } from "@/data/services";
 import { ArrowLeftIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

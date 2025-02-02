@@ -28,7 +28,7 @@ const WithRoleProtection: React.FC<WithRoleProtectionProps> = ({
             router.push("/signin");
         }
         setLoading(false);
-    }, [user?.roles, allowedRoles, router]);
+    }, [user?.roles, allowedRoles, router, hasAccess, user]);
 
     if (loading && !hasAccess) return <>Loading...</>;
 

@@ -17,7 +17,7 @@ const LocationMarker = () => {
     useEffect(() => {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(
-                (position: any) => {
+                (position: GeolocationPosition) => {
                     const { latitude, longitude } = position.coords;
                     setPosition([latitude, longitude]);
                     map.setView([latitude, longitude], 11);

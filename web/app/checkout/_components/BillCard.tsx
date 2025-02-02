@@ -10,12 +10,11 @@ import {
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { ShoppingCartIcon, Trash2Icon } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
 
 const BillCard = () => {
     const cartItems = useAppSelector(selectCurrentItems);
     const dispatch = useAppDispatch();
-    const [visitCharge, setVisitCharge] = useState<Number>(200);
+    const visitCharge = 200;
 
     return (
         <Card>

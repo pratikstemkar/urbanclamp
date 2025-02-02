@@ -14,7 +14,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import ProceedToPay from "./ProceedToPay";
 
-const AddressCard = (props: { itemCount: Number }) => {
+const AddressCard = (props: { itemCount: number }) => {
     const [done, setDone] = useState(false);
 
     return (

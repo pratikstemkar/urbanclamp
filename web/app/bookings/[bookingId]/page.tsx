@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { cn, getBookingById, getPartnerImgUrl } from "@/lib/utils";
-import { BusIcon, CopyIcon, MessageSquareTextIcon } from "lucide-react";
+import { BusIcon, MessageSquareTextIcon } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -11,7 +11,6 @@ import TrackMap from "./_components/TrackMap";
 import { partners } from "@/data/partners";
 import Link from "next/link";
 import ReportDialog from "./_components/ReportDialog";
-import { toast } from "sonner";
 import CopyBookingId from "./_components/CopyBookingId";
 
 export async function generateMetadata({
