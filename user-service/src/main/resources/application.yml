@@ -6,7 +6,7 @@ spring:
     name: user-service
 
   datasource:
-    url: jdbc:mysql://user-db:3306/userdb
+    url: jdbc:mysql://localhost:3306/userdb
     username: user
     password: pass
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -21,7 +21,7 @@ spring:
     open-in-view: false
 
   kafka:
-    bootstrap-servers: kafka:9092
+    bootstrap-servers: localhost:9092
     admin:
       properties:
         client.id: user-service-admin
@@ -34,7 +34,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://discovery:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
 
 management:
   endpoints:
