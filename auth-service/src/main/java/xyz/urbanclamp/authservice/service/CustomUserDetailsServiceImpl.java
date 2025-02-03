@@ -20,7 +20,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         FullUserDTO fullUserDTO;
         try {
-            fullUserDTO = userClient.getFullUserByEmail(username);
+            fullUserDTO = userClient.getFullUserByEmail(username).getBody();
         } catch (Exception e) {
             throw new UsernameNotFoundException(e.getMessage());
         }

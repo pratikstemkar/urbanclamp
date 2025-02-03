@@ -2,9 +2,7 @@ package xyz.urbanclamp.authservice.controller;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -48,15 +46,12 @@ public class AuthController {
         String jwtToken = jwtUtils.generateJwtToken(authToken);
         loginResponse.put("accessToken", jwtToken);
 
-        ResponseCookie cookie = ResponseCookie.from("accessToken", jwtToken)
-                .httpOnly(true)  // Prevent JavaScript access
-                .secure(true)    // Send only over HTTPS
-                .path("/")       // Available across the app
-                .maxAge(3600)    // Expires in 1 hour
-                .build();
+        Cookie cookie = new Cookie("accessToken", jwtToken);
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(864000);
+        cookie.setPath("/");
 
-        // Manually add SameSite=None
-        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString() + "; SameSite=None");
+        response.addCookie(cookie);
 
         return ResponseEntity.ok(loginResponse);
     }
