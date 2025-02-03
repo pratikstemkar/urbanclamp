@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import xyz.urbanclamp.partnerservice.client.UserClient;
+import xyz.urbanclamp.partnerservice.dto.AddRoleToUserDTO;
 import xyz.urbanclamp.partnerservice.dto.PartnerCreateDTO;
 import xyz.urbanclamp.partnerservice.dto.PartnerUpdateDTO;
 import xyz.urbanclamp.partnerservice.exception.PartnerNotFoundException;
@@ -19,6 +21,7 @@ import java.util.List;
 public class PartnerServiceImpl implements PartnerService {
     private final PartnerRepository partnerRepository;
     private final ModelMapper modelMapper;
+    private final UserClient userClient;
 
     @Override
     public List<Partner> getAllPartners() {
@@ -39,6 +42,7 @@ public class PartnerServiceImpl implements PartnerService {
     public Partner createPartner(PartnerCreateDTO partnerCreateDTO) {
         Partner partner = modelMapper.map(partnerCreateDTO, Partner.class);
         partner.setId(null);
+        userClient.addRoleToUser(AddRoleToUserDTO.builder().userId(partnerCreateDTO.getUserId()).roleName("ROLE_PARTNER").build());
         return partnerRepository.save(partner);
     }
 

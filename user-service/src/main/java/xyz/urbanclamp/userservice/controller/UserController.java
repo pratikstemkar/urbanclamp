@@ -56,7 +56,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userService.updateUser(id, userDTO));
     }
 
-    @PatchMapping("/addRole")
+    @PutMapping("/addRole")
     public ResponseEntity<UserDTO> addRoleToUser(@RequestBody AddRoleToUserDTO addRoleToUserDTO) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.addRoleToUser(addRoleToUserDTO));
     }
