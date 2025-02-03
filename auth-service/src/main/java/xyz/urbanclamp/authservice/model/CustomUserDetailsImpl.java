@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import xyz.urbanclamp.authservice.dto.FullUserDTO;
 
 import java.util.Collection;
+import java.util.Map;
 
 public class CustomUserDetailsImpl implements UserDetails {
     private FullUserDTO fullUserDTO;
@@ -13,6 +14,14 @@ public class CustomUserDetailsImpl implements UserDetails {
     public CustomUserDetailsImpl(FullUserDTO fullUserDTO) {
         super();
         this.fullUserDTO = fullUserDTO;
+    }
+
+    private String username;
+    private Map<String, Object> attributes;
+
+    public CustomUserDetailsImpl(String username, Map<String, Object> attributes) {
+        this.username = username;
+        this.attributes = attributes;
     }
 
     @Override
@@ -32,5 +41,9 @@ public class CustomUserDetailsImpl implements UserDetails {
 
     public FullUserDTO getFullUserDTO() {
         return fullUserDTO;
+    }
+
+    public Map<String, Object> getAttributes() {
+        return attributes;
     }
 }

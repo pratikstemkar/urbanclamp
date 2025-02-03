@@ -1,9 +1,13 @@
 package xyz.urbanclamp.authservice.service;
 
+import feign.Feign;
+import feign.FeignException;
 import io.jsonwebtoken.Claims;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import xyz.urbanclamp.authservice.client.UserClient;
+import xyz.urbanclamp.authservice.exception.EmailAlreadyExistsException;
+import xyz.urbanclamp.authservice.exception.UserNotFoundException;
 import xyz.urbanclamp.authservice.utils.JwtUtils;
 import xyz.urbanclamp.authservice.dto.UserDTO;
 import xyz.urbanclamp.authservice.dto.UserRequestDTO;
@@ -24,9 +28,9 @@ public class AuthServiceImpl implements AuthService {
     public UserDTO registerUser(UserRequestDTO userRequestDTO) {
         userRequestDTO.setPassword(passwordEncoder.encode(userRequestDTO.getPassword()));
         try {
-            return userClient.createUser(userRequestDTO);
-        } catch (Exception e) {
-            return null;
+            return userClient.createUser(userRequestDTO).getBody();
+        } catch (FeignException.Conflict ce) {
+            throw new EmailAlreadyExistsException("Account with the Email: " + userRequestDTO.getEmail() + " already exists.");
         }
     }
 
@@ -36,9 +40,9 @@ public class AuthServiceImpl implements AuthService {
         String email = jwtUtils.getUsernameFromJwtToken(claims);
         UserDTO userDTO = null;
         try {
-            userDTO = userClient.getUserByEmail(email);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            userDTO = userClient.getUserByEmail(email).getBody();
+        } catch (FeignException.NotFound e) {
+            throw new UserNotFoundException("User not found with Email: " + email);
         }
         return userDTO;
     }
