@@ -5,11 +5,18 @@ spring:
   application:
     name: user-service
 
+  cache:
+    type: redis
+
   datasource:
     url: jdbc:mysql://localhost:3306/userdb
     username: user
     password: pass
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+  redis:
+    host: localhost
+    port: 6379
 
   jpa:
     hibernate:
@@ -19,17 +26,6 @@ spring:
       hibernate:
         format_sql: true
     open-in-view: false
-
-  kafka:
-    bootstrap-servers: localhost:9092
-    admin:
-      properties:
-        client.id: user-service-admin
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    topic:
-      name: user.created
 
 eureka:
   client:

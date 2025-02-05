@@ -2,6 +2,9 @@ package xyz.urbanclamp.userservice.service;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.urbanclamp.userservice.dto.AddRoleToUserDTO;
@@ -31,7 +34,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = "users", key = "#id")
     public User getUserById(Long id) {
+        System.out.println("in get user by id");
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found with ID: " + id));
     }
 
@@ -48,6 +53,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CachePut(value = "users", key = "#user.id")
     public UserDTO createUser(UserRequestDTO userRequestDTO) {
         User user = modelMapper.map(userRequestDTO, User.class);
         user.setGender(UserGender.MALE);
@@ -79,6 +85,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CacheEvict(value = "users", key = "#id")
     public void deleteUser(Long id) {
         if(!userRepository.existsById(id))
             throw new UserNotFoundException("User not found with ID: " + id);

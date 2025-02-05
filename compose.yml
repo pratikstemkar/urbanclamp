@@ -66,6 +66,17 @@ services:
     networks:
       - app-network
 
+  user-cache:
+    image: redis:latest
+    container_name: user-cache
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - user-cache-data:/data
+    networks:
+      - app-network
+
 #  user-service:
 #    build:
 #      context: ./user-service
@@ -211,6 +222,7 @@ volumes:
   booking-db-data:
   payment-db-data:
   review-db-data:
+  user-cache-data:
 
 networks:
   app-network:

@@ -1,5 +1,6 @@
 package xyz.urbanclamp.userservice.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -7,22 +8,16 @@ import xyz.urbanclamp.userservice.dto.AddRoleToUserDTO;
 import xyz.urbanclamp.userservice.dto.FullUserDTO;
 import xyz.urbanclamp.userservice.dto.UserDTO;
 import xyz.urbanclamp.userservice.dto.UserRequestDTO;
-import xyz.urbanclamp.userservice.kafka.UserProducer;
 import xyz.urbanclamp.userservice.model.User;
 import xyz.urbanclamp.userservice.service.UserService;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
     private final UserService userService;
-    private final UserProducer userProducer;
-
-    public UserController(UserService userService, UserProducer userProducer) {
-        this.userService = userService;
-        this.userProducer = userProducer;
-    }
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
@@ -47,7 +42,6 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserDTO> createUser(@RequestBody UserRequestDTO userRequestDTO) {
         UserDTO userDTO = userService.createUser(userRequestDTO);
-        userProducer.sendMessage(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);
     }
 
