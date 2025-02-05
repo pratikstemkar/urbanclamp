@@ -44,11 +44,15 @@ spring:
         - id: booking-service
           uri: lb://booking-service
           predicates:
-            - Path=/api/bookings/**, /booking-service/metrics
+            - Path=/api/bookings/**, /booking-service/metrics, /booking-service/actuator
         - id: notification-service
           uri: lb://notification-service
           predicates:
             - Path=/api/notifications/**, /notification-service/metrics
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/payments/**
 
 eureka:
   client:

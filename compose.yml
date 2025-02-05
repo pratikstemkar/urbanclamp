@@ -91,20 +91,20 @@ services:
 #    networks:
 #      - app-network
 
-  notification-db:
-    image: mysql:8.4
-    container_name: notification-db
-    ports:
-      - "3307:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: notificationdb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pass
-    volumes:
-      - notification-db-data:/var/lib/mysql
-    networks:
-      - app-network
+#  notification-db:
+#    image: mysql:8.4
+#    container_name: notification-db
+#    ports:
+#      - "3307:3306"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: notificationdb
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: pass
+#    volumes:
+#      - notification-db-data:/var/lib/mysql
+#    networks:
+#      - app-network
 
 #  notification-service:
 #    build:
@@ -173,12 +173,28 @@ services:
 #    networks:
 #      - app-network
 
+#  payment-db:
+#    image: mysql:8.4
+#    container_name: payment-db
+#    ports:
+#      - "3310:3306"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: paymentdb
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: pass
+#    volumes:
+#      - payment-db-data:/var/lib/mysql
+#    networks:
+#      - app-network
+
 volumes:
   user-db-data:
   kafka-data:
   notification-db-data:
   partner-db-data:
   booking-db-data:
+  payment-db-data:
 
 networks:
   app-network:
