@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "JMnoKKdtLzPWU2JotvrolfKqwL1MR4SWoRGJauOuGDI=",
+  "Source": "review-service",
+  "BasePath": "_content/review-service",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

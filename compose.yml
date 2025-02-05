@@ -188,6 +188,21 @@ services:
 #    networks:
 #      - app-network
 
+  review-db:
+    image: mysql:8.4
+    container_name: review-db
+    ports:
+      - "3311:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: reviewdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - review-db-data:/var/lib/mysql
+    networks:
+      - app-network
+
 volumes:
   user-db-data:
   kafka-data:
@@ -195,6 +210,7 @@ volumes:
   partner-db-data:
   booking-db-data:
   payment-db-data:
+  review-db-data:
 
 networks:
   app-network:
