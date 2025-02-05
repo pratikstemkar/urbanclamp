@@ -34,6 +34,7 @@ public class Booking extends BaseAuditEntity {
     private String timeSlot;
 
     @Builder.Default
+    @Enumerated(EnumType.STRING)
     @Column(name = "booking_status")
     private BookingStatus bookingStatus = BookingStatus.PROCESSING;
 

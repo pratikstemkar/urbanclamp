@@ -20,6 +20,27 @@ spring:
         format_sql: true
     open-in-view: false
 
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: noti1
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+    admin:
+      properties:
+        client.id: booking-service-admin
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    topic:
+      name: booking.created
+
 eureka:
   client:
     serviceUrl:
@@ -28,6 +49,7 @@ eureka:
 management:
   endpoints:
     web:
+      base-path: /booking-service/actuator
       exposure:
         include: "health,metrics,prometheus"
   metrics:

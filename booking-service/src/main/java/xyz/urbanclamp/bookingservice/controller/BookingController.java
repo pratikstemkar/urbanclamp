@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xyz.urbanclamp.bookingservice.dto.BookingCreateDTO;
 import xyz.urbanclamp.bookingservice.dto.BookingUpdateDTO;
+import xyz.urbanclamp.bookingservice.kafka.BookingProducer;
 import xyz.urbanclamp.bookingservice.model.Booking;
 import xyz.urbanclamp.bookingservice.service.BookingService;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookingController {
     private final BookingService bookingService;
+    private final BookingProducer bookingProducer;
 
     @GetMapping
     public ResponseEntity<List<Booking>> getAllBookings() {
@@ -44,12 +46,19 @@ public class BookingController {
 
     @PostMapping
     public ResponseEntity<Booking> createBooking(@RequestBody BookingCreateDTO bookingCreateDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(bookingService.createBooking(bookingCreateDTO));
+        Booking booking = bookingService.createBooking(bookingCreateDTO);
+        bookingProducer.sendMessage(booking);
+        return ResponseEntity.status(HttpStatus.CREATED).body(booking);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody BookingUpdateDTO bookingUpdateDTO) {
         return ResponseEntity.ok(bookingService.updateBooking(id, bookingUpdateDTO));
+    }
+
+    @PutMapping("/status/{id}")
+    public ResponseEntity<Booking> setBookingStatus(@PathVariable Long id, @RequestParam String status) {
+        return ResponseEntity.ok(bookingService.setBookingStatus(id, status));
     }
 
     @DeleteMapping("/{id}")

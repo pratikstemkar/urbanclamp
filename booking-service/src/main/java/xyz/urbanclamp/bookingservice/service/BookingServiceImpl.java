@@ -46,6 +46,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Booking createBooking(BookingCreateDTO bookingCreateDTO) {
         Booking booking = modelMapper.map(bookingCreateDTO, Booking.class);
+        booking.setBookingStatus(BookingStatus.PROCESSING);
         return bookingRepository.save(booking);
     }
 
@@ -59,6 +60,13 @@ public class BookingServiceImpl implements BookingService {
         booking.setBookingStatus(BookingStatus.valueOf(bookingUpdateDTO.getBookingStatus()));
         booking.setTimeSlot(bookingUpdateDTO.getTimeSlot());
         booking.setAmount(bookingUpdateDTO.getAmount());
+        return bookingRepository.save(booking);
+    }
+
+    @Override
+    public Booking setBookingStatus(Long id, String status) {
+        Booking booking = getBookingById(id);
+        booking.setBookingStatus(BookingStatus.valueOf(status));
         return bookingRepository.save(booking);
     }
 

@@ -14,5 +14,6 @@ public interface BookingService {
     Booking getBookingById(Long id);
     Booking createBooking(BookingCreateDTO bookingCreateDTO);
     Booking updateBooking(Long id, BookingUpdateDTO bookingUpdateDTO);
+    Booking setBookingStatus(Long id, String status);
     void deleteBooking(Long id);
 }
