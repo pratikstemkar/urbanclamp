@@ -86,7 +86,7 @@ const CreatePartnerForm = () => {
                 servicePinCode,
             }).unwrap();
             console.log(response);
-            router.replace("/partner/dashboard");
+            router.push("/");
             toast("Partner Account Created!", {
                 description: new Date().toLocaleString(),
             });

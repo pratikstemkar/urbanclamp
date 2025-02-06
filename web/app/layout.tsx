@@ -44,10 +44,10 @@ export default function RootLayout({
                         >
                             <div>
                                 <Navbar />
-                                <div className="text-red-500 text-center w-full py-2">
+                                {/* <div className="text-red-500 text-center w-full py-2">
                                     Under Development - Some features may not
                                     work as expected.
-                                </div>
+                                </div> */}
                                 {children}
                             </div>
                             <Toaster />

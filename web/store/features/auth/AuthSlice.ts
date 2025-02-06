@@ -5,7 +5,7 @@ import axios from "axios";
 const fetchUserDetails = async (token: string) => {
     try {
         const response = await axios.get(
-            `http://localhost:8080/api/auth/validate/${token}`
+            `https://api.urbanclamp.xyz/api/auth/validate/${token}`
         );
         return response.data;
     } catch (error) {
