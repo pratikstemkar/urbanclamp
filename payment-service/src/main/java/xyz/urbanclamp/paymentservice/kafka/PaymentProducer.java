@@ -8,7 +8,7 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
-import xyz.urbanclamp.base_domains.dto.StripeResponseDTO;
+import xyz.urbanclamp.basedomains.dto.StripeResponseDTO;
 
 @Service
 @RequiredArgsConstructor

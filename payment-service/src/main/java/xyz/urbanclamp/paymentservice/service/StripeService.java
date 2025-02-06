@@ -6,7 +6,7 @@ import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import xyz.urbanclamp.base_domains.dto.StripeResponseDTO;
+import xyz.urbanclamp.basedomains.dto.StripeResponseDTO;
 import xyz.urbanclamp.paymentservice.dto.PaymentRequestDTO;
 
 @Service

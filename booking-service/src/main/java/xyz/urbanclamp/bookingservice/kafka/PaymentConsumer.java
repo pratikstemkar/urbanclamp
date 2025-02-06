@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-import xyz.urbanclamp.base_domains.dto.StripeResponseDTO;
+import xyz.urbanclamp.basedomains.dto.StripeResponseDTO;
 import xyz.urbanclamp.bookingservice.service.BookingService;
 
 @Service

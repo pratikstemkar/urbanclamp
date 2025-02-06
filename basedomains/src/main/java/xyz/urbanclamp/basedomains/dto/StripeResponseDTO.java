@@ -1,4 +1,4 @@
-package xyz.urbanclamp.base_domains.dto;
+package xyz.urbanclamp.basedomains.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,10 +1,10 @@
-package xyz.urbanclamp.base_domains;
+package xyz.urbanclamp.basedomains;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BaseDomainsApplicationTests {
+class BasedomainsApplicationTests {
 
 	@Test
 	void contextLoads() {

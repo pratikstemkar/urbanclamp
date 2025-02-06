@@ -12,7 +12,7 @@ import org.springframework.boot.json.JsonParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import xyz.urbanclamp.base_domains.dto.StripeResponseDTO;
+import xyz.urbanclamp.basedomains.dto.StripeResponseDTO;
 import xyz.urbanclamp.paymentservice.dto.PaymentRequestDTO;
 import xyz.urbanclamp.paymentservice.kafka.PaymentProducer;
 import xyz.urbanclamp.paymentservice.service.StripeService;
