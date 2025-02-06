@@ -35,8 +35,8 @@ public class StripeService {
         SessionCreateParams params = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
                 .putMetadata("bookingId", String.valueOf(paymentRequestDTO.getBookingId()))
-                .setSuccessUrl("https://urbanclamp.xyz/payments/success")
-                .setCancelUrl("https://urbanclamp.xyz/payments/cancel")
+                .setSuccessUrl("https://www.urbanclamp.xyz/payments/success")
+                .setCancelUrl("https://www.urbanclamp.xyz/payments/cancel")
                 .addLineItem(lineItem)
                 .build();
 

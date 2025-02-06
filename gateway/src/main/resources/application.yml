@@ -16,6 +16,7 @@ spring:
             allowedOrigins:
               - 'http://localhost:3000'
               - 'https://urbanclamp.xyz'
+              - 'https://www.urbanclamp.xyz'
             allowedMethods:
               - GET
               - POST

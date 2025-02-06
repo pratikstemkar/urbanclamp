@@ -50,6 +50,6 @@ management:
         enabled: true
 
 stripe:
-  secretKey:
-  publishableKey:
-  webhookSecret:
+  secretKey: ${STRIPE_SECRET_KEY}
+  publishableKey: ${STRIPE_PUB_KEY}
+  webhookSecret: ${WEBHOOK_SECRET}

@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService {
     @CachePut(value = "users", key = "#user.id")
     public UserDTO createUser(UserRequestDTO userRequestDTO) {
         User user = modelMapper.map(userRequestDTO, User.class);
+        user.setPicture("https://github.com/pratikstemkar.png");
         user.setGender(UserGender.MALE);
         user.getRoles().add(roleService.findRoleByName("ROLE_USER"));
         user.setStatus(UserStatus.ACTIVE);

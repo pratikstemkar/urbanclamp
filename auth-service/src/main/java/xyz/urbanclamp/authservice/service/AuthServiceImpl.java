@@ -31,6 +31,9 @@ public class AuthServiceImpl implements AuthService {
             return userClient.createUser(userRequestDTO).getBody();
         } catch (FeignException.Conflict ce) {
             throw new EmailAlreadyExistsException("Account with the Email: " + userRequestDTO.getEmail() + " already exists.");
+        } catch(Exception e) {
+            System.out.println("No user found");
+            return null;
         }
     }
 
