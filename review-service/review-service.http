@@ -1,0 +1,6 @@
+@review_service_HostAddress = http://localhost:8087
+
+GET {{review_service_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

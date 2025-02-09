@@ -1,0 +1,229 @@
+services:
+  kafka:
+    image: apache/kafka:3.9.0
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    networks:
+      - app-network
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+
+#  prometheus:
+#    image: prom/prometheus
+#    container_name: prometheus
+#    volumes:
+#      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+#    ports:
+#      - "9090:9090"
+#    networks:
+#      - app-network
+#
+#  grafana:
+#    image: grafana/grafana
+#    container_name: grafana
+#    ports:
+#      - "3001:3000"
+#    environment:
+#      - GF_SECURITY_ADMIN_PASSWORD=admin
+#    depends_on:
+#      - prometheus
+#    networks:
+#      - app-network
+
+#  discovery:
+#    build:
+#      context: ./discovery
+#    container_name: discovery
+#    ports:
+#      - "8761:8761"
+#    networks:
+#      - app-network
+#
+#  gateway:
+#    build:
+#      context: ./gateway
+#    container_name: gateway
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - discovery
+#    networks:
+#      - app-network
+
+  user-db:
+    image: mysql:8.4
+    container_name: user-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: userdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - user-db-data:/var/lib/mysql
+    networks:
+      - app-network
+
+  user-cache:
+    image: redis:latest
+    container_name: user-cache
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - user-cache-data:/data
+    networks:
+      - app-network
+
+#  user-service:
+#    build:
+#      context: ./user-service
+#    container_name: user-service
+#    ports:
+#      - "8081:8081"
+#    depends_on:
+#      - discovery
+#      - kafka
+#      - user-db
+#    networks:
+#      - app-network
+#
+#  auth-service:
+#    build:
+#      context: ./auth-service
+#    container_name: auth-service
+#    ports:
+#      - "8082:8082"
+#    depends_on:
+#      - discovery
+#      - user-service
+#    networks:
+#      - app-network
+
+#  notification-db:
+#    image: mysql:8.4
+#    container_name: notification-db
+#    ports:
+#      - "3307:3306"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: notificationdb
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: pass
+#    volumes:
+#      - notification-db-data:/var/lib/mysql
+#    networks:
+#      - app-network
+
+#  notification-service:
+#    build:
+#      context: ./notification-service
+#    container_name: notification-service
+#    ports:
+#      - "8086:8086"
+#    depends_on:
+#      - discovery
+#      - kafka
+#      - notification-db
+#    networks:
+#      - app-network
+
+  partner-db:
+    image: mysql:8.4
+    container_name: partner-db
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: partnerdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - partner-db-data:/var/lib/mysql
+    networks:
+      - app-network
+
+#  partner-service:
+#    build:
+#      context: ./partner-service
+#    container_name: partner-service
+#    ports:
+#      - "8084:8084"
+#    depends_on:
+#      - discovery
+#      - partner-db
+#    networks:
+#      - app-network
+
+  booking-db:
+    image: mysql:8.4
+    container_name: booking-db
+    ports:
+      - "3309:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bookingdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - booking-db-data:/var/lib/mysql
+    networks:
+      - app-network
+
+#  booking-service:
+#    build:
+#      context: ./booking-service
+#    container_name: booking-service
+#    ports:
+#      - "8083:8083"
+#    depends_on:
+#      - discovery
+#      - booking-db
+#    networks:
+#      - app-network
+
+#  payment-db:
+#    image: mysql:8.4
+#    container_name: payment-db
+#    ports:
+#      - "3310:3306"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: paymentdb
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: pass
+#    volumes:
+#      - payment-db-data:/var/lib/mysql
+#    networks:
+#      - app-network
+
+  review-db:
+    image: mysql:8.4
+    container_name: review-db
+    ports:
+      - "3311:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: reviewdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - review-db-data:/var/lib/mysql
+    networks:
+      - app-network
+
+volumes:
+  user-db-data:
+  kafka-data:
+  notification-db-data:
+  partner-db-data:
+  booking-db-data:
+  payment-db-data:
+  review-db-data:
+  user-cache-data:
+
+networks:
+  app-network:
+    driver: bridge
