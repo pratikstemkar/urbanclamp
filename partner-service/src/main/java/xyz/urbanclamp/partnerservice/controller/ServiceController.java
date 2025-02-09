@@ -10,6 +10,8 @@ import xyz.urbanclamp.partnerservice.dto.ServiceUpdateDTO;
 import xyz.urbanclamp.partnerservice.model.Service;
 import xyz.urbanclamp.partnerservice.service.ServiceService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/services")
 @RequiredArgsConstructor
@@ -29,6 +31,11 @@ public class ServiceController {
     @GetMapping("/{id}")
     public ResponseEntity<Service> getServiceById(@PathVariable Long id) {
         return ResponseEntity.ok(serviceService.getServiceById(id));
+    }
+
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<Service>> getServiceByCategory(@PathVariable Long categoryId) {
+        return ResponseEntity.ok(serviceService.getServicesByCategory(categoryId));
     }
 
     @PostMapping

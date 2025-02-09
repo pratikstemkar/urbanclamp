@@ -41,6 +41,12 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
+    public List<Service> getServicesByCategory(Long categoryId) {
+        Category category = categoryService.getCategoryById(categoryId);
+        return serviceRepository.findByCategory(category);
+    }
+
+    @Override
     public Service createService(ServiceCreateDTO serviceCreateDTO) {
         Service service = modelMapper.map(serviceCreateDTO, Service.class);
         Category category = categoryService.getCategoryById(serviceCreateDTO.getCategoryId());
