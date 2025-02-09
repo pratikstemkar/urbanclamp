@@ -32,7 +32,7 @@ const HomesPage = () => {
                     />
                 </div>
             </div>
-            <ServiceDisplay />
+            {/* <ServiceDisplay /> */}
         </main>
     );
 };

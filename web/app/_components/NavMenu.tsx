@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-// import { Icons } from "@/components/icons";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -15,6 +14,7 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Image from "next/image";
+import { useAuth } from "@/store/hooks/useAuth";
 
 const components: {
     title: string;
@@ -66,6 +66,8 @@ const components: {
 ];
 
 export function NavigationMenuDemo() {
+    const auth = useAuth();
+
     return (
         <NavigationMenu className="hidden lg:inline-flex">
             <NavigationMenuList>
@@ -130,7 +132,7 @@ export function NavigationMenuDemo() {
                         </ul>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                     <NavigationMenuTrigger className="bg-transparent">
                         Top Services
                     </NavigationMenuTrigger>
@@ -147,7 +149,7 @@ export function NavigationMenuDemo() {
                             ))}
                         </ul>
                     </NavigationMenuContent>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
                 <NavigationMenuItem>
                     <Link
                         href="/partner"
@@ -157,7 +159,9 @@ export function NavigationMenuDemo() {
                         <NavigationMenuLink
                             className={navigationMenuTriggerStyle()}
                         >
-                            Become a Partner
+                            {auth?.user?.roles.includes("ROLE_PARTNER")
+                                ? "Partner Dashboard"
+                                : "Become a Partner"}
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>

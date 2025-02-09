@@ -13,7 +13,11 @@ export const partnerApi = createApi({
                 body: credentials,
             }),
         }),
+        getPartnerByEmail: builder.query({
+            query: email => `/search?email=${email}`,
+        }),
     }),
 });
 
-export const { useCreatePartnerMutation } = partnerApi;
+export const { useCreatePartnerMutation, useGetPartnerByEmailQuery } =
+    partnerApi;

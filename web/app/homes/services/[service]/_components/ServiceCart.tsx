@@ -50,7 +50,7 @@ const ServiceCart = () => {
                                                         {cart.title}
                                                     </span>
                                                     <span className="text-xs text-muted-foreground">
-                                                        {cart.serviceCategory}
+                                                        {cart.description}
                                                     </span>
                                                 </div>
                                                 <Button
@@ -59,7 +59,7 @@ const ServiceCart = () => {
                                                     onClick={() =>
                                                         dispatch(
                                                             removeFromCart(
-                                                                cart.title
+                                                                cart.serviceSlug
                                                             )
                                                         )
                                                     }
@@ -68,9 +68,11 @@ const ServiceCart = () => {
                                                 </Button>
                                             </div>
                                             <div className="text-sm flex space-x-2">
-                                                <span>₹ {cart.price}</span>
+                                                <span>₹{cart.price}</span>
                                                 <span>&#x2022;</span>
-                                                <span>{cart.duration}</span>
+                                                <span>
+                                                    {cart.duration} minutes
+                                                </span>
                                             </div>
                                             <Link
                                                 href={`/partners/${cart.partnerSlug}`}

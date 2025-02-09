@@ -1,10 +1,15 @@
 import { useSelector } from "react-redux";
-
 import { useMemo } from "react";
-import { selectCurrentUser } from "../features/auth/AuthSlice";
+import {
+    selectCurrentUser,
+    selectAuthStatus,
+} from "../features/auth/AuthSlice";
 
 export const useAuth = () => {
     const user = useSelector(selectCurrentUser);
+    const authStatus = useSelector(selectAuthStatus);
 
-    return useMemo(() => ({ user }), [user]);
+    const isLoading = authStatus === "loading";
+
+    return useMemo(() => ({ user, isLoading }), [user, isLoading]);
 };

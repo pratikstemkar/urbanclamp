@@ -9,13 +9,59 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { emptyCart } from "@/store/features/cart/CartSlice";
-import { useAppDispatch } from "@/store/hooks";
-import { WalletIcon } from "lucide-react";
-import Link from "next/link";
+import { emptyCart, selectCurrentItems } from "@/store/features/cart/CartSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useCreateBookingMutation } from "@/store/services/bookingApi";
+import { useCreatePaymentMutation } from "@/store/services/paymentApi";
+import { Loader2Icon, WalletIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
-const ProceedToPay = (props: { done: boolean }) => {
+const ProceedToPay = (props: {
+    done: boolean;
+    userId: number;
+    partnerId: string;
+    serviceId: string;
+    bookingDate: string;
+    timeSlot: string;
+    amount: number;
+    serviceTitle: string;
+}) => {
     const dispatch = useAppDispatch();
+    const [createBooking, { isLoading, isError, isSuccess }] =
+        useCreateBookingMutation();
+    const [createPayment, { isLoading: payLoading, isSuccess: paySuccess }] =
+        useCreatePaymentMutation();
+    const router = useRouter();
+
+    async function submit() {
+        try {
+            const response = await createBooking({
+                userId: props.userId,
+                partnerId: props.partnerId,
+                serviceId: props.serviceId,
+                bookingDate: props.bookingDate,
+                timeSlot: props.timeSlot,
+                amount: props.amount,
+            }).unwrap();
+            toast("Booking added!");
+
+            console.log(response);
+            dispatch(emptyCart());
+            const payRes = await createPayment({
+                amount: props.amount * 100,
+                name: props.serviceTitle,
+                currency: "INR",
+                quantity: 1,
+                bookingId: response.id,
+            });
+            router.push(payRes.data.sessionUrl);
+        } catch (err) {
+            toast("Booking not added!", {
+                description: JSON.stringify(err),
+            });
+        }
+    }
 
     return (
         <Card>
@@ -37,15 +83,15 @@ const ProceedToPay = (props: { done: boolean }) => {
             <CardFooter className="flex w-full">
                 <Button
                     className="w-full"
-                    onClick={() => dispatch(emptyCart())}
-                    disabled={!props.done}
-                    asChild={props.done}
+                    onClick={() => submit()}
+                    disabled={!props.done && !isLoading}
                 >
-                    {props.done ? (
-                        <Link href="/checkout/success">Proceed to pay</Link>
-                    ) : (
-                        "Proceed to pay"
-                    )}
+                    <span>
+                        {isLoading && (
+                            <Loader2Icon className="animate-spin h-4 w-4 mr-2" />
+                        )}
+                        Proceed to pay
+                    </span>
                 </Button>
             </CardFooter>
         </Card>

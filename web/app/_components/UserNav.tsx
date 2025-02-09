@@ -84,7 +84,7 @@ const UserNav = () => {
                         <CreditCardIcon className="mr-2 w-4 h-4 text-muted-foreground" />
                         <span>Bookings</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem
+                    {/* <DropdownMenuItem
                         className="hover:cursor-pointer"
                         onClick={() => {
                             router.push("/addresses");
@@ -101,7 +101,7 @@ const UserNav = () => {
                     >
                         <SettingsIcon className="mr-2 w-4 h-4 text-muted-foreground" />
                         <span>Settings</span>
-                    </DropdownMenuItem>
+                    </DropdownMenuItem> */}
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem

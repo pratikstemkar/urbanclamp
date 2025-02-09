@@ -25,7 +25,7 @@ const SignInPage = () => {
                         Welcome to Urban Clamp
                     </h1>
                     <h4 className="text-muted-foreground text-sm">
-                        Enter your credentials or use OAuth2 providers
+                        Enter your credentials to Login
                     </h4>
                 </div>
                 <SignInForm />

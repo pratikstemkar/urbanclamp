@@ -22,19 +22,19 @@ const BillCard = () => {
                 {cartItems.length > 0 ? (
                     <div>
                         <div className="flex space-x-4">
-                            <Image
-                                src={`/images/icons/services/${cartItems[0].serviceCategorySlug}.png`}
+                            {/* <Image
+                                src={`/images/icons/services/${cartItems[0].picture}.png`}
                                 alt="imae"
                                 height={100}
                                 width={100}
                                 className="h-14 w-14"
-                            />
+                            /> */}
                             <div className="flex flex-col">
                                 <h1 className="font-bold">
-                                    {cartItems[0].serviceCategory}
+                                    {cartItems[0].title}
                                 </h1>
                                 <h4 className="text-sm text-muted-foreground">
-                                    Phule Nagar, Yerwada
+                                    {cartItems[0].description}
                                 </h4>
                             </div>
                         </div>

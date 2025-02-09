@@ -6,6 +6,7 @@ export interface CartItem {
     serviceCategory: string;
     serviceCategorySlug: string;
     serviceSlug: string;
+    description: string;
     title: string;
     price: number;
     duration: string;
@@ -14,7 +15,7 @@ export interface CartItem {
 }
 
 type CartState = {
-    items: Array<CartItem>;
+    items: CartItem[];
 };
 
 const cartSlice = createSlice({
@@ -25,24 +26,20 @@ const cartSlice = createSlice({
     reducers: {
         addToCart: (
             state,
-            {
-                payload: { item },
-            }: PayloadAction<{
-                item: CartItem;
-            }>
+            { payload: { item } }: PayloadAction<{ item: CartItem }>
         ) => {
-            state.items?.push(item);
-            localStorage.setItem("items", JSON.stringify(state.items));
+            state.items = [item]; // Replace all items with the new one
+            localStorage.setItem("cartItems", JSON.stringify(state.items));
         },
         removeFromCart: (state, action: PayloadAction<string>) => {
             state.items = state.items.filter(
-                item => item.title !== action.payload
+                i => i.serviceSlug !== action.payload
             );
-            localStorage.setItem("items", JSON.stringify(state.items));
+            localStorage.setItem("cartItems", JSON.stringify(state.items));
         },
         emptyCart: state => {
-            localStorage.removeItem("items");
             state.items = [];
+            localStorage.removeItem("cartItems");
         },
     },
 });

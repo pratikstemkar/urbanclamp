@@ -27,10 +27,12 @@ export interface User {
 
 type AuthState = {
     user: User | null;
+    authStatus: "idle" | "loading" | "succeeded" | "failed"; // Added status
 };
 
 const initialState: AuthState = {
     user: null,
+    authStatus: "idle",
 };
 
 export const validateTokenAndSetUser = createAsyncThunk(
@@ -51,19 +53,27 @@ const authSlice = createSlice({
             localStorage.removeItem("access_token");
             localStorage.removeItem("previousPath");
             state.user = null;
+            state.authStatus = "idle";
         },
     },
     extraReducers: builder => {
         builder
+            .addCase(validateTokenAndSetUser.pending, state => {
+                state.authStatus = "loading";
+            })
             .addCase(validateTokenAndSetUser.fulfilled, (state, action) => {
                 state.user = action.payload;
+                state.user.picture = "https://github.com/pratikstemkar.png";
+                state.authStatus = "succeeded";
             })
             .addCase(validateTokenAndSetUser.rejected, state => {
                 state.user = null;
+                state.authStatus = "failed";
             });
     },
 });
 
 export const { logout } = authSlice.actions;
 export const selectCurrentUser = (state: RootState) => state.auth.user;
+export const selectAuthStatus = (state: RootState) => state.auth.authStatus; // Added selector
 export default authSlice.reducer;

@@ -13,6 +13,7 @@ import { bookings } from "@/data/bookings";
 import Image from "next/image";
 import Greeting from "./_components/Greeting";
 import WithRoleProtection from "@/app/(auth)/_components/WithRoleProtection";
+import PartnerBooking from "../_components/PartnerBooking";
 
 export const metadata: Metadata = {
     title: "Dashboard",
@@ -27,9 +28,10 @@ const PartnersPage = () => {
                 <div className="flex flex-col space-y-5 px-5 lg:px-0">
                     <div className="flex justify-between items-center">
                         <Greeting />
-                        <Button>Download</Button>
+                        {/* <Button>Download</Button> */}
                     </div>
-                    <div className="flex flex-col lg:flex-row gap-5 justify-between">
+                    <PartnerBooking />
+                    {/* <div className="flex flex-col lg:flex-row gap-5 justify-between">
                         <Card className="w-full">
                             <CardHeader>
                                 <div className="flex justify-between items-center">
@@ -168,7 +170,7 @@ const PartnersPage = () => {
                                 </div>
                             </CardContent>
                         </Card>
-                    </div>
+                    </div> */}
                 </div>
             </main>
         </WithRoleProtection>

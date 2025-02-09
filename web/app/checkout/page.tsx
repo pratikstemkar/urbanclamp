@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Checkout from "./_components/Checkout";
+import WithRoleProtection from "../(auth)/_components/WithRoleProtection";
 
 export const metadata: Metadata = {
     title: "Checkout",
@@ -8,9 +9,11 @@ export const metadata: Metadata = {
 
 const CheckoutPage = () => {
     return (
-        <main className="max-w-7xl m-auto px-5 lg:px-0">
-            <Checkout />
-        </main>
+        <WithRoleProtection allowedRoles={["ROLE_USER"]}>
+            <main className="max-w-7xl m-auto px-5 lg:px-0">
+                <Checkout />
+            </main>
+        </WithRoleProtection>
     );
 };
 

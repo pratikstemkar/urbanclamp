@@ -11,9 +11,14 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const getRandomTenServices = (
-    services: { title: string; slug: string; description: string }[],
+    services: {
+        title: string;
+        id: number;
+        description: string;
+        picture: string;
+    }[],
     n: number = 10
-): { title: string; slug: string; description: string }[] => {
+): { title: string; id: number; description: string; picture: string }[] => {
     const shuffledServices = [...services].sort(() => 0.5 - Math.random());
     return shuffledServices.slice(0, n);
 };

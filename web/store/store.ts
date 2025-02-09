@@ -5,6 +5,11 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { authApi } from "./services/auth/authApi";
 import { partnerApi } from "./services/partnerApi";
+import { categoryApi } from "./services/categoryApi";
+import { serviceApi } from "./services/serviceApi";
+import { addressApi } from "./services/addressApi";
+import { paymentApi } from "./services/paymentApi";
+import { bookingApi } from "./services/bookingApi";
 
 const authPersistConfig = {
     key: "root",
@@ -17,6 +22,11 @@ const allReducer = combineReducers({
     cart: cartReducer,
     [authApi.reducerPath]: authApi.reducer,
     [partnerApi.reducerPath]: partnerApi.reducer,
+    [categoryApi.reducerPath]: categoryApi.reducer,
+    [serviceApi.reducerPath]: serviceApi.reducer,
+    [addressApi.reducerPath]: addressApi.reducer,
+    [paymentApi.reducerPath]: paymentApi.reducer,
+    [bookingApi.reducerPath]: bookingApi.reducer,
 });
 
 const rootReducer = persistReducer(authPersistConfig, allReducer);
@@ -27,7 +37,12 @@ export const makeStore = () => {
         middleware: getDefaultMiddleware =>
             getDefaultMiddleware()
                 .concat(authApi.middleware)
-                .concat(partnerApi.middleware),
+                .concat(partnerApi.middleware)
+                .concat(categoryApi.middleware)
+                .concat(serviceApi.middleware)
+                .concat(addressApi.middleware)
+                .concat(bookingApi.middleware)
+                .concat(paymentApi.middleware),
     });
 };
 

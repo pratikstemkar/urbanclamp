@@ -83,7 +83,9 @@ const SignInForm = () => {
                 },
             });
         } catch (err) {
-            toast("Login failed!" + err);
+            toast("Login failed!", {
+                description: JSON.stringify(err),
+            });
         }
     }
 
@@ -161,7 +163,7 @@ const SignInForm = () => {
                     />
                     {isError && (
                         <span className="text-red-500 text-sm">
-                            {JSON.stringify(error)}
+                            {"data" in error ? JSON.stringify(error) : ""}
                         </span>
                     )}
                     <Button

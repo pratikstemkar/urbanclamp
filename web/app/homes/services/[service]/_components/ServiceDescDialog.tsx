@@ -17,7 +17,7 @@ import { StarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const ServiceDescDialog = (props: { service: Service }) => {
+const ServiceDescDialog = (props: { service: any }) => {
     const dispatch = useAppDispatch();
 
     return (
@@ -29,13 +29,13 @@ const ServiceDescDialog = (props: { service: Service }) => {
                 <ScrollArea className="-mt-6 -mx-6">
                     <div className="flex space-x-1">
                         <Image
-                            src="https://picsum.photos/id/16/1080/720"
-                            alt={props.service.slug}
-                            height={300}
-                            width={400}
-                            className="rounded-lg"
+                            src={`/images/icons/services/${props.service.picture}.png`}
+                            alt={props.service.picture}
+                            height={200}
+                            width={200}
+                            className="rounded-lg text-center"
                         />
-                        <Image
+                        {/* <Image
                             src="https://picsum.photos/id/28/1080/720"
                             alt={props.service.slug}
                             height={300}
@@ -48,7 +48,7 @@ const ServiceDescDialog = (props: { service: Service }) => {
                             height={300}
                             width={400}
                             className="rounded-lg"
-                        />
+                        /> */}
                     </div>
                     <ScrollBar orientation="horizontal" />
                 </ScrollArea>
@@ -60,8 +60,7 @@ const ServiceDescDialog = (props: { service: Service }) => {
                         <div className="flex space-x-2 items-center">
                             <StarIcon className="h-4 w-4" />
                             <span className="text-xs underline underline-offset-4 decoration-dotted hover:cursor-pointer">
-                                {props.service.starRating} (
-                                {props.service.reviewCount} Reviews)
+                                4.8 ( 1289 Reviews)
                             </span>
                         </div>
                         <div className="text-sm text-muted-foreground">
@@ -70,13 +69,13 @@ const ServiceDescDialog = (props: { service: Service }) => {
                         <div className="flex space-x-3 text-sm">
                             <span>₹ {props.service.price}</span>
                             <span>&#x2022;</span>
-                            <span>{props.service.duration}</span>
+                            <span>{props.service.duration} minutes</span>
                             <span>&#x2022;</span>
                             <Link
-                                href={`/partners/${props.service.partnerSlug}`}
+                                href={`/partners/${props.service.partner.id}`}
                             >
                                 <span className="hover:underline underline-offset-4">
-                                    {props.service.partnerName}
+                                    {props.service.partner.name}
                                 </span>
                             </Link>
                         </div>
@@ -87,21 +86,18 @@ const ServiceDescDialog = (props: { service: Service }) => {
                                 dispatch(
                                     addToCart({
                                         item: {
-                                            serviceCategory:
-                                                getCategoryBySlug(
-                                                    props.service.categorySlug,
-                                                    categories
-                                                ) || "",
-                                            serviceCategorySlug:
-                                                props.service.categorySlug,
-                                            serviceSlug: props.service.slug,
+                                            serviceCategory: "",
+                                            serviceCategorySlug: "",
+                                            serviceSlug: props.service.id,
                                             title: props.service.title,
+                                            description:
+                                                props.service.description,
                                             price: props.service.price,
                                             duration: props.service.duration,
                                             partnerName:
-                                                props.service.partnerName,
+                                                props.service.partner.name,
                                             partnerSlug:
-                                                props.service.partnerSlug,
+                                                props.service.partner.id,
                                         },
                                     })
                                 );
