@@ -20,4 +20,5 @@ public class UserDTO {
     private String status;
     private String gender;
     private String picture;
+
 }
