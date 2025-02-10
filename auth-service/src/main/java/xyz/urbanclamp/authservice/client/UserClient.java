@@ -7,7 +7,7 @@ import xyz.urbanclamp.authservice.dto.FullUserDTO;
 import xyz.urbanclamp.authservice.dto.UserDTO;
 import xyz.urbanclamp.authservice.dto.UserRequestDTO;
 
-@FeignClient(name = "user-service", fallback = UserServiceFallback.class)
+@FeignClient(name = "user-service")
 public interface UserClient {
     @GetMapping("/api/users/fullSearch")
     ResponseEntity<FullUserDTO> getFullUserByEmail(@RequestParam String email);

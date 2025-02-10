@@ -1,7 +1,7 @@
 package xyz.urbanclamp.authservice.service;
 
-import feign.Feign;
 import feign.FeignException;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.jsonwebtoken.Claims;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,6 +25,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    @CircuitBreaker(name = "authService", fallbackMethod = "fallbackUser")
     public UserDTO registerUser(UserRequestDTO userRequestDTO) {
         userRequestDTO.setPassword(passwordEncoder.encode(userRequestDTO.getPassword()));
         try {
@@ -35,6 +36,11 @@ public class AuthServiceImpl implements AuthService {
             System.out.println("No user found");
             return null;
         }
+    }
+
+    public UserDTO fallbackUser(UserRequestDTO userRequestDTO) {
+        userRequestDTO.setPassword(passwordEncoder.encode(userRequestDTO.getPassword()));
+        return null;
     }
 
     @Override

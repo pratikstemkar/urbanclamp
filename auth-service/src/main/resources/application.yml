@@ -21,7 +21,23 @@ management:
     web:
       exposure:
         include: "health,metrics,prometheus"
+  health:
+    circuitbreakers:
+      enabled: true
   metrics:
     export:
       prometheus:
         enabled: true
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      partnerService:
+        failureRateThreshold:
+        waitDurationInOpenState:
+        permittedNumberOfCallsInHalfOpenState: 2
+        slidingWindowSize:
+  timelimiter:
+    instances:
+      partnerService:
+        timeoutDuration: 3s
