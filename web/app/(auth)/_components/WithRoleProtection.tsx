@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "@/store/hooks/useAuth";
 
 interface WithRoleProtectionProps {
@@ -13,24 +13,24 @@ const WithRoleProtection: React.FC<WithRoleProtectionProps> = ({
     allowedRoles,
     children,
 }) => {
-    const { user } = useAuth();
+    const { user, isLoading } = useAuth();
     const router = useRouter();
-    const [loading, setLoading] = useState(true);
-    const hasAccess = user?.roles.some(role => allowedRoles.includes(role));
 
     useEffect(() => {
-        if (!hasAccess) {
+        if (isLoading) return;
+
+        if (!user) {
+            localStorage.setItem("previousPath", window.location.pathname);
+            router.push("/signin");
+            return;
+        }
+
+        if (!user.roles.some(role => allowedRoles.includes(role))) {
             router.push("/unauthorized");
         }
-        if (user == null) {
-            const currentPath = window.location.pathname;
-            localStorage.setItem("previousPath", currentPath);
-            router.push("/signin");
-        }
-        setLoading(false);
-    }, [user?.roles, allowedRoles, router, hasAccess, user]);
+    }, [user, isLoading, allowedRoles, router]);
 
-    if (loading && !hasAccess) return <>Loading...</>;
+    if (isLoading) return <>Loading...</>;
 
     return <>{children}</>;
 };

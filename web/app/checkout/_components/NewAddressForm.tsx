@@ -25,7 +25,7 @@ const formSchema = z.object({
     pinCode: z.string().min(6).max(6),
 });
 
-const NewAddressForm = () => {
+const NewAddressForm = (props: { refetchAddresses: any }) => {
     const { user } = useAuth();
     const [createAddress, { isLoading, isError, isSuccess }] =
         useCreateAddressMutation();
@@ -48,6 +48,7 @@ const NewAddressForm = () => {
                 ...values,
             }).unwrap();
             console.log(response);
+            props.refetchAddresses();
             toast("Address added!");
         } catch (err) {
             toast("Address not added!", {

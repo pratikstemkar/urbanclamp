@@ -23,14 +23,15 @@ const AddressCard = ({ itemCount }: { itemCount: number }) => {
     const { user, isLoading: isAuthLoading } = useAuth();
     const cartItems = useAppSelector(selectCurrentItems);
 
-    // Handle case when user is not loaded yet
     const userId = user?.id;
     const {
         data: addresses,
         isLoading,
+        isFetching,
         error,
+        refetch, // Added refetch function
     } = useGetAddressesByUserIdQuery(userId, {
-        skip: !userId, // Avoid making API call if userId is undefined
+        skip: !userId,
     });
 
     return (
@@ -55,7 +56,7 @@ const AddressCard = ({ itemCount }: { itemCount: number }) => {
                 </CardHeader>
                 <CardContent>
                     <CardDescription>
-                        {isAuthLoading || isLoading ? (
+                        {isAuthLoading || isLoading || isFetching ? ( // Show loading when fetching
                             <p>Loading addresses...</p>
                         ) : error ? (
                             <p className="text-red-500">
@@ -68,62 +69,68 @@ const AddressCard = ({ itemCount }: { itemCount: number }) => {
                                         selectedAddress === null,
                                 })}
                             >
-                                <div>
-                                    {addresses.map(addr => (
-                                        <Card
-                                            key={addr.id}
-                                            className={cn(
-                                                "text-start shadow-none hover:shadow-md hover:cursor-pointer",
-                                                {
-                                                    "border-2 border-green-500":
-                                                        selectedAddress ===
-                                                        addr.id,
-                                                }
-                                            )}
-                                        >
-                                            <CardContent className="flex space-x-5 mt-6">
+                                {addresses.map(addr => (
+                                    <Card
+                                        key={addr.id}
+                                        className={cn(
+                                            "text-start shadow-none hover:shadow-md hover:cursor-pointer",
+                                            {
+                                                "border-2 border-green-500":
+                                                    selectedAddress === addr.id,
+                                            }
+                                        )}
+                                    >
+                                        <CardContent className="flex space-x-5 mt-6">
+                                            <div>
+                                                <HouseIcon />
+                                            </div>
+                                            <div className="flex flex-col space-y-2">
                                                 <div>
-                                                    <HouseIcon />
+                                                    <h1 className="font-bold tracking-tighter">
+                                                        {addr.street}
+                                                    </h1>
+                                                    <h4 className="text-xs text-muted-foreground">
+                                                        {addr.city}
+                                                    </h4>
                                                 </div>
-                                                <div className="flex flex-col space-y-2">
-                                                    <div>
-                                                        <h1 className="font-bold tracking-tighter">
-                                                            {addr.street}
-                                                        </h1>
-                                                        <h4 className="text-xs text-muted-foreground">
-                                                            {addr.city}
-                                                        </h4>
-                                                    </div>
-                                                    <p className="text-muted-foreground">
-                                                        {addr.state} -{" "}
-                                                        {addr.pinCode}
-                                                    </p>
-                                                    {selectedAddress ===
-                                                        null && (
-                                                        <Button
-                                                            onClick={() =>
-                                                                setSelectedAddress(
-                                                                    addr.id
-                                                                )
-                                                            }
-                                                            variant="outline"
-                                                        >
-                                                            Deliver Here
-                                                        </Button>
-                                                    )}
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    ))}
-                                </div>
+                                                <p className="text-muted-foreground">
+                                                    {addr.state} -{" "}
+                                                    {addr.pinCode}
+                                                </p>
+                                                {selectedAddress === null && (
+                                                    <Button
+                                                        onClick={() =>
+                                                            setSelectedAddress(
+                                                                addr.id
+                                                            )
+                                                        }
+                                                        variant="outline"
+                                                    >
+                                                        Deliver Here
+                                                    </Button>
+                                                )}
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                ))}
                                 {selectedAddress === null && (
                                     <div>
-                                        <AddAddressSheet />
+                                        <AddAddressSheet
+                                            refetchAddresses={refetch}
+                                        />
                                     </div>
                                 )}
                             </div>
                         ) : (
-                            <p>No addresses found. Please add one.</p>
+                            <>
+                                {selectedAddress === null && (
+                                    <div>
+                                        <AddAddressSheet
+                                            refetchAddresses={refetch}
+                                        />
+                                    </div>
+                                )}
+                            </>
                         )}
                     </CardDescription>
                 </CardContent>

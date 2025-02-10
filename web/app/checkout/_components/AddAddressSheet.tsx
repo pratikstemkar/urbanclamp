@@ -11,7 +11,7 @@ import { MapPinPlusIcon } from "lucide-react";
 import NewAddressForm from "./NewAddressForm";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-const AddAddressSheet = () => {
+const AddAddressSheet = (props: { refetchAddresses: any }) => {
     return (
         <Sheet>
             <SheetTrigger asChild>
@@ -39,7 +39,7 @@ const AddAddressSheet = () => {
                     <SheetHeader>
                         <SheetTitle>Add new address</SheetTitle>
                     </SheetHeader>
-                    <NewAddressForm />
+                    <NewAddressForm refetchAddresses={props.refetchAddresses} />
                 </ScrollArea>
             </SheetContent>
         </Sheet>
