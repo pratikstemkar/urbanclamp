@@ -1,0 +1,74 @@
+# Logs and debugging
+logs/
+*.log
+!.gitkeep
+
+# Visual Studio & JetBrains Rider specific
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+
+# Build outputs
+bin/
+obj/
+out/
+Debug/
+Release/
+
+# User-specific files
+*.user
+*.vspscc
+*.vssscc
+*.pdb
+*.pidb
+*.seed
+
+# ASP.NET temp files
+*.dbmdl
+*.db-shm
+*.db-wal
+
+# Entity Framework Core migrations and database files
+Migrations/
+*.mdf
+*.ldf
+*.sqlite
+*.sqlite3
+
+# Node.js dependencies (if using frontend)
+node_modules/
+npm-debug.log
+
+# Rider and VS Code settings
+*.code-workspace
+.vscode/
+.idea/
+*.iml
+
+# Configuration files
+appsettings.Development.json
+appsettings.Production.json
+secrets.json
+
+# Docker files
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Ignore compiled files
+*.dll
+*.exe
+*.so
+*.dylib
+
+# Ignore coverage & test result files
+coverage/
+TestResults/
+
+# Ignore temporary files
+*.swp
+*.swo
+

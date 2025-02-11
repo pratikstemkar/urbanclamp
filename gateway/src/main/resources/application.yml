@@ -46,14 +46,20 @@ spring:
           uri: lb://booking-service
           predicates:
             - Path=/api/bookings/**, /booking-service/metrics, /booking-service/actuator
-        - id: notification-service
-          uri: lb://notification-service
-          predicates:
-            - Path=/api/notifications/**, /notification-service/metrics
         - id: payment-service
           uri: lb://payment-service
           predicates:
             - Path=/api/payments/**
+        - id: email-service
+          uri: lb://email-service
+          predicates:
+              - Path=/api/emails/**
+          filters:
+              - StripPrefix=2
+        - id: review-service
+          uri: lb://review-service
+          predicates:
+            - Path=/api/reviews/**
 
 eureka:
   client:
