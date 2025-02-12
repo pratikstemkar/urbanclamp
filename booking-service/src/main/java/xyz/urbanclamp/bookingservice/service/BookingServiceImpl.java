@@ -56,6 +56,7 @@ public class BookingServiceImpl implements BookingService {
         booking.setUserId(bookingUpdateDTO.getUserId());
         booking.setPartnerId(bookingUpdateDTO.getPartnerId());
         booking.setServiceId(bookingUpdateDTO.getServiceId());
+        booking.setAddressId(bookingUpdateDTO.getAddressId());
         booking.setBookingDate(bookingUpdateDTO.getBookingDate());
         booking.setBookingStatus(BookingStatus.valueOf(bookingUpdateDTO.getBookingStatus()));
         booking.setTimeSlot(bookingUpdateDTO.getTimeSlot());

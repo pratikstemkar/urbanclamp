@@ -39,7 +39,7 @@ services:
 #      - "8761:8761"
 #    networks:
 #      - app-network
-#
+
 #  gateway:
 #    build:
 #      context: ./gateway
@@ -99,34 +99,6 @@ services:
 #    depends_on:
 #      - discovery
 #      - user-service
-#    networks:
-#      - app-network
-
-#  notification-db:
-#    image: mysql:8.4
-#    container_name: notification-db
-#    ports:
-#      - "3307:3306"
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#      MYSQL_DATABASE: notificationdb
-#      MYSQL_USER: user
-#      MYSQL_PASSWORD: pass
-#    volumes:
-#      - notification-db-data:/var/lib/mysql
-#    networks:
-#      - app-network
-
-#  notification-service:
-#    build:
-#      context: ./notification-service
-#    container_name: notification-service
-#    ports:
-#      - "8086:8086"
-#    depends_on:
-#      - discovery
-#      - kafka
-#      - notification-db
 #    networks:
 #      - app-network
 
@@ -217,7 +189,6 @@ services:
 volumes:
   user-db-data:
   kafka-data:
-  notification-db-data:
   partner-db-data:
   booking-db-data:
   payment-db-data:

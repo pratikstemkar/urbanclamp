@@ -23,6 +23,6 @@ public class PaymentConsumer {
     @KafkaListener(topics = "payment.failed", groupId = "${spring.kafka.consumer.group-id}")
     public void consumeFailure(StripeResponseDTO stripeResponseDTO) {
         LOGGER.info(String.format("Payment Failed: %s", stripeResponseDTO.toString()));
-        bookingService.setBookingStatus(stripeResponseDTO.getBookingId() == null ? 1L : Long.parseLong(stripeResponseDTO.getBookingId()), "PROCESSING");
+        bookingService.setBookingStatus(stripeResponseDTO.getBookingId() == null ? 1L : Long.parseLong(stripeResponseDTO.getBookingId()), "CANCELLED");
     }
 }

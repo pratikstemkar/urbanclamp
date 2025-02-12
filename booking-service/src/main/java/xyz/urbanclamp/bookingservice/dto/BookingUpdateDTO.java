@@ -16,6 +16,7 @@ public class BookingUpdateDTO {
     private Long userId;
     private Long partnerId;
     private Long serviceId;
+    private Long addressId;
     private LocalDate bookingDate;
     private String timeSlot;
     private String bookingStatus;

@@ -27,6 +27,9 @@ public class Booking extends BaseAuditEntity {
     @Column(name = "service_id")
     private Long serviceId;
 
+    @Column(name = "address_id")
+    private Long addressId;
+
     @Column(name = "booking_date")
     private LocalDate bookingDate;
 

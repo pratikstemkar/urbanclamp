@@ -51,5 +51,5 @@ management:
 
 stripe:
   secretKey: ${STRIPE_SECRET_KEY}
-  publishableKey: ${STRIPE_PUB_KEY}
-  webhookSecret: ${WEBHOOK_SECRET}
+  publishableKey: ${STRIPE_PUBLISHABLE_KEY}
+  webhookSecret: ${STRIPE_WEBHOOK_SECRET}
