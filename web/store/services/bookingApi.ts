@@ -1,11 +1,12 @@
+import { BACK_URL } from "@/lib/constants";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const bookingApi = createApi({
     reducerPath: "bookingApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://api.urbanclamp.xyz/api/bookings",
+        baseUrl: `${BACK_URL}/api/bookings`,
     }),
-    keepUnusedDataFor: 0, // Disable caching globally
+    keepUnusedDataFor: 0,
     endpoints: builder => ({
         getBookings: builder.query({
             query: () => "",

@@ -1,9 +1,10 @@
+import { BACK_URL } from "@/lib/constants";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const categoryApi = createApi({
     reducerPath: "categoryApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://api.urbanclamp.xyz/api/categories",
+        baseUrl: `${BACK_URL}/api/categories`,
     }),
     endpoints: builder => ({
         getCategories: builder.query({

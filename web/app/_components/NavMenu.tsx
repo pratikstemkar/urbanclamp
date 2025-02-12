@@ -165,6 +165,21 @@ export function NavigationMenuDemo() {
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
+                {auth?.user?.roles.includes("ROLE_ADMIN") && (
+                    <NavigationMenuItem>
+                        <Link
+                            href="/admin"
+                            legacyBehavior
+                            passHref
+                        >
+                            <NavigationMenuLink
+                                className={navigationMenuTriggerStyle()}
+                            >
+                                Admin
+                            </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
+                )}
             </NavigationMenuList>
         </NavigationMenu>
     );

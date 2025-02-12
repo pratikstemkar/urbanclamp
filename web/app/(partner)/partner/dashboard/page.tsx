@@ -14,6 +14,7 @@ import Image from "next/image";
 import Greeting from "./_components/Greeting";
 import WithRoleProtection from "@/app/(auth)/_components/WithRoleProtection";
 import PartnerBooking from "../_components/PartnerBooking";
+import CreateServiceForm from "./_components/CreateServiceForm";
 
 export const metadata: Metadata = {
     title: "Dashboard",
@@ -31,6 +32,15 @@ const PartnersPage = () => {
                         {/* <Button>Download</Button> */}
                     </div>
                     <PartnerBooking />
+                    <div className="flex w-full mt-5">
+                        <div className="w-1/2"></div>
+                        <div className="w-1/2">
+                            <h1 className="text-2xl font-bold mb-2">
+                                Create Service
+                            </h1>
+                            <CreateServiceForm />
+                        </div>
+                    </div>
                     {/* <div className="flex flex-col lg:flex-row gap-5 justify-between">
                         <Card className="w-full">
                             <CardHeader>

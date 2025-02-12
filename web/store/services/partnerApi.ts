@@ -1,9 +1,10 @@
+import { BACK_URL } from "@/lib/constants";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const partnerApi = createApi({
     reducerPath: "partnerApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://api.urbanclamp.xyz/api/partners",
+        baseUrl: `${BACK_URL}/api/partners`,
     }),
     endpoints: builder => ({
         createPartner: builder.mutation({

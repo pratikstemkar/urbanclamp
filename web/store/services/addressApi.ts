@@ -1,15 +1,16 @@
+import { BACK_URL } from "@/lib/constants";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const addressApi = createApi({
     reducerPath: "addressApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://api.urbanclamp.xyz/api/addresses",
+        baseUrl: `${BACK_URL}/api/addresses`,
     }),
-    keepUnusedDataFor: 0, // Disable caching by immediately removing unused data
+    keepUnusedDataFor: 0,
     endpoints: builder => ({
         getAddresses: builder.query({
             query: () => "",
-            extraOptions: { forceRefetch: true }, // Force refetch on every call
+            extraOptions: { forceRefetch: true },
         }),
         getAddressById: builder.query({
             query: id => `/${id}`,

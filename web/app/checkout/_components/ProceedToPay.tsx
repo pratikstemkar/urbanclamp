@@ -82,7 +82,7 @@ const ProceedToPay = (props: {
             </CardContent>
             <CardFooter className="flex w-full">
                 <Button
-                    className="w-full"
+                    className="w-full flex"
                     onClick={() => submit()}
                     disabled={!props.done && !isLoading}
                 >

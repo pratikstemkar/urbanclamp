@@ -19,9 +19,9 @@ const WithRoleProtection: React.FC<WithRoleProtectionProps> = ({
     useEffect(() => {
         if (isLoading) return;
 
-        if (!user) {
-            localStorage.setItem("previousPath", window.location.pathname);
-            router.push("/signin");
+        if (!isLoading && !user) {
+            // localStorage.setItem("previousPath", window.location.pathname);
+            // router.push("/signin");
             return;
         }
 
